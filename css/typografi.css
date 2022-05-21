@@ -1,0 +1,112 @@
+/* 
+1em is equal to what ever the font-size
+If font-size is 16px, that means 1em = 16px
+
+2em = 32px
+
+- em: Relative to the font-size of the element (2em means 2 times the size of the current font)
+- rem: Relative to font-size of the root element
+*/
+
+
+/* 
+If 16 is our font-size, then 16 * 1.5 = 24 is our magic number 
+24 will be used to determen the vertical rythme of our content
+*/
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Fredoka+One&family=Zilla+Slab:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+ h1, h2, h3{
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color:hsl(213deg 16% 45%);
+ }
+
+ h4, h5, h6 {
+    font-family: 'Zilla Slab', serif;
+    margin-bottom: 24px;
+    font-weight: bold;
+ }
+
+
+ /* Headings */
+
+/* h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 24px;
+    font-weight: bold;
+  } */
+  
+h1 {
+    font-size: 2.652em; /* 24px --> 24 ÷ 16 = 1.5 */
+    line-height: 1em; /* 24px --> 24 ÷ 24 = 1 */
+}
+
+h2 {
+    font-size: 1.375em; /* 22px --> 22 ÷ 16 = 1.375 */
+    line-height: 1.0909em; /* 24px --> 24 ÷ 22 = 1.090909(09) */
+}
+
+h3 {
+    font-size: 1.25em; /* 20px --> 20 ÷ 16 = 1.25 */
+    line-height: 1.2em; /* 24px --> 24 ÷ 20 = 1.2 */
+}
+
+h4 {
+    font-size: 1.125em; /* 18px --> 18 ÷ 16 = 1.125 */
+    line-height: 1.333em; /* 24px --> 24 ÷ 18 = 1.3333333(3) */
+}
+
+h5, h6 {
+    font-size: 1em; /* 16px --> 16 ÷ 16 = 1 */
+    line-height: 1.5em; /* 24px --> 24 ÷ 16 = 1.5 */
+}
+
+/* Paragraph */
+
+p {
+    margin-bottom: 24px;
+}
+
+/* Lists */
+
+ul {
+    margin-bottom: 24px;  
+    list-style: square outside;
+}
+
+ul ul {
+    margin: 0 0 0 60px;
+}
+
+
+/* Quotes */
+
+blockquote {
+    margin: 0 60px 0 45px;
+    border-left: 5px solid #ccc;
+    padding-left: 10px;
+}
+
+blockquote b {
+    display: block;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+
+/* Image */
+
+#profile-img {
+    float: right;
+    display: block;
+    margin: 0 0 0 20px;
+    width: 148px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+
+
