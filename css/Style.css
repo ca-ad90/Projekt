@@ -1,10 +1,6 @@
 :root {
     --gap: 2vw;
 
-<<<<<<< HEAD
-:root{
-    --gap:1vmin
-=======
     /* COLORS */
     --purple: hsl(299, 73%, 32%);
     --yellow: hsl(52, 97%, 50%);
@@ -51,30 +47,19 @@
 
 body {
     overflow-x: hidden;
->>>>>>> d690ee6 (cleanup)
 }
 
 #grid-wrapper {
     display: grid;
-<<<<<<< HEAD
-    grid-gap:var(--gap);
-    grid-template-columns: repeat(16,1fr);
-    grid-template-rows: repeat(5,minmax(10px,auto));
-    background-image: url(../img/ph-Bild.png);
-=======
     grid-gap: var(--gap);
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(5, minmax(10px, auto));
    /*  background-image: url(../img/bg.png); */
->>>>>>> d690ee6 (cleanup)
     background-size: cover;
     background-repeat: no-repeat;
-<<<<<<< HEAD
-=======
     background-attachment: fixed;
     flex-basis: 100%;
     flex-shrink: 0;
->>>>>>> d690ee6 (cleanup)
 }
 
 header,
@@ -82,13 +67,8 @@ section {
     display: grid;
     grid-column: span 16;
     grid-template-columns: inherit;
-<<<<<<< HEAD
-    grid-gap:1vmin;
-    border-bottom:1px solid black;
-=======
     grid-gap: var(--gap);
     border-bottom: 1px solid black;
->>>>>>> d690ee6 (cleanup)
 }
 
 header {}
@@ -97,15 +77,6 @@ section {
     padding-top: 40px;
     padding-bottom: 20px;
 }
-<<<<<<< HEAD
-.header-wrapper{
-    display: grid;
-    grid-column-start: 3;
-    grid-column-end:15;
-    grid-template-columns: repeat(12,1fr);
-    grid-gap:var(--gap);
-    height: 100vh;
-=======
 
 .header-wrapper {
     display: grid;
@@ -138,7 +109,6 @@ section {
 .side-btn:hover~.side-nav,
 .side-nav:hover {
     width: 30%;
->>>>>>> d690ee6 (cleanup)
 
 }
 
@@ -151,14 +121,11 @@ section {
     display: block;
     color: black;
 }
-<<<<<<< HEAD
-=======
 
 .nav-btn {
     font-size: 80px;
 }
 
->>>>>>> d690ee6 (cleanup)
 .header-content {
     padding-top: 7vh;
 }
@@ -176,24 +143,6 @@ section {
 
 section>[class*="wrapper"] {
     display: grid;
-<<<<<<< HEAD
-    grid-column-start: 2;
-    grid-column-end:16;
-    grid-template-columns: repeat(12,1fr);
-    grid-gap:var(--gap);
-    min-height: 10vh;
-}
-.intro-content-right{
-    display: flex;
-    gap:var(--gap);
-}
-.intro-pic{
-    flex: 1 1 30%;
-    height: 100%;
-    background-image: url(../img/ph-Bild.png);
-}
-.sec-12{
-=======
     grid-column-start: 3;
     grid-column-end: 15;
     grid-template-columns: repeat(12, 1fr);
@@ -254,7 +203,6 @@ section>[class*="wrapper"] {
 
 
 .sec-12 {
->>>>>>> d690ee6 (cleanup)
 
     grid-template-columns: repeat(12, 1fr);
 
