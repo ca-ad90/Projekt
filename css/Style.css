@@ -1,0 +1,214 @@
+:root {
+    --gap: 2vw;
+
+    /* COLORS */
+    --purple: hsl(299, 73%, 32%);
+    --yellow: hsl(52, 97%, 50%);
+    --magenta: hsl(330, 79%, 52%);
+    --orange: hsl(31, 88%, 63%);
+    --light-purple: hsl(299, 33%, 59%);
+    --light-magenta: hsl(330, 78%, 71%);
+    --light-orange: hsl(31, 88%, 77%);
+    --light-yellow: hsl(52, 96%, 80%);
+    --dark-purple: hsl(299, 73%, 16%);
+    --dark-magenta: hsl(330, 73%, 26%);
+    --dark-orange: hsl(31, 53%, 31%);
+    --dark-yellow: hsl(52, 95%, 25%);
+
+    --rgb-purple: 139, 22, 141;
+    --rgb-magenta: 230, 36, 133;
+    --rgb-orange: 244, 163, 78;
+    --rgb-yellow: 251, 218, 5;
+
+    --rgb-light-purple: 184, 116, 185;
+    --rgb-light-magenta: 239, 123, 181;
+    --rgb-light-orange: 248, 198, 145;
+    --rgb-light-yellow: 253, 240, 155;
+
+    --rgb-dark-purple: 70, 11, 71;
+    --rgb-dark-magenta: 115, 18, 66;
+    --rgb-dark-orange: 121, 80, 37;
+    --rgb-dark-yellow: 124, 108, 3;
+
+    --hsl-purple: 299, 73%, 32%;
+    --hsl-yellow: 52, 97%, 50%;
+    --hsl-magenta: 330, 79%, 52%;
+    --hsl-orange: 31, 88%, 63%;
+
+    --hls-light-purple: 299, 33%, 59%;
+    --hls-light-magenta: 330, 78%, 71%;
+    --hls-light-orange: 31, 88%, 77%;
+    --hls-light-yellow: 52, 96%, 80%;
+    --hls-dark-purple: 299, 73%, 16%;
+    --hls-dark-magenta: 330, 73%, 26%;
+    --hls-dark-orange: 31, 53%, 31%;
+    --hls-dark-yellow: 52, 95%, 25%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#grid-wrapper {
+    display: grid;
+    grid-gap: var(--gap);
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(5, minmax(10px, auto));
+   /*  background-image: url(../img/bg.png); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    flex-basis: 100%;
+    flex-shrink: 0;
+}
+
+header,
+section {
+    display: grid;
+    grid-column: span 16;
+    grid-template-columns: inherit;
+    grid-gap: var(--gap);
+    border-bottom: 1px solid black;
+}
+
+header {}
+
+section {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.header-wrapper {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 15;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: var(--gap);
+    height: 500vh;
+
+}
+
+.side-nav {
+    width: 0%;
+    background-color: green;
+    flex-shrink: 0;
+    transition: 0.2s
+}
+
+.side-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    border-radius: 100%;
+    background-color: aqua;
+    width: 50px;
+    height: 50px;
+
+}
+
+.side-btn:hover~.side-nav,
+.side-nav:hover {
+    width: 30%;
+
+}
+
+.nav-wrapper {
+    padding-top: 40px;
+    padding-left: 20px;
+}
+
+.nav-link {
+    display: block;
+    color: black;
+}
+
+.nav-btn {
+    font-size: 80px;
+}
+
+.header-content {
+    padding-top: 7vh;
+}
+
+.logo-wrapper {
+    width: 100%;
+    height: 38vmin;
+    position: relative;
+    background-image: url(../img/ph-logga.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 10% 50%;
+
+}
+
+section>[class*="wrapper"] {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 15;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: var(--gap);
+    min-height: 10vh;
+}
+
+.intro-content-left {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.intro-content-right {
+    display: flex;
+    gap: var(--gap);
+}
+
+.intro-pic {
+    flex: 1 1 10%;
+    height: 100vh;
+    /*  background-image: url(../img/ph-Bild2.png); */
+    background-color: antiquewhite;
+    box-shadow: indet 1px 1px 1px 1px hsla(0deg, 0%, 0%, 0.5S);
+    background-position: center;
+    transition: 0.2s;
+}
+
+.intro-pic:hover {
+    flex: 1 0 45%;
+
+}
+
+.thumb::before {
+    position: relative;
+    display: block;
+    content: "";
+    padding-top: 80%;
+    transition: 0.3s;
+
+}
+
+.thumb:hover::before {
+    background-color: hsla(0deg, 100%, 100%, 0.5);
+}
+
+.thumb-container {
+    grid-column: 2 / span 10;
+    display: flex;
+    gap: var(--gap)
+}
+
+.portfolio-thumb {
+    background-image: url(../img/ph-Bild2.png);
+    background-size: cover;
+    background-position: center;
+}
+
+
+.sec-12 {
+
+    grid-template-columns: repeat(12, 1fr);
+
+}
+
+.debugger,
+.debugger div {
+    /* background-color: rgba(150,150,150,0.5);*/
+}
