@@ -25,7 +25,6 @@ section>*[class*="wrapper"]:not(.section-left, .section-right){
 .col-span-end{
     grid-column-end: -1;
 }
-
 .col-span-2{
     grid-column-start:auto;
     grid-column-end:span 2;
@@ -145,4 +144,46 @@ section>*[class*="wrapper"]:not(.section-left, .section-right){
 }
 .col-end-13{
     grid-column-end:13;
+}
+
+
+.grid-columns-10{
+    display:grid;
+    grid-template-columns:repeat(10,1fr);
+    grid-column-gap:var(--gap);
+}
+.grid-rows-2{
+    display:grid;
+    grid-template-rows:repeat(2,1fr);
+    grid-column-gap:var(--gap);
+}
+.grid-columns-12{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-column-gap:var(--gap);
+}
+.grid-rows-3{
+    display:grid;
+    grid-template-rows:repeat(3,1fr);
+    grid-column-gap:var(--gap);
+}
+.grid-columns-14{
+    display:grid;
+    grid-template-columns:repeat(14,1fr);
+    grid-column-gap:var(--gap);
+}
+.grid-rows-4{
+    display:grid;
+    grid-template-rows:repeat(4,1fr);
+    grid-column-gap:var(--gap);
+}
+.grid-columns-16{
+    display:grid;
+    grid-template-columns:repeat(16,1fr);
+    grid-column-gap:var(--gap);
+}
+.grid-rows-5{
+    display:grid;
+    grid-template-rows:repeat(5,1fr);
+    grid-column-gap:var(--gap);
 }
