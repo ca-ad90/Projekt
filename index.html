@@ -7,39 +7,45 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Creativity is a lifestyle</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   <link rel="stylesheet" href="css/Style.css">
-   <link rel="stylesheet" href="css/Grids.css">
    <link rel="stylesheet" href="css/normalize.css">
+   <link rel="stylesheet" href="css/Grids.css">
+   <link rel="stylesheet" href="css/typografi.css">
+   <link rel="stylesheet" href="css/Style.css">
+
+
    <script src="js/init.js"></script>
 </head>
 
 <body>
    <div id="grid-wrapper">
-      <header class="gridder debugger">
+      <div class="side-btn"></div>
+      <div class="side-nav"></div>
+      <header id="part-1" class="gridder debugger">
          <div class="header-wrapper debugger">
             <div class="col-span-5 header-content">
                <div class="logo-wrapper">
+                  <img src="img/Logo3.svg">
                </div>
                <nav>
                   <div class="nav-wrapper">
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="about.html">
                         <div class="nav-btn">
                            About
                         </div>
                      </a>
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="portfolio.html">
                         <div class="nav-btn">
-                           About
+                           Portfolio
                         </div>
                      </a>
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="gallery.html">
                         <div class="nav-btn">
-                           About
+                           Gallery
                         </div>
                      </a>
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="contact.html">
                         <div class="nav-btn">
-                           About
+                           Contact
                         </div>
                      </a>
                   </div>
@@ -47,11 +53,11 @@
             </div>
          </div>
       </header>
-      <section id="into" class="debugger">
-         <div class="section-wrapper">
-            <div class="col-span-5 intro-content-left">
-               <h2>Carl Adrian</h2>
-               <p>Lorem ipsum dolor sit amet, eiusmod in elit eu ex qui est nostrud amet sint labo
+      <section id="part-2" class="full-page">
+         <div class="section-wrapper section-right">
+            <div class="col-span-5 intro-content-left parralax">
+               <h1>Carl Adrian</h1>
+               <p class="ingress">Lorem ipsum dolor sit amet, eiusmod in elit eu ex qui est nostrud amet sint labo
                   re ullamco. Labore non excepteur do irure laboris. Dolor veniam laborum aute vel
                   it dolore consectetur reprehenderit mollit. </p>
                <p>Enim adipisicing irure quis labore adipisicing enim cillum mollit reprehenderit
@@ -64,34 +70,40 @@
                  </p>
 
             </div>
-            <div class="col-span-7 intro-content-right">
-               <div class="intro-pic portfolio">
+            <div class="col-start-7 col-span-end intro-content-right parralax">
+               <div class="intro-pic portfolio parralax">
 
                </div>
-               <div class="intro-pic artwork">
+               <div class="intro-pic artwork parralax">
                   
                </div>
-               <div class="intro-pic about">
+               <div class="intro-pic about parralax">
                   
                </div>
             </div>
          </div>
 
       </section>
-      <section id="portfolio" class="debugger">
+      <section id="part-3" class="full-page">
          <div class="section-wrapper">
-
+            <div class="thumb-container col-span-12 sec-12 parralax">
+               <div class="thumb portfolio-thumb parralax"></div>
+               <div class="thumb portfolio-thumb parralax"></div>
+               <div class="thumb portfolio-thumb parralax"></div>
+               <div class="thumb portfolio-thumb parralax"></div>
+            </div>
          </div>
-
-      </section>
       <section id="art" class="debugger">
          <div class="section-wrapper">
 
          </div>
 
       </section>
-      <footer id="footer" class="debugger">
-         <div class="section-wrapper">
+      </section>
+
+
+      <footer id="foot" class="debugger">
+         <div class="section-wrapper" style="height:150px">
 
          </div>
 

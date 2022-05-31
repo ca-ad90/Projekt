@@ -17,27 +17,27 @@ If 16 is our font-size, then 16 * 1.5 = 24 is our magic number
 
 :root {
     /* FONTS */
-    --heading: 'Abril Fatface', cursive;
     --text: 'Josefin Sans', sans-serif;
     --text2: 'Josefin Slab', serif;
-    --heading2: 'Playfair Display', serif;
+    --heading: 'Playfair Display', serif;
 }
 
 
-.type-test {
-    background-color: hsla(0, 0%, 75%, 0.75);
-    padding-left: 25px;
-    padding-right: 30px;
-    padding-top: 75px;
+.ingress{
+    margin-top: calc(var(--line-height)*1px);
+    --font-size: 24;
+    font-family: var(--heading);
+    font-weight: 400;
+
 }
 
 *,
 * * {
     /*Auto line height calc*/    
     --shf: 4.9406564584124654e-324;
-    --base-font-size: 24;
+    --base-font-size: 20;
     --font-size: var(--base-font-size);
-    --line-height: calc(var(--base-font-size) * 1.2);
+    --line-height: calc(var(--base-font-size) * 1.4);
     --mp: calc((var(--font-size) / var(--line-height)) * var(--shf) / var(--shf));
     --fs: calc(var(--font-size) * 1px);
     --lh: calc(max(var(--line-height) , calc((var(--line-height) * var(--mp)))) * 1px);
@@ -48,7 +48,7 @@ If 16 is our font-size, then 16 * 1.5 = 24 is our magic number
     font-family: var(--text);
     font-size: var(--fs);
     line-height: var(--lh);
-    font-weight: 400;
+    font-weight: 350;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -61,7 +61,8 @@ h2,
 h3{
     font-family: var(--heading);
     color: rgb(var(--rgb-orange));
-    margin-bottom: calc((var(--line-height)*(4/3))*1px);  
+    margin-bottom: calc((var(--line-height)*(4/3))*1px);
+    font-weight:800;
 
 }
 

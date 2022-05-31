@@ -1,3 +1,12 @@
+section>*[class*="wrapper"]:not(.section-left, .section-right){
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 15;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: var(--gap);
+    min-height: 10vh;
+}
+
 .section-left{
     display: grid;
     grid-column-start: 1;
@@ -13,7 +22,9 @@
     grid-gap: var(--gap);   
 
 }
-
+.col-span-end{
+    grid-column-end: -1;
+}
 
 .col-span-2{
     grid-column-start:auto;
