@@ -1,4 +1,8 @@
-section>*[class*="wrapper"]:not(.section-left, .section-right){
+:root{
+    --gridWrapper: 16;
+    --grid-section-wrapper:calc(var(--gridWrapper) - 2)
+}
+section>*[class*="wrapper"]:not(.section-left, .section-right, .section-full, .section-center){
     display: grid;
     grid-column-start: 3;
     grid-column-end: 15;
@@ -21,6 +25,19 @@ section>*[class*="wrapper"]:not(.section-left, .section-right){
     grid-template-columns: repeat(14,1fr);
     grid-gap: var(--gap);   
 
+}
+.section-center{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: span 14;
+    grid-template-columns: repeat(14,1fr);
+    grid-gap: var(--gap);   
+
+}
+.section-full{
+    display: grid;
+    grid-template-columns: inherit;
+    grid-gap:var(--gap);
 }
 .col-span-end{
     grid-column-end: -1;
