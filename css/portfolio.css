@@ -135,7 +135,12 @@
     grid-column: 1 / span 6;
     box-shadow: inset 1px 0px 3px 3px var(--dark-magenta);
     height: 103vh;
+    background-image: url(../img/bg2.png);
     top: -13px;
+    background-position: right;
+    background-position-y: 0px;
+    background-size: auto 150%;
+    transition: 0.9s;
 }
 
 .img.part.main::before {}

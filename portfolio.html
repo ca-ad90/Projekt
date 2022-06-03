@@ -149,7 +149,7 @@
                 this.timeStamp = new Date().getTime()
                 this.type = e.type
                 this.next = null
-                if (this.timeStamp - this.start > 200 || this.type.replace("pointer", "") != this.type) {
+                if (this.timeStamp - this.start > 100 || this.type.replace("pointer", "") != this.type) {
                     switch (this.type) {
                         case "keydown":
                             this.onKeyDown(e.originalEvent)
@@ -249,12 +249,17 @@
                             dir = d
                             break;
                         }
-                    }
+                    }var bgPos = Number($(".img.container").css("background-position-y").replace("px",""))
 
                     if (p < this.current) {
+                        bgPos+=60
                         from = -1 * from;
                         to = -1 * to;
+                    }else{
+                        bgPos-=60
                     }
+                    $(".img.container").css("background-position-y",bgPos+"px")
+
 
                     var currentElement = e.querySelector("#" + name + "-" + this.current)
                     var nextElement = e.querySelector("#" + name + "-" + p)
@@ -276,6 +281,7 @@
 
 
                     setTimeout(function () {
+                        var bgPos = $(".img.container").css("background-position-y")
                         console.log(currentElement,nextElement)
                         $(e).find(".part").removeClass("return")
                         currentElement.style[dir] = to + "%"
