@@ -1,0 +1,186 @@
+*,
+* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  margin: 0;
+}
+
+.nav-wrapper {
+  position: fixed;
+  z-index: 100;
+  display:flex;
+  justify-content: center;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.nav-wrapper.left {
+
+  width: 10px;
+  height: 100%;
+}
+
+.nav-wrapper.top {
+
+  width: 100%;
+  height: 10px
+}
+
+.nav-wrapper.left.open {
+  left: 0 !important;
+}
+
+.nav-wrapper.top.open {
+  top: 0 !important;
+}
+
+
+.nav-item {
+  display: block;
+  cursor: default;
+}
+
+
+.nav-blocker.open {
+  z-index: 101;
+  display: block;
+}
+
+.nav-blocker.closed {
+  z-index: 101;
+  display: none;
+}
+
+.nav-content.open {
+  z-index: 103;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-content.open {
+  width: 0%;
+  height: 0%;
+}
+
+.nav-svg.open {
+  z-index: 102;
+}
+.svg-ico{
+  width:80%;
+  height: 80%;
+}
+.nav-btn {
+  content:"BAJS";
+  position: absolute;
+  background-color: orange;
+  width: 100px;
+  height: 50px;
+  border-bottom-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38pt;
+  color: white;
+  transition: 0.2s;
+}
+path.ico{
+  d:path("M10,20 L50,20 L90,20 M10,50 L50,50 L90,50 M10,80 L50,80 L90,80");
+  transition:0.3s;
+}
+.nav-btn:active path.ico{
+ d:path("M10,10 L50,30 L90,10 M10,40 L50,60 L90,40 M10,70 L50,90 L90,70");
+}
+.nav-btn.open path.ico{
+   d :path("M10,10 L50,50 L90,10 M10,90 L50,50 L90,90 M10,90 L50,50 L90,90");
+}
+
+.nav-btn.open:active path.ico{
+  d:path("M10,30 L50,10 L90,30 M10,60 L50,40 L90,60 M10,90 L50,70 L90,90");
+}
+.nav-btn:active {
+  color: darkmagenta;
+  background-color: orange;
+  background-color: darkgoldenrod;
+}
+
+
+.nav-content,
+.nav-wrapper div {
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.nav-blocker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.0);
+  transition: 0.4s;
+}
+
+.nav-blocker.open {
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+.nav-content {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  top: 0;
+
+  background-color: transparent;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.bajs {
+  height: 8vh;
+  width: 100%;
+  position: relative;
+  transition: 0.3s
+}
+
+.bajs.a {
+  background-color: red;
+}
+
+.bajs.b {
+  background-color: green;
+}
+
+.bajs.c {
+  background-color: purple;
+}
+
+.wrapper {
+  background-color: pink;
+  width: 100%;
+  height: 200vh;
+}
+
+.nav-svg {
+  position: relative;
+  width: 100%;
+  height: 10vh;
+
+}
+
+.revert {
+  transition: 0.25s
+}
