@@ -1,12 +1,12 @@
 class svgDrag2 {
     constructor(header, pos) {
         this.wrapper = header;
-        this.blocker = header.querySelector(".nav-blocker");
-        this.content = header.querySelector(".nav-content");
-        this.svg = header.querySelector("svg.nav-svg");
+        this.blocker = header.querySelector(".navbar-blocker");
+        this.content = header.querySelector(".navbar-content");
+        this.svg = header.querySelector("svg.navbar-svg");
         this.navbar = this.svg.querySelector("path");
 
-        
+
         this.timeout;
         this.isDragging = false;
         this.clickEvent = false
@@ -57,7 +57,7 @@ class svgDrag2 {
             offset: 75
         };
 
-        this.navBtn = this.wrapper.querySelector(".nav-btn")
+        this.navBtn = this.wrapper.querySelector(".navbar-btn")
         this.navBtn.addEventListener("mousedown", this.mouseDown.bind(this))
         this.navBtn.addEventListener("touchstart", this.mouseDown.bind(this));
         this.content.addEventListener("mousedown", this.mouseDown.bind(this));
@@ -70,7 +70,7 @@ class svgDrag2 {
         window.addEventListener("touchend", this.mouseUp.bind(this));
         window.addEventListener("resize", this.init.bind(this));
 
-        this.containers = [this.wrapper, this.blocker, this.content, this.svg,this.navBtn]
+        this.containers = [this.wrapper, this.blocker, this.content, this.svg, this.navBtn]
 
         this.init();
     }
@@ -298,20 +298,23 @@ class svgDrag2 {
     */
 
     mouseDown(el) {
-        
-        if((el.target == this.navBtn || $(this.navBtn).find(el.target))){
+
+        if ((el.target == this.navBtn || $(this.navBtn).find(el.target))) {
             this.clickEvent = true;
             let hy = this.isOpen ? -100 : 100
-            this.qh({hy:hy})
+            this.qh({
+                hy: hy
+            })
             this.navbar.classList.add("revert")
-        }else {el.preventDefault()
+        } else {
+            el.preventDefault()
             this.navbar.classList.remove("revert")
         }
         console.log(el)
         const e = el.touches ? el.touches[0] : el
         this.isDragging = true
         clearTimeout(this.timeout);
-        
+
         this.mouse.x = e.clientX;
         this.mouse.y = e.clientY;
         this.cStart.x = this._circle.left;
@@ -330,8 +333,8 @@ class svgDrag2 {
             const e = el.touches ? el.touches[0] : el
             var moveX = Number(this.m(e).x.toFixed(2)) - this.win.width;
             var moveY = this.m(e).y - this.mouse.y;
-            if(this.clickEvent){
-                moveY = this.isOpen ? moveY -(100-this.size.offset) : moveY + (100-this.size.offset)
+            if (this.clickEvent) {
+                moveY = this.isOpen ? moveY - (100 - this.size.offset) : moveY + (100 - this.size.offset)
             }
             if (!this.isOpen) {
                 var svgHeight = Number(this.bar.height.toFixed(2));
@@ -355,7 +358,7 @@ class svgDrag2 {
         console.log(el.target, (el.target == this.navBtn || $(this.navBtn).find(el.target).length > 0))
         if ((el.target == this.navBtn || $(this.navBtn).find(el.target).length > 0) && this.clickEvent) {
             this.isDragging = false
-            if(this.isOpen){
+            if (this.isOpen) {
                 this.close()
             } else {
                 this.open()
@@ -386,9 +389,9 @@ class svgDrag2 {
     */
     open() {
 
-        
+
         this.navbar.classList.add("revert");
-        if(this.clickEvent){
+        if (this.clickEvent) {
             this.qh({
                 hy: (this.win.height * 0.2) + this.size.offset
             })
@@ -421,7 +424,8 @@ class svgDrag2 {
                 e.classList.remove("closed")
                 e.classList.add("open");
             }
-        );this.isOpen = true;
+        );
+        this.isOpen = true;
 
     }
     close() {
@@ -431,7 +435,7 @@ class svgDrag2 {
                 e.classList.remove("open");
             }
         );
-        
+
         this.navbar.classList.add("revert");
 
 
@@ -463,14 +467,8 @@ class svgDrag2 {
                 hx: -this.bar.width / 2,
                 hy: this.size.offset
             });
-
-
             setTimeout(() => {
-
-
                 this.navbar.classList.remove("revert");
-
-
             }, 150);
             return;
         } else {
@@ -488,4 +486,4 @@ class svgDrag2 {
 }
 
 
-var svgdrag = new svgDrag2(document.querySelector(".nav-wrapper"), "left");
+var svgdrag = new svgDrag2(document.querySelector(".navbar-wrapper"), "left");

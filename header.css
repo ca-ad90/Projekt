@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-body {
+/* body {
   display: flex;
   top: 0;
   left: 0;
@@ -14,9 +14,9 @@ body {
   justify-content: center;
   flex-flow: column;
   margin: 0;
-}
+} */
 
-.nav-wrapper {
+.navbar-wrapper {
   position: fixed;
   z-index: 100;
   display:flex;
@@ -25,62 +25,69 @@ body {
   left: 0 !important;
 }
 
-.nav-wrapper.left {
+.navbar-wrapper.left {
 
   width: 10px;
   height: 100%;
 }
 
-.nav-wrapper.top {
+.navbar-wrapper.top {
 
   width: 100%;
   height: 10px
 }
 
-.nav-wrapper.left.open {
+.navbar-wrapper.left.open {
   left: 0 !important;
 }
 
-.nav-wrapper.top.open {
+.navbar-wrapper.top.open {
   top: 0 !important;
 }
 
 
-.nav-item {
-  display: block;
+.navbar-item {
+  /* top: 150px; */
+  display: flex;
   cursor: default;
+  /* padding-left: 20%; */
+  justify-content: center;
+  align-items: center;
+  background-image: url("#navbar-bg");
 }
 
 
-.nav-blocker.open {
+.navbar-blocker.open {
   z-index: 101;
   display: block;
 }
 
-.nav-blocker.closed {
+.navbar-blocker.closed {
   z-index: 101;
   display: none;
 }
 
-.nav-content.open {
-  z-index: 103;
-  width: 100%;
-  height: 100%;
+.navbar-content.open {
+  z-index: 107;
+  width: 101%;
+  height: 46vh;
+  /* top: 100px; */
+  /* transform: rotate(10deg); */
 }
 
-.nav-content.open {
-  width: 0%;
-  height: 0%;
+.navbar-content.open {
+  /* width: 0%; */
+  /* height: 0%; */
 }
 
-.nav-svg.open {
+.navbar-svg.open {
   z-index: 102;
 }
 .svg-ico{
   width:80%;
   height: 80%;
 }
-.nav-btn {
+.navbar-btn {
   content:"BAJS";
   position: absolute;
   background-color: orange;
@@ -100,31 +107,31 @@ path.ico{
   d:path("M10,20 L50,20 L90,20 M10,50 L50,50 L90,50 M10,80 L50,80 L90,80");
   transition:0.3s;
 }
-.nav-btn:active path.ico{
+.navbar-btn:active path.ico{
  d:path("M10,10 L50,30 L90,10 M10,40 L50,60 L90,40 M10,70 L50,90 L90,70");
 }
-.nav-btn.open path.ico{
+.navbar-btn.open path.ico{
    d :path("M10,10 L50,50 L90,10 M10,90 L50,50 L90,90 M10,90 L50,50 L90,90");
 }
 
-.nav-btn.open:active path.ico{
+.navbar-btn.open:active path.ico{
   d:path("M10,30 L50,10 L90,30 M10,60 L50,40 L90,60 M10,90 L50,70 L90,90");
 }
-.nav-btn:active {
+.navbar-btn:active {
   color: darkmagenta;
   background-color: orange;
   background-color: darkgoldenrod;
 }
 
 
-.nav-content,
-.nav-wrapper div {
+.navbar-content,
+.navbar-wrapper div {
   -moz-user-select: none;
   user-select: none;
   -webkit-user-select: none;
 }
 
-.nav-blocker {
+.navbar-blocker {
   position: absolute;
   top: 0;
   left: 0;
@@ -132,17 +139,18 @@ path.ico{
   transition: 0.4s;
 }
 
-.nav-blocker.open {
-  background-color: rgba(0, 0, 0, 0.5)
+.navbar-blocker.open {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: url("#navbar-bg");
 }
 
-.nav-content {
+.navbar-content {
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  top: 0;
-
+  grid-template-rows: repeat(4,1fr);
+  /* grid-gap: 20px; */
+  /* padding-left: 20%; */
+  top: 90px;
   background-color: transparent;
   -moz-user-select: none;
   user-select: none;
@@ -169,12 +177,14 @@ path.ico{
 }
 
 .wrapper {
-  background-color: pink;
+  position: relative;
+  top: 150px;
   width: 100%;
   height: 200vh;
+  background-image: url(#navbar-bg);
 }
 
-.nav-svg {
+.navbar-svg {
   position: relative;
   width: 100%;
   height: 10vh;
@@ -183,4 +193,12 @@ path.ico{
 
 .revert {
   transition: 0.25s
+}
+
+.navbar-content.closed {
+  display: none;
+}
+
+.navbar-item:hover {
+  background-image: linear-gradient(94deg,transparent 9%, hsl(30deg 100% 70%) 39%,hsl(30deg 100% 70%), transparent);
 }
