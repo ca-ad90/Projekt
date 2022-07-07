@@ -8,7 +8,9 @@ section>*[class*="wrapper"]:not(.section-left, .section-right, .section-full, .s
     grid-column-end: 15;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: var(--gap);
-    min-height: 10vh;
+    min-height: 20vh;
+    /* padding-top: 10vmin; */
+    /* padding-bottom: 10vmin; */
 }
 
 .section-left{

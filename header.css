@@ -17,9 +17,10 @@
 } */
 
 .navbar-wrapper {
+  display:
+  none;
   position: fixed;
   z-index: 100;
-  display:flex;
   justify-content: center;
   top: 0 !important;
   left: 0 !important;
@@ -88,9 +89,10 @@
   height: 80%;
 }
 .navbar-btn {
-  content:"BAJS";
+  content:
+  "BAJS";
   position: absolute;
-  background-color: orange;
+  /* background-color: orange; */
   width: 100px;
   height: 50px;
   border-bottom-left-radius: 200px;

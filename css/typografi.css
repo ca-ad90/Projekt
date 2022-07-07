@@ -28,7 +28,7 @@ If 16 is our font-size, then 16 * 1.5 = 24 is our magic number
     --font-size: 24;
     font-family: var(--heading);
     font-weight: 400;
-
+    color: var(--light-magenta);
 }
 
 *,
@@ -36,13 +36,17 @@ If 16 is our font-size, then 16 * 1.5 = 24 is our magic number
     /*Auto line height calc*/    
     --shf: 4.9406564584124654e-324;
     --base-font-size: 20;
-    --font-size: var(--base-font-size);
-    --line-height: calc(var(--base-font-size) * 1.4);
-    --mp: calc((var(--font-size) / var(--line-height)) * var(--shf) / var(--shf));
-    --fs: calc(var(--font-size) * 1px);
-    --lh: calc(max(var(--line-height) , calc((var(--line-height) * var(--mp)))) * 1px);
-
-
+    --font-size:
+    var(--base-font-size);
+    --line-height:
+    calc(var(--base-font-size) * 1.4);
+    --mp:
+    calc((var(--font-size) / var(--line-height)) * var(--shf) / var(--shf));
+    --fs:
+    calc(var(--font-size) * 1px);
+    --lh:
+    calc(max(var(--line-height) , calc((var(--line-height) * var(--mp)))) * 1px);
+    color: white;
     box-sizing: border-box;
     /*default font-setting */
     font-family: var(--text);
@@ -60,10 +64,9 @@ h1,
 h2,
 h3{
     font-family: var(--heading);
-    color: rgb(var(--rgb-orange));
+    color: var(--orange);
     margin-bottom: calc((var(--line-height)*(4/3))*1px);
     font-weight:800;
-
 }
 
 h4,

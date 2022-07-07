@@ -54,7 +54,7 @@ class svgDrag2 {
         this.size = {
             close: 0,
             open: 0.8,
-            offset: 75
+            offset: 120
         };
 
         this.navBtn = this.wrapper.querySelector(".navbar-btn")
@@ -365,12 +365,13 @@ class svgDrag2 {
             }
             return
         }
-        el.preventDefault()
+        else if(this.isDragging){
+            el.preventDefault()
         const e = el.touches ? el.touches[0] : el
         if (this.type == "drag") {
             this.isDragging = false;
-            console.log((this.win.height * 0.1) + this.size.offset)
-            if (Math.abs(this.qy) > (this.win.height * 0.1) + this.size.offset) {
+            console.log((this.win.height * 0.1))
+            if (Math.abs(this.qy) > (this.win.height * 0.1)) {
                 if (!this.isOpen) {
                     this.open();
                 } else if (this.isOpen) {
@@ -382,6 +383,8 @@ class svgDrag2 {
         } else {
             this.revert();
         }
+        }
+        
     }
 
     /*
@@ -484,6 +487,14 @@ class svgDrag2 {
         }
     }
 }
-
+const doc = document.querySelector(".parallax-wrapper") || document.body
+doc.addEventListener('scroll', function(e){
+    if(doc.scrollTop>150 && $(".navbar-wrapper").css("display") == "none"){
+        $(".navbar-wrapper").css("display","flex").hide().fadeIn()
+    }else if (doc.scrollTop<150 && $(".navbar-wrapper").css("display") != "none"){
+        $(".navbar-wrapper").fadeOut("slow")
+    }
+    console.log()
+})
 
 var svgdrag = new svgDrag2(document.querySelector(".navbar-wrapper"), "left");
