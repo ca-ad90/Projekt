@@ -177,122 +177,152 @@
                   </div>
                </div>
             </div>
-            <section id="section-gallery" class="debugger">
-               <div class="section-wrapper gallery">
-                  <div class="section-header col-span-all gallery">
-                     <h2>Design och kreation</h2>
-                     <p>Good design comes from more than good code</p>
+         </section>
+         <section id="section-gallery" class="debugger">
+            <div class="section-wrapper gallery">
+               <div class="section-header col-span-all gallery">
+                  <h2>Design och kreation</h2>
+                  <p>Good design comes from more than good code</p>
+               </div>
+               <div class="gallery-wrapper col-span-all">
+                  <div class="gallery-container gallery-img">
+
+                     <div class="gallery-item img item-0 show"></div>
+                     <div class="gallery-item img item-1"></div>
+                     <div class="gallery-item img item-2"></div>
+                     <div class="gallery-item img item-3"></div>
                   </div>
-                  <div class="gallery-wrapper col-span-all">
-                     <div class="gallery-container gallery-img">
-
-                        <div class="gallery-item img item-0 show"></div>
-                        <div class="gallery-item img item-1"></div>
-                        <div class="gallery-item img item-2"></div>
-                        <div class="gallery-item img item-3"></div>
+                  <div class="gallery-container gallery-text">
+                     <div class="gallery-item text item-0 show">
+                        <h3>Item-heading1
+                        </h3>
+                        <p>Enim adipisicing irure quis labore adipisicing enim cillum mollit
+                           reprehenderit
+                           magna consectetur eu in. Aliqua qui aliquip dolor aute.</p>
                      </div>
-                     <div class="gallery-container gallery-text">
-                        <div class="gallery-item text item-0 show">
-                           <h3>Item-heading1
-                           </h3>
-                           <p>Enim adipisicing irure quis labore adipisicing enim cillum mollit
-                              reprehenderit
-                              magna consectetur eu in. Aliqua qui aliquip dolor aute.</p>
-                        </div>
-                        <div class="gallery-item text item-1">
-                           <h3>Item-heading2</h3>
-                           <p>Aliqua qui aliquip dolor aute. Enim adipisicing irure quis labore
-                              adipisicing enim cillum mollit reprehenderit
-                              magna consectetur eu in. </p>
-                        </div>
-                        <div class="gallery-item text item-2">
-                           <h3>Item-heading3</h3>
-                           <p>Mollit adipisicing enim cillum reprehenderit
-                              magna consectetur eu in.Aliqua qui aliquip dolor aute enim adipisicing irure quis labore.
-                           </p>
-                        </div>
-                        <div class="gallery-item text item-3">
-                           <h3>Item-heading4</h3>
-                           <p>Labore aliquip dolor aute irure quis. Quis labore adipisicing enim
-                              cillum mollit reprehenderit
-                              magna consect. </p>
-                        </div>
-
-
+                     <div class="gallery-item text item-1">
+                        <h3>Item-heading2</h3>
+                        <p>Aliqua qui aliquip dolor aute. Enim adipisicing irure quis labore
+                           adipisicing enim cillum mollit reprehenderit
+                           magna consectetur eu in. </p>
                      </div>
+                     <div class="gallery-item text item-2">
+                        <h3>Item-heading3</h3>
+                        <p>Mollit adipisicing enim cillum reprehenderit
+                           magna consectetur eu in.Aliqua qui aliquip dolor aute enim adipisicing irure quis labore.
+                        </p>
+                     </div>
+                     <div class="gallery-item text item-3">
+                        <h3>Item-heading4</h3>
+                        <p>Labore aliquip dolor aute irure quis. Quis labore adipisicing enim
+                           cillum mollit reprehenderit
+                           magna consect. </p>
+                     </div>
+
+
                   </div>
                </div>
-               <script>
-                  console.log("gallery init")
-                  const galleryImgCont = document.querySelector(".gallery-container.gallery-img")
-                  const galleryTxtCont = document.querySelector(".gallery-container.gallery-text")
+            </div>
+            <div class="section-read-more">
+               <a class="btn-main" href="#">Se mer</a>
+            </div>
+            <script>
+               console.log("gallery init")
+               const galleryImgCont = document.querySelector(".gallery-container.gallery-img")
+               const galleryTxtCont = document.querySelector(".gallery-container.gallery-text")
 
-                  var galleryItems = {
-                     img: galleryImgCont.querySelectorAll(".gallery-item"),
-                     txt: galleryTxtCont.querySelectorAll(".gallery-item")
-                  }
-                  var item = 0;
-                  console.log("galleryItems", galleryItems)
+               var galleryItems = {
+                  img: galleryImgCont.querySelectorAll(".gallery-item"),
+                  txt: galleryTxtCont.querySelectorAll(".gallery-item"),
+                  len: galleryImgCont.querySelectorAll(".gallery-item").length
+               }
+               var item = 0;
+               console.log("galleryItems", galleryItems)
+
+               var currentImg = $(galleryImgCont).find(".item-0")
+               var currentText = $(galleryTxtCont).find(".item-0")
+
+               function galleryCar() {
 
 
-
-                  function galleryCar() {
-                     console.log("galleryCar init")
-
-                     let currentImg = $(galleryImgCont).find(".show")
-                     let currentText = $(galleryTxtCont).find(".show")
-                     let transSpeed = 500
-                     let nextImg = $(currentImg).next().length > 0 ? $(currentImg).next() : $(currentImg).parent().find(
+                  let transSpeed = 800
+                  let nextImg = $(currentImg).next(".gallery-item").length > 0 ? $(currentImg).next(".gallery-item") :
+                     $(currentImg).parent().find(
                         ".item-0")
-                     let nextText = $(currentText).next().length > 0 ? $(currentText).next() : $(currentText).parent()
-                        .find(".item-0")
+                  let nextText = $(currentText).next(".gallery-item").length > 0 ? $(currentText).next(
+                     ".gallery-item") : $(currentText).parent()
+                     .find(".item-0")
 
 
-                     currentImg.animate({
-                        top: "125%",
-                        opacity: 0.5,
+                  currentImg.animate({
+                     top: "125%",
+                     opacity: 0.5,
+                  }, transSpeed, function () {
+                     $(this).hide()
+                     $(this).css("top", "-125%")
+                  })
 
-                     }, transSpeed, function () {
-                        $(this).hide()
-                        $(this).css("top", "-125%")
-                        $(this).removeClass("show")
-
-
-                     })
-
-                     nextImg.show().addClass("show").animate({
-                        top: "0",
-                        opacity: 1,
-                     }, transSpeed)
-
-                     currentText.animate({
-                        left: "-125%",
-                        opacity: 0.5,
-
-                     }, transSpeed, function () {
-                        $(this).hide()
-                        $(this).css("left", "125%")
-                        $(this).removeClass("show")
+                  nextImg.show().animate({
+                     top: "0",
+                     opacity: 1,
+                  }, transSpeed, function () {
+                     currentImg = nextImg
+                  })
 
 
 
-                     })
-                       nextText.show().addClass("show").animate({
-                        left: "0",
-                        opacity: 1,
-                     }, transSpeed)
 
-                     setTimeout(galleryCar, 2500)
-                  }
-                  galleryCar()
-               </script>
-            </section>
+                  currentText.animate({
+                     left: "125%",
+                     opacity: 0.5,
+                  }, transSpeed, function () {
+                     $(this).hide()
+                     $(this).css("left", "-125%")
+
+                  })
+
+                  nextText.show().addClass("show").animate({
+                     left: "0",
+                     opacity: 1,
+                  }, transSpeed, function () {
+                     currentText = nextText
+                  })
+                  item = (item + 1) < galleryItems.len ? item + 1 : 0
+
+
+                  setTimeout(galleryCar, transSpeed * 6)
+               }
+               galleryCar()
+            </script>
          </section>
 
 
          <footer id="foot" class="debugger">
-            <div class="section-wrapper" style="height:150px">
+            <div class="section-wrapper">
+               <div class="footer-content site-links">
+                  <h5>Site Links</h5>
+                  <p><a href="#">Home</a></p>
+                  <p><a href="#">Portfolio</a></p>
+                  <p><a href="#">Gallery</a></p>
+                  <p><a href="#">Contact</a></p>
 
+               </div>
+               <div class="footer-content filler">
+                  <h5>Site Links</h5>
+                  <p><a href="#">Home</a></p>
+                  <p><a href="#">Portfolio</a></p>
+                  <p><a href="#">Gallery</a></p>
+                  <p><a href="#">Contact</a></p>
+
+               </div>
+               <div class="footer-content filler">
+                  <h5>Contact info</h5>
+                  <p>E-mail: carl.xxx@gmail.com</p>
+                  <p>Tel: 0703-975 xxx</p>
+                  <p></p>
+                  <p></p>
+
+               </div>
             </div>
 
          </footer>

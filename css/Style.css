@@ -93,8 +93,8 @@ body {
       /* justify-content: center; */
       /* align-items: center; */
       /* flex-flow: column; */
-      padding-left: 7%;
-      padding-right: 7%;
+      /* padding-left: 7%; */
+      /* padding-right: 7%; */
   }
   .para{
     position:
@@ -160,15 +160,27 @@ body {
 
 }
 
-section {
+section,footer {
     position: relative;
     display: grid;
-    grid-column: span var(--gridWrapper);
+    grid-column-start: 1;
+    grid-column-end: -1;
     grid-template-columns: inherit;
-    row-gap: var(--row-gap);
+    /* grid-template-rows: auto  auto; */
+    row-gap: 19px;
     column-gap: var(--col-gap);
     /* outline: 1px solid black; */
 }
+
+.section-read-more{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
 header {
     position: relative;
     display: flex;
@@ -259,7 +271,58 @@ align-items: center;
     clip-path: url(#splatterClip);
 }
 
+.btn-main{
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* padding: 1px; */
+    width: 140px;
+    text-align: center;
+    border:2px solid;
+    border-image: linear-gradient(to right, var(--yellow),var(--magenta)) 1;
+    color: var(--orange);
+    overflow: hidden;
+    z-index: 80;
+    transition: 0.3s;
+    /* color: var(--magenta); */
+}
 
+.btn-main::before {
+    content: "";
+    /* display: block; */
+    background-image: linear-gradient(45deg, hsla(var(--hsl-yellow),1.5), hsla(var(--hsl-magenta),1));
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: -1;
+    transition: inherit;
+}
+
+.btn-main:hover::before {
+    opacity: 0.5;
+}
+
+.btn-main:hover {
+    /* border-radius: 8px; */
+    /* border-color: transparent; */
+    /* border-image: none; */
+    /* width: 145px; */
+    /* height: 45px; */
+    /* border-width: 4px; */
+    color: var(--light-yellow);
+}
+
+.gallery-container > .btn-main {
+    align-self: end;
+    grid-row: 2;
+    /* right: 0px; */
+    /* position: absolute; */
+}
 .logo-splatter {
     height: 80vmin;
     /* width: 100%; */
@@ -369,11 +432,12 @@ align-items: center;
 
 .thumb-wrapper {
     --thumb-n: 0;
-    /* grid-column: 2 / span 10; */
+    grid-column: 1 /-1;
     display: flex;
     flex-direction: row;
     /* gap: var(--col-gap); */
     justify-content: center;
+    width: 100%;
     align-items: flex-start;
 }
 .thumb-container{
@@ -421,27 +485,23 @@ align-items: center;
     background-color: var(--yellow);
 }
 
-
-.gallery-item:not(.show){
-    display:none;
-}
-
-
 .gallery-item.img{
     display:none;
     top:-125%;
 }
 
 .gallery-item.text{
-    display:none;
-    left:125%;
+    display:
+    none;
+    left:-125%;
+    /* position: relative; */
 }
 .gallery-item {
-    width: 40vh;
-    height: 40vh;
+    width: 100%;
+    height: 100%;
 }
 .gallery-item{
-    position:absolute
+    position: absolute;
 }
 .gallery-wrapper{
     display: grid;
@@ -449,7 +509,7 @@ align-items: center;
     column-gap: var(--col-gap);
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: 40vh;
 }
 
 .gallery-container{
@@ -466,8 +526,9 @@ align-items: center;
 }
 
 .gallery-container.gallery-text{
-    flex-flow:row;
-    
+    flex-flow: column;
+    display: grid;
+    grid-template-rows: 8fr 2fr;
 }
 
 .gallery-item.img.item-0 {
@@ -515,4 +576,25 @@ align-items: center;
 
 .placeholder.ph-text{
     content: "Lorem ipsum dolor sit amet, eiusmod in elit eu ex qui est nostrud amet sint labore ullamco. Labore non excepteur do irure laboris. Dolor veniam laborum aute velit dolore consectetur reprehenderit mollit.";
+}
+
+footer {
+    grid-column: 1 /-1;
+    background-image: linear-gradient(181deg,var(--magenta)-80% , transparent 109%);
+    /* height: 30vh; */
+}
+.footer-content{
+    grid-column: span 4;
+}
+.footer-content.site-links{
+    /* height: 100%; */
+    position: relative;
+}
+footer>.section-wrapper {
+    padding-top: 20px;
+}
+
+.footer-content p, .footer-content a {
+    font-size: 12pt;
+    padding-bottom: 0.45em;
 }

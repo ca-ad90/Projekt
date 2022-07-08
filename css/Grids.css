@@ -2,10 +2,10 @@
     --gridWrapper: 16;
     --grid-section-wrapper:calc(var(--gridWrapper) - 2)
 }
-section>*[class*="wrapper"]:not(.section-left, .section-right, .section-full, .section-center){
+section>*[class*="wrapper"]:not(.section-left, .section-right, .section-full, .section-center), .section-read-more, footer > *[class*="wrapper"]{
     display: grid;
-    grid-column-start: 3;
-    grid-column-end: 15;
+    grid-column-start: 4;
+    grid-column-end: -4;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: var(--gap);
     min-height: 20vh;
@@ -89,8 +89,9 @@ section>*[class*="wrapper"]:not(.section-left, .section-right, .section-full, .s
     grid-column-end:span 11;
 }
 .col-span-12{
-    grid-column-start:auto;
-    grid-column-end:span 12;
+    /* grid-column-start:auto; */
+    /* grid-column-end:
+    span 12; */
 }
 .col-span-13{
     grid-column-start:auto;
