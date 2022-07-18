@@ -12,9 +12,6 @@
    <link rel="stylesheet" href="css/typografi.css">
    <link rel="stylesheet" href="css/Style.css">
    <link rel="stylesheet" href="css/header.css">
-
-
-
 </head>
 
 <body>
@@ -48,7 +45,7 @@
    </svg>
 
 
-
+   <!--Background Blockers-->
    <div id="navbar-blocker" class="closed"></div>
    <div class="touch-block" style="display:none" ;>
       <svg id="block-arrow" data-name="Lager 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106 104">
@@ -56,29 +53,21 @@
          <path d="M53,103.15,2.8,53a7,7,0,0,1,9.89-9.9L53,83.36,93.3,43.05a7,7,0,1,1,9.91,9.9Z" />
          <rect fill="none" width="106" height="104" />
       </svg></div>
+      <!--Navigation bar diplays on scroll-->
    <div class="navbar-wrapper closed">
       <div class="navbar-btn">
          <svg class="svg-ico" viewBox="0 0 100 100">
             <path class="ico" fill="none" stroke-width="10" stroke="white" />
-
          </svg>
-
       </div>
 
       <nav class="navbar-content closed">
-
          <div class="navbar-item"><a class="nav-link" href="#header">Home</a></div>
-
-
          <div class="navbar-item"><a class="nav-link" href="#section-about">About</a></div>
-
-
          <div class="navbar-item"><a class="nav-link" href="#section-portfolio">Portfolio</a></div>
-
-
          <div class="navbar-item"><a class="nav-link" href="#section-gallery">Gallery</a></div>
-
       </nav>
+      <!--SVG BAR for animation-->
       <svg class="navbar-svg">
          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" style="stop-color:var(--magenta);stop-opacity:1" />
@@ -95,7 +84,9 @@
 
 
    </div>
+   <!--wrapper for page to make parallax scoll effect on background (covers 100vh/100vw)-->
    <div class="parallax-wrapper">
+      <!--Full page pop-up for section-items (sticky to parallax-wrapper)-->
       <div class="portfolio-presentation">
          <div class="prev-portfolio-item portfolio-arrow"></div>
          <div class="presentation-wrapper">
@@ -140,9 +131,15 @@
       <script>
          const doc = document.querySelector(".parallax-wrapper") || document.body
       </script>
+
+      <!--parallax backgroundItems-->
       <div class="para parallax2"></div>
       <div class="para parallax1"></div>
+
+      <!-- START OF MAIN PAGE CONTENT -->
       <div id="grid-wrapper" style="top:0px">
+
+         <!-- Header as Landing Part -->
          <header id="header" class="gridder">
             <nav>
                <div class="nav-wrapper">
@@ -185,6 +182,8 @@
             </div>
 
          </header>
+
+         <!-- ABOUT SECTION -->
          <section id="section-about">
             <div class="section-wrapper">
                <div class="intro-content-left">
@@ -231,6 +230,8 @@
             </div>
 
          </section>
+
+         <!-- PORTFOIO SECTION -->
          <section id="section-portfolio">
             <div class="section-wrapper">
                <div class="section-header portfolio">
@@ -260,6 +261,8 @@
                </div>
             </div>
          </section>
+
+         <!-- GALLERY SECTION -->
          <section id="section-gallery">
             <div class="section-wrapper gallery">
                <div class="section-header gallery">
@@ -331,6 +334,7 @@
             </div>
 
          </section>
+         
          <footer id="foot">
             <div class="footer-wrapper">
                <div class="footer-content site-links">

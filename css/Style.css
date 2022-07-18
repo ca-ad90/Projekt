@@ -205,8 +205,6 @@ header {
     margin-bottom: 20vh;
 }
 
-section {}
-
 section,
 footer {
     position: relative;
@@ -379,8 +377,6 @@ svg.splatter {
 
 
 /*      SECTION ABOUT       */
-#section-about {}
-
 .intro-content-left {
     grid-column-start: 1;
     grid-column-end: span 5;
@@ -486,8 +482,6 @@ svg.splatter {
 
 
 /*      SECTION PORTFOLIO       */
-
-#section-portfolio {}
 
 .thumb-wrapper {
     --thumb-n: 0;
@@ -689,9 +683,6 @@ svg.splatter {
 
 
 /*      SECTION GALLERY     */
-
-#section-gallery {}
-
 
 .gallery-wrapper {
     position: relative;

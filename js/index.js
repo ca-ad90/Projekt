@@ -1,251 +1,8 @@
-var gap = Number(getComputedStyle(document.documentElement)
-   .getPropertyValue('--my-variable-name').replace("vw", ""))
-var lastScrollTop = 0;
+const doc = document.querySelector(".parallax-wrapper") || document.body
 
 const header = document.querySelector("header")
 const footer = document.querySelector("footer")
-
-document.querySelectorAll(".gallery-item.img").forEach((el) => {
-   el.addEventListener("click", function (ev) {
-      console.log("BAJS")
-      scrolling.killListeners
-      var galPress = document.getElementById("gallery-presentation")
-      document.querySelectorAll(".gallery-img-pres").forEach(el => {
-         el.style.display = "none"
-      })
-      $(galPress).css("display", "flex").fadeIn()
-      $("img[gallery=" + el.getAttribute("gallery") + "]").fadeIn()
-   })
-})
-document.getElementById("gallery-presentation").addEventListener('click', function (e) {
-   scrolling.startListeners
-   $("#gallery-presentation").fadeOut()
-})
-window.addEventListener('click',console.log,)
-class animation {
-   static elementList = []
-   constructor(element, options, ms = 500, settings) {
-      this.element = element
-      this._ms = ms
-      this._time
-      this._progress = 0
-      this._ratio = settings.ratio || 1
-      this._timeing = settings.timeingfunction || 0
-      this._delay = settings.delay || 0
-      this._options = options
-      this._elapsed = 0
-      this.timestamp
-      this._state
-      this.isPlaying = false
-      this.endAnimation = true
-      this.aniState = {}
-      this.request = null
-      this.pauseTime
-      this.resumeTime
-
-   }
-   get ms() {
-      return this._ms
-   }
-   set ms(x) {
-      this._ms = x
-   }
-   get time() {
-      return this._time
-   }
-   get progress() {
-      return this._progress
-   }
-   get ratio() {
-      return this._ratio
-   }
-   get timeing() {
-      return this._timeing
-   }
-   get options() {
-      return this._options
-   }
-   get elapsed() {
-      return this._elapsed
-   }
-   get delay() {
-      return this._delay
-   }
-   set delay(x) {
-      this._delay = x
-      this.ms = this._ms + x
-   }
-   get state() {
-      return this._state
-   }
-   set state(x) {
-      this._state = x
-   }
-   set elapsed(x) {
-      this._elapsed = x
-   }
-   set time(x) {
-      this._time = x
-   }
-   set progress(x) {
-      this._progress = x
-   }
-   set ratio(x) {
-      this._ratio = x
-   }
-   set timeing(x) {
-      this._timeing = x
-   }
-   set options(x) {
-      this._options = x
-   }
-
-   timeingFunction() {
-      var curve
-
-      switch (this.timeing) {
-         case 0:
-            curve = (0.5 * Math.cos((Math.PI * this.progress) - Math.PI)) + 0.5
-            break;
-         case 1:
-            curve = Math.sin(0.5 * Math.PI * this.progress)
-            break;
-         case 2:
-            curve = Math.pow(this.progress, 2)
-            break;
-         default:
-            curve = x
-            break;
-      }
-      let out = Math.pow(curve, this.ratio)
-      return out
-   }
-
-   propSplit(string) {
-      return string.toString().split(/(-?(?=\d)+\d+\.?(?=\d)?\d*)/g).filter(e => e.length > 0).map((e) => {
-         if (Number(e) || Number(e) == 0) {
-            return Number(e)
-         } else {
-            return e
-         }
-      })
-   }
-   pause() {
-
-      window.cancelAnimationFrame(this.request)
-   }
-   stop() {
-      for (let p in this.aniState) {
-         this.element.style[p] = this.aniState[p].to.join("")
-      }
-      window.cancelAnimationFrame()
-   }
-
-   getOptions() {
-      if (this.options.hasOwnProperty("from")) {
-         for (let p in this.options.to) {
-            if (!this.aniState.hasOwnProperty(p)) {
-               this.aniState[p] = {}
-            }
-            if (!this.options.from.hasOwnProperty(p)) {
-               this.aniState[p].from = this.propSplit(window.getComputedStyle(this.element)[p])
-            } else {
-               this.aniState[p].from = this.propSplit(this.options.from[p])
-            }
-
-            this.aniState[p].to = this.propSplit(this.options.to[p])
-         }
-      } else {
-         for (let p in this.options) {
-            if (!this.aniState.hasOwnProperty(p)) {
-               this.aniState[p] = {}
-            }
-            this.aniState[p].from = this.propSplit(window.getComputedStyle(this.element)[p])
-            this.aniState[p].to = this.propSplit(this.options[p])
-         }
-      }
-
-      for (let prop in this.aniState) {
-         let len = this.aniState[prop].from.map((e, i) => {
-            if (Number(e) || Number(e) == 0) {
-               return Number(this.aniState[prop].to[i] - this.aniState[prop].from[i])
-            } else return e
-         })
-
-
-         this.aniState[prop].len = len
-      }
-   }
-   play() {
-      if (!this.isPlaying) {
-         this.endAnimation = false
-         this.isPlaying = true
-         this.getOptions()
-         this.request = window.requestAnimationFrame(this.loop.bind(this))
-      }
-
-   }
-   loop(timestamp) {
-      if (!this.time) {
-         this.time = timestamp
-      }
-
-      var done = []
-      this.timestamp = timestamp
-      this.elapsed = this.timestamp - this.time
-
-      if (this.elapsed < this.delay && this.isPlaying && !this.endAnimation) {
-         this.request = window.requestAnimationFrame(this.loop.bind(this))
-      }
-      this.progress = Math.min((this.elapsed - this.delay) / (this.ms - this.delay), 1)
-
-      for (let prop in this.aniState) {
-         var p = prop
-         let out = [...this.aniState[prop].len]
-
-         out = out.map((e, i) => {
-            if (Number(e) || Number(e) == 0) {
-               var n
-               if (this.aniState[prop].to[i] < this.aniState[prop].from[i]) {
-                  n = Math.max(this.aniState[prop].from[i] + e * this.timeingFunction(this.progress), this.aniState[prop].to[i])
-               } else {
-                  n = Math.min(this.aniState[prop].from[i] + e * this.timeingFunction(this.progress), this.aniState[prop].to[i])
-               }
-
-               done.push(n == this.aniState[prop].to[i])
-               return n
-            } else {
-               return e
-            }
-
-         })
-         this.element.style[prop] = out.join("")
-         this.aniState[prop].state = out
-      }
-      if ((done.every(e => e == true) || done.length == 0) && this.progress == 1 && this.elapsed >= this.ms) {
-         window.cancelAnimationFrame(this.request)
-         this.endAnimation = true
-         this.isPlaying = false
-         this.timestamp = 0
-         this.time = 0
-         this.elapsed = 0;
-         this.progress = 0
-         this.aniState = {}
-      } else {
-
-
-         this.request = window.requestAnimationFrame(this.loop.bind(this))
-
-      }
-
-   }
-
-
-
-
-}
-
-class b {
+class ScrollEffect {
    constructor() {
       doc.scrollTo({
          top: 0,
@@ -780,7 +537,6 @@ class b {
    }
 
 }
-
 class GalleryCarousel {
    constructor(element) {
       this.wrapper = document.querySelector(".gallery-wrapper")
@@ -959,9 +715,28 @@ class GalleryCarousel {
       }
    }
 }
-const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"))
 
-var scrolling = new b()
+
+const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"))
+const scrolling = new ScrollEffect()
+
+/** Gallery clickEvents */
+document.querySelectorAll(".gallery-item.img").forEach((el) => {
+   el.addEventListener("click", function (ev) {
+      scrolling.killListeners
+      var galPress = document.getElementById("gallery-presentation")
+      document.querySelectorAll(".gallery-img-pres").forEach(el => {
+         el.style.display = "none"
+      })
+      $(galPress).css("display", "flex").fadeIn()
+      $("img[gallery=" + el.getAttribute("gallery") + "]").fadeIn()
+   })
+})
+document.getElementById("gallery-presentation").addEventListener('click', function (e) {
+   scrolling.startListeners
+   $("#gallery-presentation").fadeOut()
+})
+/** About Parts Event */
 var introPic = document.querySelectorAll(".intro-pic")
 document.querySelectorAll(".intro-pic").forEach((e, i) => {
    var n = i
@@ -979,15 +754,20 @@ document.querySelectorAll(".intro-pic").forEach((e, i) => {
    })
 
 })
-const portPres = document.querySelector(".portfolio-presentation")
-portPres.addEventListener("click", function (ev) {
 
+/** Close Portfolio PopUp */
+const portPres = document.querySelector(".portfolio-presentation")
+
+portPres.addEventListener("click", function (ev) {
    if (ev.target.classList.contains("portfolio-arrow")) {
       return
    }
    $(portPres).fadeOut()
    scrolling.startListeners
 })
+
+/** Portfolio Item Arrow Event */
+
 var currentPortItem = 0
 document.querySelector(".prev-portfolio-item").addEventListener('click', function (e) {
    currentPortItem = Number(currentPortItem) < 2 ? 4 : Number(currentPortItem) - 1
@@ -1005,7 +785,6 @@ document.querySelector(".prev-portfolio-item").addEventListener('click', functio
 })
 document.querySelector(".next-portfolio-item").addEventListener('click', function (e) {
    currentPortItem = Number(currentPortItem) > 3 ? 1 : Number(currentPortItem) + 1
-
    document.querySelectorAll(".portfolio-item").forEach((e, i) => {
       if (e.classList.contains("item" + currentPortItem)) {
          $(e).css("left", "150%").css("opacity", "0").show().animate({
@@ -1018,6 +797,8 @@ document.querySelector(".next-portfolio-item").addEventListener('click', functio
 
    })
 })
+
+/** Portfolio thumb Click event*/
 document.querySelectorAll(".thumb.portfolio-thumb").forEach((el, i) => {
    var n = el.getAttribute("portfolio")
    el.addEventListener("click", function (e) {
@@ -1035,6 +816,8 @@ document.querySelectorAll(".thumb.portfolio-thumb").forEach((el, i) => {
       scrolling.killListeners
    })
 })
+
+/** Navlink scroll correction */
 document.querySelectorAll(".nav-link:not(.test)").forEach((el) => {
    el.addEventListener("click", async (e) => {
       e.preventDefault()
@@ -1045,7 +828,3 @@ document.querySelectorAll(".nav-link:not(.test)").forEach((el) => {
 
 })
 
-
-
-
-/* const Scrolling = new scrollHandler() */
