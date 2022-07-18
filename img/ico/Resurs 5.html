@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #svgDefs{
+            display: none;
+        }
+        .svgArrow{
+            transform:scale(1);
+            transition: 0.3s;
+        }
+        .svgArrow:active{
+            transform: scale(0.9);
+            transform-origin: 25% 25%;
+
+        }
+        .arrow-btn {
+            fill: none;
+            stroke-linejoin: round;
+            stroke-width: 2px;
+            stroke: url(#lineGradient);
+            fill: url(#lineGradient2);
+            transition: 0.2s;
+            fill-opacity: 0;
+        }
+
+        .svgArrow.left .arrow-btn {
+            stroke: url(#lineGradient);
+            fill: url(#lineGradient2);
+        }
+        .svgArrow.right .arrow-btn {
+            stroke: url(#lineGradient3);
+            fill: url(#lineGradient4);
+        }
+        .svgArrow:hover .arrow-btn {
+            fill-opacity: 1;
+        }
+        .svgArrow:focus{
+            transform: scale(0.9);
+
+        }
+        .svgArrow rect{
+            fill:transparent;
+        }
+        
+
+        .svgArrow.left .arrow-btn:nth-of-type(1) {
+            d: path("M21.15,24.94,36.49,6.08c1.1-1.35,0-3.21-2-3.21H21.1a2.5,2.5,0,0,0-2,.88L1.91,24.94,19.24,46.25a2.5,2.5,0,0,0,2,.88H34.63c1.92,0,3-1.86,1.95-3.21Z");
+        }
+        .svgArrow.left .arrow-btn:nth-of-type(2) {
+            d: path("M51.6,24.94,66.94,6.08c1.1-1.35,0-3.21-2-3.21H51.55a2.5,2.5,0,0,0-1.95.88L32.36,24.94,49.69,46.25a2.5,2.5,0,0,0,2,.88H65.08c1.92,0,3-1.86,2-3.21Z");
+        }
+        .svgArrow.left .arrow-btn:nth-of-type(3) {
+            d: path("M82.06,24.94,97.39,6.08c1.1-1.35,0-3.21-2-3.21H82a2.51,2.51,0,0,0-2,.88L62.82,24.94,80.14,46.25a2.51,2.51,0,0,0,2,.88H95.53c1.92,0,3-1.86,2-3.21Z");
+        }
+        .svgArrow.right .arrow-btn:nth-of-type(1) {
+            d: path("M78.85,25.06,63.51,43.92c-1.1,1.35,0,3.21,1.95,3.21H78.9a2.5,2.5,0,0,0,1.95-.88L98.09,25.06,80.76,3.75a2.5,2.5,0,0,0-2-.88H65.37c-1.92,0-3.05,1.86-2,3.21Z");
+        }
+        .svgArrow.right .arrow-btn:nth-of-type(2) {
+            d: path("M48.4,25.06,33.06,43.92c-1.1,1.35,0,3.21,1.95,3.21H48.45a2.5,2.5,0,0,0,1.95-.88L67.64,25.06,50.31,3.75a2.5,2.5,0,0,0-2-.88H34.92c-1.92,0-3.05,1.86-2,3.21Z");
+        }
+        .svgArrow.right .arrow-btn:nth-of-type(3) {
+            d: path("M17.94,25.06,2.61,43.92c-1.1,1.35,0,3.21,1.95,3.21H18A2.51,2.51,0,0,0,20,46.25L37.18,25.06,19.86,3.75a2.51,2.51,0,0,0-1.95-.88H4.47c-1.92,0-3,1.86-1.95,3.21Z");
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="defs">
+        <defs>
+            <linearGradient id="lineGradient" x1="-0.1" y1="0" x2="1.5" y2="0.3">
+                <stop offset="0" stop-color="#e6cc28" />
+                <stop offset="0.33" stop-color="#ffa629" />
+                <stop offset="0.66" stop-color="#f03391" />
+                <stop offset="1.5" stop-color="#731242" />
+            </linearGradient>
+            <linearGradient id="lineGradient2" x1="-0.1" y1="0.2" x2="1.1" y2="0">
+                <stop offset="0" stop-color="#e6cc28" stop-opacity="0.5" />
+                <stop offset="0.33" stop-color="#ffa629" stop-opacity="0.5" />
+                <stop offset="0.66" stop-color="#f03391" stop-opacity="0.7" />
+                <stop offset="1" stop-color="#731242" stop-opacity="1" />
+            </linearGradient>
+            <linearGradient id="lineGradient3" x1="-0.1" y1="0" x2="1.5" y2="0.3">
+                <stop offset="0" stop-color="#731242" />
+                <stop offset="0.33" stop-color="#f03391" />
+                <stop offset="0.66" stop-color="#ffa629" />
+                <stop offset="1.5" stop-color="#e6cc28" />
+            </linearGradient>
+            <linearGradient id="lineGradient4" x1="-0.1" y1="0.2" x2="1.1" y2="0">
+                <stop offset="0" stop-color="#731242" stop-opacity="0.5" />
+                <stop offset="0.33" stop-color="#f03391" stop-opacity="0.5" />
+                <stop offset="0.66" stop-color="#ffa629" stop-opacity="0.7" />
+                <stop offset="1" stop-color="#e6cc28" stop-opacity="1" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <svg class="main-btn svg"viewBox="0 0 100 50">
+        <g class="svgArrow left">
+            <path class="arrow-btn" />
+            <path class="arrow-btn" />
+            <path class="arrow-btn" />
+            <rect width="100" height="50"/>
+        </g>
+    </svg>
+    <svg class="main-btn svg" viewBox="0 0 100 50">
+        <g class="svgArrow right">
+            <path class="arrow-btn" />
+            <path class="arrow-btn" />
+            <path class="arrow-btn" />
+            <rect width="100" height="50"/>
+        </g>
+    </svg>
+
+
+</body>
+
+</html>

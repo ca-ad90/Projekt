@@ -11,36 +11,73 @@
    <link rel="stylesheet" href="css/Grids.css">
    <link rel="stylesheet" href="css/typografi.css">
    <link rel="stylesheet" href="css/Style.css">
-   <link rel="stylesheet" href="header.css">
+   <link rel="stylesheet" href="css/header.css">
 
 
-   <script src="js/init.js"></script>
+
 </head>
 
 <body>
+   <svg id="defs" style="height:0px; width: 0px; overflow: hidden;">
+      <defs>
+         <linearGradient id="lineGradient" x1="-0.1" y1="0" x2="1.5" y2="0.3">
+            <stop offset="0" stop-color="#e6cc28" />
+            <stop offset="0.33" stop-color="#ffa629" />
+            <stop offset="0.66" stop-color="#f03391" />
+            <stop offset="1.5" stop-color="#731242" />
+         </linearGradient>
+         <linearGradient id="lineGradient2" x1="-0.1" y1="0.2" x2="1.1" y2="0">
+            <stop offset="0" stop-color="#e6cc28" stop-opacity="0.5" />
+            <stop offset="0.33" stop-color="#ffa629" stop-opacity="0.5" />
+            <stop offset="0.66" stop-color="#f03391" stop-opacity="0.7" />
+            <stop offset="1" stop-color="#731242" stop-opacity="1" />
+         </linearGradient>
+         <linearGradient id="lineGradient3" x1="-0.1" y1="0" x2="1.5" y2="0.3">
+            <stop offset="0" stop-color="#731242" />
+            <stop offset="0.33" stop-color="#f03391" />
+            <stop offset="0.66" stop-color="#ffa629" />
+            <stop offset="1.5" stop-color="#e6cc28" />
+         </linearGradient>
+         <linearGradient id="lineGradient4" x1="-0.1" y1="0.2" x2="1.1" y2="0">
+            <stop offset="0" stop-color="#731242" stop-opacity="0.5" />
+            <stop offset="0.33" stop-color="#f03391" stop-opacity="0.5" />
+            <stop offset="0.66" stop-color="#ffa629" stop-opacity="0.7" />
+            <stop offset="1" stop-color="#e6cc28" stop-opacity="1" />
+         </linearGradient>
+      </defs>
+   </svg>
+
+
+
+   <div id="navbar-blocker" class="closed"></div>
+   <div class="touch-block" style="display:none" ;>
+      <svg id="block-arrow" data-name="Lager 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106 104">
+         <path d="M53,63.15,2.8,13a7,7,0,0,1,9.89-9.9L53,43.36,93.3,3.05a7,7,0,0,1,9.91,9.9Z" />
+         <path d="M53,103.15,2.8,53a7,7,0,0,1,9.89-9.9L53,83.36,93.3,43.05a7,7,0,1,1,9.91,9.9Z" />
+         <rect fill="none" width="106" height="104" />
+      </svg></div>
    <div class="navbar-wrapper closed">
       <div class="navbar-btn">
-
          <svg class="svg-ico" viewBox="0 0 100 100">
             <path class="ico" fill="none" stroke-width="10" stroke="white" />
 
          </svg>
 
       </div>
-      <div class="navbar-blocker closed"></div>
+
       <nav class="navbar-content closed">
-         <a class="nav-link" href="about.html">
-            <div class="navbar-item">nav item 1</div>
-         </a>
-         <a class="nav-link" href="portfolio.html">
-            <div class="navbar-item">nav item 2</div>
-         </a>
-         <a class="nav-link" href="gallery.html">
-            <div class="navbar-item">nav item 3</div>
-         </a>
-         <a class="nav-link" href="contact.html">
-            <div class="navbar-item">nav item 4</div>
-         </a>
+
+         <div class="navbar-item"><a class="nav-link" href="#header">Home</a></div>
+
+
+         <div class="navbar-item"><a class="nav-link" href="#section-about">About</a></div>
+
+
+         <div class="navbar-item"><a class="nav-link" href="#section-portfolio">Portfolio</a></div>
+
+
+         <div class="navbar-item"><a class="nav-link" href="#section-gallery">Gallery</a></div>
+
       </nav>
       <svg class="navbar-svg">
          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -59,38 +96,72 @@
 
    </div>
    <div class="parallax-wrapper">
+      <div class="portfolio-presentation">
+         <div class="prev-portfolio-item portfolio-arrow"></div>
+         <div class="presentation-wrapper">
+            <div class="portfolio-item item1" style="display:none">
+               <iframe src="./Portfolio/BohemianBear/index.html" frameborder="0"></iframe>
+               <div class="text-container">
+                  <h2>Bohemian-bear</h2>
+                  <p class="ingress">JavaScript / HTML / CSS / SVG</p>
+               </div>
+            </div>
+            <div class="portfolio-item item2" style="display:none">
+               <iframe src="./Portfolio/pong/index.html" frameborder="0"></iframe>
+               <div class="text-container">
+                  <h2>Pong</h2>
+                  <p class="ingress">whith angle-calculation JavaScript / HTML / CSS / SVG</p>
+               </div>
+            </div>
+            <div class="portfolio-item item3" style="display:none">
+               <img src="./Portfolio/NodeJs/Namnlös.png" alt="" srcset="">
+               <div class="text-container">
+                  <h2>Api-app</h2>
+                  <p class="ingress">Data formatting and Api conection CMS in NodeJs</p>
+               </div>
+            </div>
+            <div class="portfolio-item item4" style="display:none">
+               <iframe src="./Portfolio/Card/index.html" frameborder="0"></iframe>
+               <div class="text-container">
+                  <h2>FlipCard</h2>
+                  <p class="ingress">HTML / pure CSS</p>
+               </div>
+            </div>
+         </div>
+         <div class="next-portfolio-item portfolio-arrow"></div>
+      </div>
+      <div id="gallery-presentation">
+         <img src="./Gallery/VetInte.png" class="gallery-img-pres" alt="Vet-Inte" gallery="item-1">
+         <img src="./Gallery/Spring.png" class="gallery-img-pres" alt="Spring" gallery="item-2">
+         <img src="./Gallery/Scream.jpg" class="gallery-img-pres" alt="Scream" gallery="item-3">
+         <img src="./Gallery/Colors.jpg" class="gallery-img-pres" alt="Colors" gallery="item-4">
+
+      </div>
+      <script>
+         const doc = document.querySelector(".parallax-wrapper") || document.body
+      </script>
       <div class="para parallax2"></div>
       <div class="para parallax1"></div>
-
-
-      <div id="grid-wrapper">
-         <header id="part-1" class="gridder">
+      <div id="grid-wrapper" style="top:0px">
+         <header id="header" class="gridder">
             <nav>
                <div class="nav-wrapper">
-                  <a class="nav-link" href="about.html">
-                     <div class="nav-btn">
-                        About
-                     </div>
+                  <a class="nav-link" href="#header">
+                     <div class="nav-btn">Home</div>
                   </a>
-                  <a class="nav-link" href="portfolio.html">
-                     <div class="nav-btn">
-                        Portfolio
-                     </div>
+                  <a class="nav-link" href="#section-about">
+                     <div class="nav-btn">About</div>
                   </a>
-                  <a class="nav-link" href="gallery.html">
-                     <div class="nav-btn">
-                        Gallery
-                     </div>
+                  <a class="nav-link" href="#section-portfolio">
+                     <div class="nav-btn">Portfolio</div>
                   </a>
-                  <a class="nav-link" href="contact.html">
-                     <div class="nav-btn">
-                        Contact
-                     </div>
+                  <a class="nav-link" href="#section-gallery">
+                     <div class="nav-btn">Gallery</div>
                   </a>
                </div>
             </nav>
             <div class="logo-wrapper">
-               <svg class="logo-splatter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+               <svg class="splatter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                   viewBox="0 0 1334.41 960.02" preserveAspectRatio="xMidYMin slice">
                   <defs>
 
@@ -106,7 +177,7 @@
                            transform="translate(-644.77 -350.74)" />
                      </clipPath>
                   </defs>
-                  <rect id="BG" class="cls-1" y="0.42" width="1334.41" height="959.6" />
+                  <rect id="BG" class="bg-splatter" y="0.42" width="1334.41" height="959.6" />
                </svg>
                <div class="logo-container">
 
@@ -114,22 +185,39 @@
             </div>
 
          </header>
-         <section id="section-about" class="full-page">
+         <section id="section-about">
             <div class="section-wrapper">
-               <div class="col-span-5 intro-content-left parralax">
-                  <h1>Carl Adrian</h1>
-                  <p class="ingress"> Digital och analog kreatör och designer </p>
-                  <p>Enim adipisicing irure quis labore adipisicing enim cillum mollit reprehenderit
-                     magna consectetur eu in. Aliqua qui aliquip dolor aute. Aliqua cupidatat nisi du
-                     is Lorem nulla adipisicing adipisicing occaecat duis excepteur. Sunt tempor offi
-                     cia incididunt anim esse fugiat est enim nostrud irure irure labore elit quis nu
-                     lla et nostrud consequat eu. Reprehenderit sint aute aute id occaecat consectetu
-                     r esse laboris labore exercitation excepteur qui. Dolore enim deserunt ea cupida
-                     tat irure do ut ad commodo est non veniam veniam quis culpa. Consectetur laborum
-                  </p>
+               <div class="intro-content-left">
+                  <div class="intro content-wrapper">
+                     <h1>Carl Adrian</h1>
+                     <p class="ingress"> Digital och analog kreatör och designer </p>
+                     <p>Jag är grafisk och front-end desinger. Behöver ni en grafisk profil, en websida och grafiskt
+                        material som knyter jag allt samman. En bra hemsida är mer än bara bra kod, bra design och
+                        tilltalande innehåll precis lika viktigt som koden som bygger upplevelsen för era kunder och
+                        besökare!
+                     </p>
+                  </div>
+                  <div class="intro content-wrapper hidden">
+                     <h1>Kreativitet och Design</h1>
+                     <p class="ingress">Bra desing ska vara användbart </p>
+                     Kreativitet och design går hand när det kommer till att exponera er. En sammanhållen grafisk profil
+                     är grunden i all exponering. Som designer och kreatör hjälper jag er att hitta ett profil som
+                     passar er verksamhet och som ni enkelt skall kunna använda er av och fungera som grund för såväl
+                     digital som marknadsföring i tryck.
+                  </div>
+                  <div class="intro content-wrapper hidden">
+                     <h1>Funktion och kod</h1>
+                     <p class="ingress">En hemsida är ett bestående intryck</p>
+                     En hemsida är ofta det första intrycket som stannar. Användarvänlighet, design och rätt information
+                     på rätt plats! För att få en personlighemsida så bygger jag konceptet från grunden utan mallar för
+                     att er hemsida skall spegla just er! Har ni redan ett back-end system som ni skall koppla till
+                     hemsidan? Inga problem!
+
+                  </div>
+
 
                </div>
-               <div class="col-start-7 col-span-end intro-content-right parralax">
+               <div class="intro-content-right parralax">
                   <div class="intro-pic portfolio parralax">
 
                   </div>
@@ -143,179 +231,121 @@
             </div>
 
          </section>
-         <section id="section-portfolio" class="full-page">
+         <section id="section-portfolio">
             <div class="section-wrapper">
-               <div class="section-header col-span-all portfolio">
+               <div class="section-header portfolio">
                   <h2>Portfolio</h2>
                   <p>Vill du veta mer vad jag kan göra för dig, ta en titt på vad jag gjort åt andra</p>
                </div>
-               <div class="thumb-wrapper col-span-12 sec-12">
-
+               <div class="thumb-wrapper">
                   <div class="thumb-container">
-                     <div class="thumb portfolio-thumb"></div>
-
-                     <p class="portfolio-text ingress">Portfolio-item1</p>
+                     <div class="thumb portfolio-thumb" portfolio="1"></div>
+                     <p class="portfolio-text ingress">Bohemian-bear</p>
 
                   </div>
                   <div class="thumb-container">
-                     <div class="thumb portfolio-thumb"></div>
-
-                     <p class="portfolio-text ingress">Portfolio-item2</p>
-
-                  </div>
-                  <div class="thumb-container">
-                     <div class="thumb portfolio-thumb"></div>
-
-                     <p class="portfolio-text ingress">Portfolio-item3</p>
+                     <div class="thumb portfolio-thumb" portfolio="2"></div>
+                     <p class="portfolio-text ingress">Pong with angles</p>
 
                   </div>
                   <div class="thumb-container">
-                     <div class="thumb portfolio-thumb"></div>
+                     <div class="thumb portfolio-thumb" portfolio="3"></div>
+                     <p class="portfolio-text ingress">Application</p>
 
-                     <p class="portfolio-text ingress">Portfolio-item4</p>
-
+                  </div>
+                  <div class="thumb-container">
+                     <div class="thumb portfolio-thumb" portfolio="4"></div>
+                     <p class="portfolio-text ingress">Flipp-card</p>
                   </div>
                </div>
             </div>
          </section>
-         <section id="section-gallery" class="debugger">
+         <section id="section-gallery">
             <div class="section-wrapper gallery">
-               <div class="section-header col-span-all gallery">
+               <div class="section-header gallery">
                   <h2>Design och kreation</h2>
                   <p>Good design comes from more than good code</p>
                </div>
-               <div class="gallery-wrapper col-span-all">
-                  <div class="gallery-container gallery-img">
+               <div class="gallery-wrapper">
+                  <div class="gallery-container-wrapper">
+                     <div class="gallery-container gallery-img">
+                        <div class="gallery-item img item-1 show" gallery="item-1"></div>
+                        <div class="gallery-item img item-2" gallery="item-2"></div>
+                        <div class="gallery-item img item-3" gallery="item-3"></div>
+                        <div class="gallery-item img item-4" gallery="item-4"></div>
+                     </div>
+                     <div class="gallery-nav-container">
+                        <svg class="btn-main gallery-nav-btn svg-arrow-left" viewBox="0 0 100 50">
+                           <g class="svgArrow left">
+                              <path class="arrow-btn" />
+                              <path class="arrow-btn" />
+                              <path class="arrow-btn" />
+                              <rect width="100" height="50" />
+                           </g>
+                        </svg>
+                        <svg class="gallery-dotts-container" viewBox="0 0 100 10">
+                           <g class="gallery-dotts">
+                              <circle class="gallery-dot item-1" cy="50%" cx="25" r="3"></circle>
+                              <circle class="gallery-dot item-2" cy="50%" cx="41.5" r="3"></circle>
+                              <circle class="gallery-dot item-3" cy="50%" cx="58" r="3"></circle>
+                              <circle class="gallery-dot item-4" cy="50%" cx="75" r="3"></circle>
+                           </g>
+                        </svg>
 
-                     <div class="gallery-item img item-0 show"></div>
-                     <div class="gallery-item img item-1"></div>
-                     <div class="gallery-item img item-2"></div>
-                     <div class="gallery-item img item-3"></div>
+                        <svg class="btn-main gallery-nav-btn svg-arrow-right" viewBox="0 0 100 50">
+                           <g class="svgArrow right">
+                              <path class="arrow-btn" />
+                              <path class="arrow-btn" />
+                              <path class="arrow-btn" />
+                              <rect width="100" height="50" />
+                           </g>
+                        </svg>
+
+
+
+                     </div>
                   </div>
                   <div class="gallery-container gallery-text">
-                     <div class="gallery-item text item-0 show">
-                        <h3>Item-heading1
+                     <div class="gallery-item text item-1 show">
+                        <h3>Lilla Vet-Inte
                         </h3>
-                        <p>Enim adipisicing irure quis labore adipisicing enim cillum mollit
-                           reprehenderit
-                           magna consectetur eu in. Aliqua qui aliquip dolor aute.</p>
-                     </div>
-                     <div class="gallery-item text item-1">
-                        <h3>Item-heading2</h3>
-                        <p>Aliqua qui aliquip dolor aute. Enim adipisicing irure quis labore
-                           adipisicing enim cillum mollit reprehenderit
-                           magna consectetur eu in. </p>
-                     </div>
-                     <div class="gallery-item text item-2">
-                        <h3>Item-heading3</h3>
-                        <p>Mollit adipisicing enim cillum reprehenderit
-                           magna consectetur eu in.Aliqua qui aliquip dolor aute enim adipisicing irure quis labore.
+                        <p>Ett flertal olika illustartioner jag ritat till barnboken "Lill Vet-Inte", på uppdarg av
+                           författaren.
                         </p>
                      </div>
+                     <div class="gallery-item text item-2">
+                        <h3>Abstract Digital Art</h3>
+                        <p>Kreativit tidsfördriv med digital konst och abstackt gemometri </p>
+                     </div>
                      <div class="gallery-item text item-3">
-                        <h3>Item-heading4</h3>
-                        <p>Labore aliquip dolor aute irure quis. Quis labore adipisicing enim
-                           cillum mollit reprehenderit
-                           magna consect. </p>
+                        <h3>Scream in Color</h3>
+                        <p>Digitalt retoucherad målning</p>
+                     </div>
+                     <div class="gallery-item text item-4">
+                        <h3>Graphic Poster</h3>
                      </div>
 
 
                   </div>
                </div>
             </div>
-            <div class="section-read-more">
-               <a class="btn-main" href="#">Se mer</a>
-            </div>
-            <script>
-               console.log("gallery init")
-               const galleryImgCont = document.querySelector(".gallery-container.gallery-img")
-               const galleryTxtCont = document.querySelector(".gallery-container.gallery-text")
 
-               var galleryItems = {
-                  img: galleryImgCont.querySelectorAll(".gallery-item"),
-                  txt: galleryTxtCont.querySelectorAll(".gallery-item"),
-                  len: galleryImgCont.querySelectorAll(".gallery-item").length
-               }
-               var item = 0;
-               console.log("galleryItems", galleryItems)
-
-               var currentImg = $(galleryImgCont).find(".item-0")
-               var currentText = $(galleryTxtCont).find(".item-0")
-
-               function galleryCar() {
-
-
-                  let transSpeed = 800
-                  let nextImg = $(currentImg).next(".gallery-item").length > 0 ? $(currentImg).next(".gallery-item") :
-                     $(currentImg).parent().find(
-                        ".item-0")
-                  let nextText = $(currentText).next(".gallery-item").length > 0 ? $(currentText).next(
-                     ".gallery-item") : $(currentText).parent()
-                     .find(".item-0")
-
-
-                  currentImg.animate({
-                     top: "125%",
-                     opacity: 0.5,
-                  }, transSpeed, function () {
-                     $(this).hide()
-                     $(this).css("top", "-125%")
-                  })
-
-                  nextImg.show().animate({
-                     top: "0",
-                     opacity: 1,
-                  }, transSpeed, function () {
-                     currentImg = nextImg
-                  })
-
-
-
-
-                  currentText.animate({
-                     left: "125%",
-                     opacity: 0.5,
-                  }, transSpeed, function () {
-                     $(this).hide()
-                     $(this).css("left", "-125%")
-
-                  })
-
-                  nextText.show().addClass("show").animate({
-                     left: "0",
-                     opacity: 1,
-                  }, transSpeed, function () {
-                     currentText = nextText
-                  })
-                  item = (item + 1) < galleryItems.len ? item + 1 : 0
-
-
-                  setTimeout(galleryCar, transSpeed * 6)
-               }
-               galleryCar()
-            </script>
          </section>
-
-
-         <footer id="foot" class="debugger">
-            <div class="section-wrapper">
+         <footer id="foot">
+            <div class="footer-wrapper">
                <div class="footer-content site-links">
                   <h5>Site Links</h5>
-                  <p><a href="#">Home</a></p>
-                  <p><a href="#">Portfolio</a></p>
-                  <p><a href="#">Gallery</a></p>
-                  <p><a href="#">Contact</a></p>
+                  <p><a class="nav-link" href="#header">Home</a></p>
+                  <p><a class="nav-link" href="#section-about">About</a></p>
+                  <p><a class="nav-link" href="#section-portfolio">Portfolio</a></p>
+                  <p><a class="nav-link" href="#section-gallery">Gallery</a></p>
 
                </div>
                <div class="footer-content filler">
-                  <h5>Site Links</h5>
-                  <p><a href="#">Home</a></p>
-                  <p><a href="#">Portfolio</a></p>
-                  <p><a href="#">Gallery</a></p>
-                  <p><a href="#">Contact</a></p>
+                  
 
                </div>
-               <div class="footer-content filler">
+               <div class="footer-content contact">
                   <h5>Contact info</h5>
                   <p>E-mail: carl.xxx@gmail.com</p>
                   <p>Tel: 0703-975 xxx</p>
@@ -327,9 +357,12 @@
 
          </footer>
       </div>
+
    </div>
-   <script src="header.js"></script>
+   <script src="js/header.js"></script>
    <script src="js/index.js"></script>
+   <script>
+   </script>
 </body>
 
 </html>
