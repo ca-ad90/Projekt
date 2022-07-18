@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 50">
+    <defs>
+        <style>.cls-1,.cls-2,.cls-3,.cls-4{fill:none;}.cls-1,.cls-2,.cls-3{stroke-linejoin:round;stroke-width:2.8px;}.cls-1{stroke:url(#Namnlös_övertoning_41);}.cls-2{stroke:url(#Namnlös_övertoning_41-2);}.cls-3{stroke:url(#Namnlös_övertoning_41-3);}</style>
+        <linearGradient id="Namnlös_övertoning_41" x1="-236.98" y1="167.13" x2="-199.08" y2="167.13" gradientTransform="translate(-137.49 192.13) rotate(180)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#e6cc28"/>
+            <stop offset="0.24" stop-color="#efb62c"/>
+            <stop offset="0.5" stop-color="#f6a32f"/>
+            <stop offset="0.57" stop-color="#f38b43"/>
+            <stop offset="0.7" stop-color="#ee6762"/>
+            <stop offset="0.81" stop-color="#ea4d79"/>
+            <stop offset="0.92" stop-color="#e83e86"/>
+            <stop offset="1" stop-color="#e7388b"/>
+        </linearGradient>
+        <linearGradient id="Namnlös_övertoning_41-2" x1="-206.53" y1="167.13" x2="-168.63" y2="167.13" xlink:href="#Namnlös_övertoning_41"/>
+        <linearGradient id="Namnlös_övertoning_41-3" x1="-176.08" y1="167.13" x2="-138.18" y2="167.13" xlink:href="#Namnlös_övertoning_41"/>
+    </defs>
+    <title>Resurs 9</title>
+    <g id="Lager_2" data-name="Lager 2">
+        <g id="Lager_1-2" data-name="Lager 1">
+            <path class="cls-1" d="M78.85,25.06,63.51,43.92c-1.1,1.35,0,3.21,1.95,3.21H78.9a2.5,2.5,0,0,0,1.95-.88L98.09,25.06,80.76,3.75a2.5,2.5,0,0,0-2-.88H65.37c-1.92,0-3.05,1.86-2,3.21Z"/>
+            <path class="cls-2" d="M48.4,25.06,33.06,43.92c-1.1,1.35,0,3.21,1.95,3.21H48.45a2.5,2.5,0,0,0,1.95-.88L67.64,25.06,50.31,3.75a2.5,2.5,0,0,0-2-.88H34.92c-1.92,0-3.05,1.86-2,3.21Z"/>
+            <path class="cls-3" d="M17.94,25.06,2.61,43.92c-1.1,1.35,0,3.21,1.95,3.21H18A2.51,2.51,0,0,0,20,46.25L37.18,25.06,19.86,3.75a2.51,2.51,0,0,0-1.95-.88H4.47c-1.92,0-3,1.86-1.95,3.21Z"/>
+            <rect class="cls-4" width="100" height="50"/>
+        </g>
+    </g>
+</svg>
