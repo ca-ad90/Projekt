@@ -1,5 +1,3 @@
-const doc = document.querySelector(".parallax-wrapper") || document.body
-
 const header = document.querySelector("header")
 const footer = document.querySelector("footer")
 class ScrollEffect {
@@ -558,29 +556,61 @@ class GalleryCarousel {
          goto: () => {},
          play: () => {},
       }
+      this.reject={
+         in:()=>{},
+         out:()=>{}
+      }
+      this.isRunning = [false,false]
+      this.isPlaying = false
       this.speed = 800
       this.galleryItems.dot.forEach((e, i) => {
          e.addEventListener("click", async () => {
+            clearTimeout(this.timeout)
             this.cancel
-            this.goTo(i)
+            this.goToIndex = i
+            this.moveDot(i)
+            this.goTo(this.goToIndex).then(()=>{
+               clearTimeout(this.timeout)
+               this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
+            }).catch(e=>{
+               console.log("RIGHT BTN",e)
+            }).finally(()=>{
+               this.isPlaying = false
+            })
          })
       })
-
+      this._goToIndex = -1
       this.wrapper.querySelector(".svg-arrow-right").addEventListener('click', async () => {
          clearTimeout(this.timeout)
          this.cancel
-         this.next()
-         this.timeout = setTimeout(this.play.bind(this))
+         this.goToIndex = this.checkIndex(this.goToIndex + 1)
+         this.moveDot(this.goToIndex)
+         this.goTo(this.goToIndex).then(()=>{
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
+         }).catch(e=>{
+            console.log("RIGHT BTN",e)
+         }).finally(()=>{
+            this.isPlaying = false
+         })
+         
       })
 
       this.wrapper.querySelector(".svg-arrow-left").addEventListener('click', async () => {
          clearTimeout(this.timeout)
          this.cancel
-         this.prev()
-         this.timeout = setTimeout(this.play.bind(this))
+         this.goToIndex = this.checkIndex(this.goToIndex - 1)
+         this.moveDot(this.goToIndex)
+         this.goTo(this.goToIndex).then(()=>{
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
+         }).catch(e=>{
+            console.log("RIGHT BTN",e)
+         }).finally(()=>{
+            this.isPlaying = false
+         })
+
       })
-
-
       this.play()
       document.querySelector(".gallery-container.gallery-img").addEventListener("click",()=>{
          scrolling.killListeners
@@ -592,6 +622,16 @@ class GalleryCarousel {
          $("img[gallery=item-" + (this.index+1) + "]").fadeIn()
       })
 
+   }
+   get goToIndex(){
+      if(this._goToIndex < 0){
+         this._goToIndex = this.index
+         return this.index
+      }else 
+      return this._goToIndex
+   }
+   set goToIndex(x){
+      this._goToIndex = x
    }
    get index() {
       return this.currentIndex
@@ -605,113 +645,192 @@ class GalleryCarousel {
    get prevIndex() {
       return (this.index - 1) < 0 ? (this.galleryItems.len - 1) : this.index - 1
    }
+   get cancel2(){
+      this.reject.in()
+      this.reject.out()
+   }
    get cancel() {
       this.res.in()
       this.res.out()
+      this.isPlaying = false
+      clearTimeout(this.timeout)
+   }
+   moveDot(i,end){
+      
+      this.galleryItems.dot.forEach(e=>{
+         if(e.classList.contains("active")){
+            if(end && this.index == i){
+               return
+            }
+         e.classList.remove("active")
+         }
+      })
+      this.galleryItems.dot[i].classList.add("active")
    }
    async fadeOut(index) {
-      this.isPlaying = true
       var imgRes
       var txtRes
-      return new Promise(async (res) => {
+      var imgRej
+      var txtRej
+      return new Promise(async (res, reject) => {
+         this.reject.out = reject
+         if(this.isRunning.every(e=>e==true)){
+         } else {
+            this.isRunning[0] = true
+         }
          this.res.out = res
-         this.galleryItems.dot[index].classList.remove("active")
-         var txtOut = new Promise(res => {
+         var txtOut = new Promise((res,reject) => {
             txtRes = res
+            txtRej = reject
             $(this.galleryItems.txt[index]).animate({
                left: "125%",
                opacity: 0.5,
             }, this.speed, () => {
                $(this.galleryItems.txt[index]).css("z-index", "-1").css("opacity", "0").css(
                   "left", "-125%").hide()
-               res()
+               res("text out resolve")
             })
+         }).finally(()=>{
+            console.log("finaly",index,this.goToIndex)
+            $(this.galleryItems.txt[index]).css("z-index", "-1").css("left","-125%").css("opacity","0").hide()
          })
-         var imgOut = new Promise(res => {
+         var imgOut = new Promise((res,reject) => {
             imgRes = res
+            imgRej = reject
             $(this.galleryItems.img[index]).animate({
                top: "125%",
                opacity: 0.0,
             }, this.speed, () => {
                $(this.galleryItems.img[index]).css("z-index", "-1").css("opacity", "0").css(
                   "top", "-125%").hide()
-               res()
+               res("img out resolve")
             })
+         }).finally(()=>{
+            
+            $(this.galleryItems.img[index]).css("z-index", "-1").css("top","-125%").css("opacity","0").hide()
          })
          await Promise.all([txtOut, imgOut]).then(() => {
-            imgRes()
-            txtRes()
-            res()
+            console.log("OUT RESOLVE")
+            imgRes("then img out resolve")
+            txtRes("then txt out resolv")
+            res("fade out resolve")
+         }).catch((e)=>{
+            console.log("OUT REJECT")
+            reject("catch fade out reject")
+         }). finally(()=>{
+this.isPlaying = false
          })
       })
    }
    async fadeIn(index) {
       var imgRes
       var txtRes
-      this.isPlaying = true
-      return new Promise(async (res) => {
+      var imgRej
+      var txtRej
+      return new Promise(async (res,reject) => {
+         this.reject.in = reject         
          this.res.in = res
-         this.galleryItems.dot[index].classList.add("active")
-         this.index = index
-         var txtIn = new Promise(res => {
+         var txtIn = new Promise((res,reject) => {
             txtRes = res
-
-            $(this.galleryItems.txt[index]).show().animate({
+            txtRej = reject
+            $(this.galleryItems.txt[index]).show().css("z-index","").animate({
                left: "0%",
                opacity: 1,
             }, this.speed, () => {
-               res()
+               res("text in resolve")
             })
+         }).catch((e)=>{
+
+            console.log("catch txtin")
+         }).finally(()=>{
+            $(this.galleryItems.txt[index]).show().css("z-index","").css("left","0%").css("opacity","1")
          })
-         var imgIn = new Promise(res => {
+
+
+         var imgIn = new Promise((res,reject) => {
             imgRes = res
-            $(this.galleryItems.img[index]).show().animate({
+            imgRej = reject
+            $(this.galleryItems.img[index]).show().css("z-index","").animate({
                top: "0%",
                opacity: 1,
             }, this.speed, () => {
-               res()
+               res("img in resolve")
             })
-         })
+         }).catch((e)=>{
+               console.log("catch imgin")
+            }).finally(()=>{
+               
+               $(this.galleryItems.img[index]).show().css("z-index","").css("top","0%").css("opacity","1")
+            })
+
          await Promise.all([txtIn, imgIn]).then(() => {
-            imgRes()
-            txtRes()
-            res()
-         })
+            console.log("FADEIN RESOLVE")
+            imgRes("then img in resolve")
+            txtRes("then txt in resolv")
+            res("fade in resolve")
+         }).catch((e) => {
+            console.log(e)
+            console.log("FADEIN REJECT")
+            reject("catch fade in reject")
+          }).finally(()=>{
+          
+            this.isRunning[1] = false
+          })
       })
    }
    async next() {
-      if (!this.isPlaying) {
+      var prevIndex = this.index
+      this.index = this.nextIndex
+      if(!this.isPlaying){
+         this.isPlaying = true
          clearTimeout(this.timeout)
-         Promise.all([this.fadeOut(this.index), this.fadeIn(this.nextIndex)]).then(() => {
-            this.isPlaying = false
-         })
-         this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
+         return Promise.all([this.fadeOut(prevIndex), this.fadeIn(this.index)])
       }
    }
    async prev() {
-      if (!this.isPlaying) {
+      var prevIndex = this.index
+      this.index = this.prevIndex
+      if(!this.isPlaying){
+         this.isPlaying = true
          clearTimeout(this.timeout)
-         Promise.all([this.fadeOut(this.index), this.fadeIn(this.prevIndex)]).then(() => {
-            this.isPlaying = false
-         })
-         this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
+         return Promise.all([this.fadeOut(prevIndex), this.fadeIn(this.index)])
       }
    }
+   checkIndex(x){
+      var out =  x > (this.galleryItems.len-1) ? 0 : x < 0 ? (this.galleryItems.len - 1) : x
+      return out
+   }
    async goTo(index) {
+   if(this.index == index){
+      return
+   }
       if (!this.isPlaying) {
-         clearTimeout(this.timeout)
-         Promise.all([this.fadeOut(this.index), this.fadeIn(index)]).then(() => {
+         this.isPlaying = true;
+         clearTimeout(this.timeout)         
+          
+         await Promise.all([this.fadeOut(this.index), this.fadeIn(this.goToIndex)]).then(() => {
             this.isPlaying = false
+            this._goToIndex = -1
+            this.index = index
+            this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
          })
-         this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
       }
 
    }
    async play() {
       if (!this.isPlaying) {
          clearTimeout(this.timeout)
-         this.next()
-         this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
+         this.cancel
+         this.goToIndex = this.checkIndex(this.goToIndex + 1)
+         this.moveDot(this.goToIndex)
+         this.goTo(this.goToIndex).then(()=>{
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
+         }).catch(e=>{
+            console.log("RIGHT BTN",e)
+         }).finally(()=>{
+            this.isPlaying = false
+         })
       }
    }
 }
