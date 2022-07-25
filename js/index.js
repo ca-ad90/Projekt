@@ -835,6 +835,12 @@ this.isPlaying = false
    }
 }
 
+class PopupView {
+   constructor(viewId, elements){
+      
+   }
+
+}
 
 const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"))
 const scrolling = new ScrollEffect()

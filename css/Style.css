@@ -769,7 +769,7 @@ svg.gallery-dotts-container {
 
 .gallery-item.img.item-2 {
     background-color: var(--orange);
-    background-image: url(../Gallery/spring.png);
+    background-image: url("../Gallery/Spring.png");
     background-size: contain;
 }
 
