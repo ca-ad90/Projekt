@@ -1165,26 +1165,6 @@ class PopupView {
 const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"))
 const scrolling = new ScrollEffect()
 
-/** Gallery clickEvents */
-
-/* 
-document.querySelectorAll(".gallery-item.img").forEach((el) => {
-   el.addEventListener("click", function (ev) {
-      scrolling.killListeners
-      var galPress = document.getElementById("gallery-presentation")
-      document.querySelectorAll(".gallery-img-pres").forEach(el => {
-         el.style.display = "none"
-      })
-      $(galPress).css("display", "flex").fadeIn()
-      $("img[gallery=" + el.getAttribute("gallery") + "]").fadeIn()
-   })
-})
-document.getElementById("gallery-presentation").addEventListener('click', function (e) {
-   scrolling.startListeners
-   $("#gallery-presentation").fadeOut()
-}) */
-
-
 var galleryContainer = new PopupView(document.querySelectorAll(".gallery-item.img"), document.body, "galleryPopUp")
 let portfolioElements = document.querySelectorAll(".portfolio-thumb")
 var portfolioItems = new Array(portfolioElements.length).fill("").map((e,i)=>{
@@ -1219,68 +1199,6 @@ document.querySelectorAll(".intro-pic").forEach((e, i) => {
    })
 
 })
-
-/** Close Portfolio PopUp */
-/* const portPres = document.querySelector(".portfolio-presentation")
-
-portPres.addEventListener("click", function (ev) {
-   if (ev.target.classList.contains("portfolio-arrow")) {
-      return
-   }
-   $(portPres).fadeOut()
-   scrolling.startListeners
-})
- */
-/** Portfolio Item Arrow Event */
-
-/* var currentPortItem = 0
-document.querySelector(".prev-portfolio-item").addEventListener('click', function (e) {
-   currentPortItem = Number(currentPortItem) < 2 ? 4 : Number(currentPortItem) - 1
-   document.querySelectorAll(".portfolio-item").forEach((e, i) => {
-      if (e.classList.contains("item" + currentPortItem)) {
-         $(e).css("left", "-150%").css("opacity", "0").show().animate({
-            left: "0%",
-            opacity: "1"
-         })
-      } else {
-         $(e).hide()
-      }
-
-   })
-})
-document.querySelector(".next-portfolio-item").addEventListener('click', function (e) {
-   currentPortItem = Number(currentPortItem) > 3 ? 1 : Number(currentPortItem) + 1
-   document.querySelectorAll(".portfolio-item").forEach((e, i) => {
-      if (e.classList.contains("item" + currentPortItem)) {
-         $(e).css("left", "150%").css("opacity", "0").show().animate({
-            left: "0%",
-            opacity: "1"
-         })
-      } else {
-         $(e).hide()
-      }
-
-   })
-})
- */
-/** Portfolio thumb Click event*/
-/* document.querySelectorAll(".thumb.portfolio-thumb").forEach((el, i) => {
-   var n = el.getAttribute("portfolio")
-   el.addEventListener("click", function (e) {
-      $(portPres).css("display", "grid").fadeIn()
-      document.querySelectorAll(".portfolio-item").forEach((e, i) => {
-         if (e.classList.contains("item" + n)) {
-
-            currentPortItem = Number(n)
-            $(e).fadeIn()
-         } else {
-            $(e).fadeOut()
-         }
-      })
-
-      scrolling.killListeners
-   })
-}) */
 
 /** Navlink scroll correction */
 document.querySelectorAll(".nav-link:not(.test)").forEach((el) => {
