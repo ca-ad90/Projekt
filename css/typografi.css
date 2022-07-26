@@ -37,6 +37,7 @@ FONT IMPORT GOOGLE FONTS
     --fsMin:calc(var(--font-size-min) * 1px);
     --lh:
     calc(max(var(--line-height) , calc((var(--line-height) * var(--mp)))) * 1px);
+    --lhMin:calc(clamp(var(--fsMin),16vmin,var(--fs))*1.2px);
     color: white;
     box-sizing: border-box;
     /*default font-setting */

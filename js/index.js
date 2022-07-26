@@ -48,7 +48,6 @@ class ScrollEffect {
             },
             view: {
                get: () => {
-                  console.log(e)
                   doc.scrollBy({
 
                      top: e.top - e.offset.top,
@@ -556,11 +555,11 @@ class GalleryCarousel {
          goto: () => {},
          play: () => {},
       }
-      this.reject={
-         in:()=>{},
-         out:()=>{}
+      this.reject = {
+         in: () => {},
+         out: () => {}
       }
-      this.isRunning = [false,false]
+      this.isRunning = [false, false]
       this.isPlaying = false
       this.speed = 800
       this.galleryItems.dot.forEach((e, i) => {
@@ -569,12 +568,11 @@ class GalleryCarousel {
             this.cancel
             this.goToIndex = i
             this.moveDot(i)
-            this.goTo(this.goToIndex).then(()=>{
+            this.goTo(this.goToIndex).then(() => {
                clearTimeout(this.timeout)
                this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
-            }).catch(e=>{
-               console.log("RIGHT BTN",e)
-            }).finally(()=>{
+            }).catch(e => {
+            }).finally(() => {
                this.isPlaying = false
             })
          })
@@ -585,15 +583,14 @@ class GalleryCarousel {
          this.cancel
          this.goToIndex = this.checkIndex(this.goToIndex + 1)
          this.moveDot(this.goToIndex)
-         this.goTo(this.goToIndex).then(()=>{
+         this.goTo(this.goToIndex).then(() => {
             clearTimeout(this.timeout)
             this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
-         }).catch(e=>{
-            console.log("RIGHT BTN",e)
-         }).finally(()=>{
+         }).catch(e => {
+         }).finally(() => {
             this.isPlaying = false
          })
-         
+
       })
 
       this.wrapper.querySelector(".svg-arrow-left").addEventListener('click', async () => {
@@ -601,36 +598,35 @@ class GalleryCarousel {
          this.cancel
          this.goToIndex = this.checkIndex(this.goToIndex - 1)
          this.moveDot(this.goToIndex)
-         this.goTo(this.goToIndex).then(()=>{
+         this.goTo(this.goToIndex).then(() => {
             clearTimeout(this.timeout)
             this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
-         }).catch(e=>{
-            console.log("RIGHT BTN",e)
-         }).finally(()=>{
+         }).catch(e => {
+         }).finally(() => {
             this.isPlaying = false
          })
 
       })
       this.play()
-      document.querySelector(".gallery-container.gallery-img").addEventListener("click",()=>{
-         scrolling.killListeners
-         var galPress = document.getElementById("gallery-presentation")
-         document.querySelectorAll(".gallery-img-pres").forEach(el => {
-            el.style.display = "none"
-         })
-         $(galPress).css("display", "flex").fadeIn()
-         $("img[gallery=item-" + (this.index+1) + "]").fadeIn()
+      document.querySelector(".gallery-container.gallery-img").addEventListener("click", () => {
+         
+         /*      var galPress = document.getElementById("gallery-presentation")
+              document.querySelectorAll(".gallery-img-pres").forEach(el => {
+                 el.style.display = "none"
+              })
+              $(galPress).css("display", "flex").fadeIn()
+              $("img[gallery=item-" + (this.index + 1) + "]").fadeIn() */
       })
 
    }
-   get goToIndex(){
-      if(this._goToIndex < 0){
+   get goToIndex() {
+      if (this._goToIndex < 0) {
          this._goToIndex = this.index
          return this.index
-      }else 
-      return this._goToIndex
+      } else
+         return this._goToIndex
    }
-   set goToIndex(x){
+   set goToIndex(x) {
       this._goToIndex = x
    }
    get index() {
@@ -645,7 +641,7 @@ class GalleryCarousel {
    get prevIndex() {
       return (this.index - 1) < 0 ? (this.galleryItems.len - 1) : this.index - 1
    }
-   get cancel2(){
+   get cancel2() {
       this.reject.in()
       this.reject.out()
    }
@@ -655,14 +651,14 @@ class GalleryCarousel {
       this.isPlaying = false
       clearTimeout(this.timeout)
    }
-   moveDot(i,end){
-      
-      this.galleryItems.dot.forEach(e=>{
-         if(e.classList.contains("active")){
-            if(end && this.index == i){
+   moveDot(i, end) {
+
+      this.galleryItems.dot.forEach(e => {
+         if (e.classList.contains("active")) {
+            if (end && this.index == i) {
                return
             }
-         e.classList.remove("active")
+            e.classList.remove("active")
          }
       })
       this.galleryItems.dot[i].classList.add("active")
@@ -674,12 +670,11 @@ class GalleryCarousel {
       var txtRej
       return new Promise(async (res, reject) => {
          this.reject.out = reject
-         if(this.isRunning.every(e=>e==true)){
-         } else {
+         if (this.isRunning.every(e => e == true)) {} else {
             this.isRunning[0] = true
          }
          this.res.out = res
-         var txtOut = new Promise((res,reject) => {
+         var txtOut = new Promise((res, reject) => {
             txtRes = res
             txtRej = reject
             $(this.galleryItems.txt[index]).animate({
@@ -690,11 +685,10 @@ class GalleryCarousel {
                   "left", "-125%").hide()
                res("text out resolve")
             })
-         }).finally(()=>{
-            console.log("finaly",index,this.goToIndex)
-            $(this.galleryItems.txt[index]).css("z-index", "-1").css("left","-125%").css("opacity","0").hide()
+         }).finally(() => {
+            $(this.galleryItems.txt[index]).css("z-index", "-1").css("left", "-125%").css("opacity", "0").hide()
          })
-         var imgOut = new Promise((res,reject) => {
+         var imgOut = new Promise((res, reject) => {
             imgRes = res
             imgRej = reject
             $(this.galleryItems.img[index]).animate({
@@ -705,20 +699,18 @@ class GalleryCarousel {
                   "top", "-125%").hide()
                res("img out resolve")
             })
-         }).finally(()=>{
-            
-            $(this.galleryItems.img[index]).css("z-index", "-1").css("top","-125%").css("opacity","0").hide()
+         }).finally(() => {
+
+            $(this.galleryItems.img[index]).css("z-index", "-1").css("top", "-125%").css("opacity", "0").hide()
          })
          await Promise.all([txtOut, imgOut]).then(() => {
-            console.log("OUT RESOLVE")
             imgRes("then img out resolve")
             txtRes("then txt out resolv")
             res("fade out resolve")
-         }).catch((e)=>{
-            console.log("OUT REJECT")
+         }).catch((e) => {
             reject("catch fade out reject")
-         }). finally(()=>{
-this.isPlaying = false
+         }).finally(() => {
+            this.isPlaying = false
          })
       })
    }
@@ -727,61 +719,61 @@ this.isPlaying = false
       var txtRes
       var imgRej
       var txtRej
-      return new Promise(async (res,reject) => {
-         this.reject.in = reject         
+      return new Promise(async (res, reject) => {
+         this.reject.in = reject
          this.res.in = res
-         var txtIn = new Promise((res,reject) => {
+         var txtIn = new Promise((res, reject) => {
             txtRes = res
             txtRej = reject
-            $(this.galleryItems.txt[index]).show().css("z-index","").animate({
+            $(this.galleryItems.txt[index]).show().css("z-index", "").animate({
                left: "0%",
                opacity: 1,
             }, this.speed, () => {
                res("text in resolve")
             })
-         }).catch((e)=>{
+         }).catch((e) => {
 
-            console.log("catch txtin")
-         }).finally(()=>{
-            $(this.galleryItems.txt[index]).show().css("z-index","").css("left","0%").css("opacity","1")
+            
+         }).finally(() => {
+            $(this.galleryItems.txt[index]).show().css("z-index", "").css("left", "0%").css("opacity", "1")
          })
 
 
-         var imgIn = new Promise((res,reject) => {
+         var imgIn = new Promise((res, reject) => {
             imgRes = res
             imgRej = reject
-            $(this.galleryItems.img[index]).show().css("z-index","").animate({
+            $(this.galleryItems.img[index]).show().css("z-index", "").animate({
                top: "0%",
                opacity: 1,
             }, this.speed, () => {
                res("img in resolve")
             })
-         }).catch((e)=>{
-               console.log("catch imgin")
-            }).finally(()=>{
-               
-               $(this.galleryItems.img[index]).show().css("z-index","").css("top","0%").css("opacity","1")
-            })
+         }).catch((e) => {
+            
+         }).finally(() => {
+
+            $(this.galleryItems.img[index]).show().css("z-index", "").css("top", "0%").css("opacity", "1")
+         })
 
          await Promise.all([txtIn, imgIn]).then(() => {
-            console.log("FADEIN RESOLVE")
+            
             imgRes("then img in resolve")
             txtRes("then txt in resolv")
             res("fade in resolve")
          }).catch((e) => {
-            console.log(e)
-            console.log("FADEIN REJECT")
+            
+            
             reject("catch fade in reject")
-          }).finally(()=>{
-          
+         }).finally(() => {
+
             this.isRunning[1] = false
-          })
+         })
       })
    }
    async next() {
       var prevIndex = this.index
       this.index = this.nextIndex
-      if(!this.isPlaying){
+      if (!this.isPlaying) {
          this.isPlaying = true
          clearTimeout(this.timeout)
          return Promise.all([this.fadeOut(prevIndex), this.fadeIn(this.index)])
@@ -790,24 +782,24 @@ this.isPlaying = false
    async prev() {
       var prevIndex = this.index
       this.index = this.prevIndex
-      if(!this.isPlaying){
+      if (!this.isPlaying) {
          this.isPlaying = true
          clearTimeout(this.timeout)
          return Promise.all([this.fadeOut(prevIndex), this.fadeIn(this.index)])
       }
    }
-   checkIndex(x){
-      var out =  x > (this.galleryItems.len-1) ? 0 : x < 0 ? (this.galleryItems.len - 1) : x
+   checkIndex(x) {
+      var out = x > (this.galleryItems.len - 1) ? 0 : x < 0 ? (this.galleryItems.len - 1) : x
       return out
    }
    async goTo(index) {
-   if(this.index == index){
-      return
-   }
+      if (this.index == index) {
+         return
+      }
       if (!this.isPlaying) {
          this.isPlaying = true;
-         clearTimeout(this.timeout)         
-          
+         clearTimeout(this.timeout)
+
          await Promise.all([this.fadeOut(this.index), this.fadeIn(this.goToIndex)]).then(() => {
             this.isPlaying = false
             this._goToIndex = -1
@@ -823,21 +815,349 @@ this.isPlaying = false
          this.cancel
          this.goToIndex = this.checkIndex(this.goToIndex + 1)
          this.moveDot(this.goToIndex)
-         this.goTo(this.goToIndex).then(()=>{
+         this.goTo(this.goToIndex).then(() => {
             clearTimeout(this.timeout)
             this.timeout = setTimeout(this.play.bind(this), this.speed * 6)
-         }).catch(e=>{
-            console.log("RIGHT BTN",e)
-         }).finally(()=>{
+         }).catch(e => {
+            
+         }).finally(() => {
             this.isPlaying = false
          })
       }
    }
 }
+class SwipeHandler {
+   constructor(el) {
 
-class PopupView {
-   constructor(viewId, elements){
+      this.element = el
+      this.swipedir
+      this.startX
+      this.startY
+      this.distX
+      this.distY
+      this.threshold = 150 //required min distance traveled to be considered swipe
+      this.restraint = 100 // maximum distance allowed at the same time in perpendicular direction
+      this.allowedTime = 300 // maximum time allowed to travel that distance
+      this.elapsedTime
+      this.startTime
+      this.dist
+      this._swipeUp = () => {}
+      this._swipeDown = () => {}
+      this._swipeLeft = () => {}
+      this._swipeRight = () => {}
+      this._swipeAll = () => {}
+
+      this.element.addEventListener('touchstart', this.swipeStart.bind(this), false)
+
+      this.element.addEventListener('touchmove', this.swipeMove.bind(this), false)
+
+      this.element.addEventListener('touchend', this.swipeEnd.bind(this), false)
+      return this.setSwipe.bind(this)
+   }
+
+   get swipeUp() {
+      return this._swipeUp
+   }
+   get swipeDown() {
+      return this._swipeDown
+   }
+   get swipeLeft() {
+      return this._swipeLeft
+   }
+   get swipeRight() {
+      return this._swipeRight
+   }
+
+   get swipeAll() {
+      return this._swipeAll
+   }
+   set swipeUp(callback) {
+      return this._swipeUp = callback.bind(this.element)
+   }
+   set swipeDown(callback) {
+      return this._swipeDown = callback.bind(this.element)
+   }
+   set swipeLeft(callback) {
+      return this._swipeLeft = callback.bind(this.element)
+   }
+   set swipeRight(callback) {
+      return this._swipeRight = callback.bind(this.element)
+   }
+   set swipeAll(callback) {
+      return this._swipeAll = callback.bind(this.element)
+   }
+   setSwipe(dir, callback) {
+      switch (dir) {
+
+         case "up":
+            this.swipeUp = callback
+            break;
+         case "down":
+            this.swipeDown = callback
+            break;
+         case "left":
+            this.swipeLeft = callback
+            break;
+         case "right":
+            this.swipeRight = callback
+            break;
+         case "all":
+            this.swipeAll = callback
+            break;
+      }
+
+
+   }
+
+   swipeEvent() {
+      this.element.ontouchend = this.swipeEnd.bind(this, callback)
+   }
+   swipeStart(e) {
+      var touchobj = e.changedTouches[0]
+      this.swipedir = 'none'
+      this.dist = 0
+      this.startX = touchobj.pageX
+      this.startY = touchobj.pageY
+      this.startTime = new Date().getTime() // record time when finger first makes contact with surface
+   }
+   swipeMove(e) {
+      console.log("move")
+      e.preventDefault() // prevent scrolling when inside DIV
+   }
+   swipeEnd(e) {
+      console.log("end")
+      var touchobj = e.changedTouches[0]
+      this.distX = touchobj.pageX - this.startX // get horizontal dist traveled by finger while in contact with surface
+      this.distY = touchobj.pageY - this.startY // get vertical dist traveled by finger while in contact with surface
+      this.elapsedTime = new Date().getTime() - this.startTime // get time elapsed
+      if (this.elapsedTime <= this.allowedTime) { // first condition for awipe met
+         if (Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint) { // 2nd condition for horizontal swipe met
+            this.swipedir = (this.distX < 0) ? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+         } else if (Math.abs(this.distY) >= this.threshold && Math.abs(this.distX) <= this.restraint) { // 2nd condition for vertical swipe met
+            this.swipedir = (this.distY < 0) ? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+         }
       
+      switch (this.swipedir) {
+         case "up":
+            this.swipeUp(e)
+            console.log(this.swipedir)
+            break;
+         case "down":
+            this.swipeDown(e)
+            console.log(this.swipedir)
+            break;
+         case "left":
+            this.swipeLeft(e)
+            console.log(this.swipedir)
+            break;
+         case "right":
+            this.swipeRight(e)
+            console.log(this.swipedir)
+            break;
+      }this.swipeAll()
+      this.dist = 0
+   }
+      
+   }
+
+
+}
+class PopupView {
+   static currentViews = []
+   constructor(elements, containerParrent, viewId) {
+      var id = viewId
+      try {
+         if (PopupView.currentViews.indexOf(viewId) == -1) {
+            PopupView.currentViews.push(viewId)
+         } else {
+            id = PopupView.currentViews.length < 9 ? "NewId-" + (PopupView.currentViews.length + 1) : "NewId-0" + (PopupView.currentViews.length + 1)
+            throw (new Error("NAME CONFLICT!\n" + viewId + "Allready exists, ID set to \"" + newId + "\"."))
+         }
+      } catch (err) {
+         PopupView.currentViews.push(id)
+         console.error(err)
+      }
+      this.id = id
+      console.log(elements)
+      if (elements.length) {
+         if (elements[0].hasOwnProperty("element")) {
+            this.el = elements.map(e => {
+               return e.element
+            })
+         } else {
+            this.el = elements
+         }
+      } else {
+         this.el = [elements]
+      }
+      this.container = document.createElement("div")
+      this.container.setAttribute("id", this.id)
+      this.container.classList.add("popUp")
+      this.section = {
+         left: document.createElement("div"),
+         center: document.createElement("div"),
+         right: document.createElement("div"),
+
+      }
+      this.btn = {
+         left: document.createElementNS('http://www.w3.org/2000/svg', "svg"),
+         right: document.createElementNS('http://www.w3.org/2000/svg', "svg")
+      }
+      for (let dir in this.btn) {
+         this.btn[dir].classList.add("svg-arrow-" + dir,"noClose")
+         this.btn[dir].setAttribute("viewBox", "0 0 70 50")
+         let g = document.createElementNS("http://www.w3.org/2000/svg", "g")
+         g.classList.add("svgArrow", dir)
+         let arrow = [document.createElementNS('http://www.w3.org/2000/svg', "path"), document.createElementNS('http://www.w3.org/2000/svg', "path")]
+         arrow.forEach(e => {
+            e.classList.add("arrow-btn")
+            g.appendChild(e)
+         })
+         let rect = document.createElementNS('http://www.w3.org/2000/svg', "rect")
+         rect.setAttribute("width", "70")
+         rect.setAttribute("height", "50")
+         g.appendChild(rect)
+         this.btn[dir].appendChild(g)
+         if(dir=="left"){
+            this.btn[dir].addEventListener('click', (e)=>{this.getPrev}, false)
+         }
+         if(dir=="right"){
+            this.btn[dir].addEventListener('click', (e)=>{this.getNext}, false)
+         }
+      }
+
+
+
+
+
+      this.items = []
+      for (let el of elements) {
+         var element, src, rub, text
+         var textCont = document.createElement("div")
+         var imgCont = document.createElement("div")
+         var content = document.createElement("div")
+         content.classList.add("popup-content")
+         textCont.classList.add("popup-text")
+         imgCont.classList.add("popup-img")
+         if (el.hasOwnProperty("src") && el.hasOwnProperty("tag")) {
+            element = document.createElement(el.tag)
+            src = el.src
+            if (el.tag == "iframe") {
+               element.setAttribute("frameborder", "0")
+            }
+            rub = el.element.getAttribute("name")
+            text = el.element.getAttribute("descr")
+         } else {
+            let tag = el.tagName.toLowerCase()
+            if (tag == "div") {
+               src = window.getComputedStyle(el).backgroundImage
+            } else if (tag == "img") {
+               src = el.src
+            }
+            src = src.replace(/url\(\"|\"\)/g,"")
+            element = document.createElement("img")
+            rub = el.getAttribute("name")
+            text = el.getAttribute("descr")
+
+         }
+         console.log(element)
+         element.setAttribute("src", src)
+         element.classList.add("noClose")
+         imgCont.appendChild(element)
+
+         if (rub) {
+            let r = document.createElement("h2")
+            r.innerHTML = rub
+            textCont.appendChild(r)
+         }
+         if (text) {
+            let t = document.createElement("p")
+            t.innerHTML = text
+            textCont.appendChild(t)
+         }
+         content.appendChild(textCont)
+         content.appendChild(imgCont)
+         this.items.push(content)
+      }
+      this.items.forEach((e,i)=>{
+         this.section.center.appendChild(e)
+         this.items[i].onswipe = new SwipeHandler(this.items[i])
+         this.items[i].onswipe("left",()=>{this.getNext})
+         this.items[i].onswipe("right",()=>{this.getPrev})
+      })
+
+      for (let s in this.section) {
+         var sec = this.section[s]
+         sec.classList.add("popUpSection", "popup-" + s)
+         if (Object.keys(this.btn).indexOf(s) != -1) {
+            sec.appendChild(this.btn[s])
+         }
+         this.container.appendChild(sec)
+
+      }
+      this._current=0
+      
+      this.el.forEach((e,i) => {
+         e.addEventListener("click", this.openContainer.bind(this,i))
+      })
+      this.container.addEventListener("click", this.closeContainer.bind(this))
+      this.container.style.display = "none"
+      document.body.appendChild(this.container)
+   }
+   get getNext(){
+      if(this.items.length-1 < this.current+1){
+         this.setCurrent(0,"right")
+         return 0
+      } else {
+         this.setCurrent(this.current+1,"right")
+         return this.current
+      }
+   }
+
+   get getPrev(){
+      if(0 > this.current-1){
+         this.setCurrent(this.items.length-1,"left")
+         return this.current
+      } else {
+         this.setCurrent(this.current-1,"left")
+         return this.current
+      }
+   }
+
+   set current(n){
+      this._current = n
+   }
+   get current(){
+      return this._current
+   }
+   setCurrent(n,dir){
+      this.items[this.current].classList.remove("rollInFromRight","rollInFromLeft","fadeIn")
+      this.items[n].classList.remove("rollOutToLeft","rollOutToRight","fadeOut")
+      if(dir=="right"){
+      this.items[this.current].classList.add("rollOutToLeft")
+      this.items[n].classList.add("rollInFromRight")
+      }else if(dir=="left") {
+         this.items[this.current].classList.add("rollOutToRight")
+         this.items[n].classList.add("rollInFromLeft")
+      }else if(dir=="none"){
+
+         this.items[this.current].classList.add("fadeOut")
+         this.items[n].classList.add("fadeIn")
+      }
+
+      this.current = n
+   }
+   openContainer(i,e) {
+      scrolling.killListeners
+      this.setCurrent(i,"none")
+      console.log(e,i, this)
+      this.container.style.display = "grid"
+
+   }
+   closeContainer(e) {
+      scrolling.startListeners
+      if($(e.target).parents("svg").length < 1){
+      this.container.style.display = "none"}
    }
 
 }
@@ -846,6 +1166,8 @@ const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"))
 const scrolling = new ScrollEffect()
 
 /** Gallery clickEvents */
+
+/* 
 document.querySelectorAll(".gallery-item.img").forEach((el) => {
    el.addEventListener("click", function (ev) {
       scrolling.killListeners
@@ -860,7 +1182,25 @@ document.querySelectorAll(".gallery-item.img").forEach((el) => {
 document.getElementById("gallery-presentation").addEventListener('click', function (e) {
    scrolling.startListeners
    $("#gallery-presentation").fadeOut()
+}) */
+
+
+var galleryContainer = new PopupView(document.querySelectorAll(".gallery-item.img"), document.body, "galleryPopUp")
+let portfolioElements = document.querySelectorAll(".portfolio-thumb")
+var portfolioItems = new Array(portfolioElements.length).fill("").map((e,i)=>{
+   e = {}
+   e.element = portfolioElements[i]
+   e.src = portfolioElements[i].getAttribute("href")
+   if(e.src.indexOf(".html")!=-1){
+      e.tag = "iframe"
+   } else {
+      e.tag = "img"
+   }
+   return e
 })
+
+var portfolioContainer = new PopupView(portfolioItems,document.body,"porfolio-popUp")
+
 /** About Parts Event */
 var introPic = document.querySelectorAll(".intro-pic")
 document.querySelectorAll(".intro-pic").forEach((e, i) => {
@@ -881,7 +1221,7 @@ document.querySelectorAll(".intro-pic").forEach((e, i) => {
 })
 
 /** Close Portfolio PopUp */
-const portPres = document.querySelector(".portfolio-presentation")
+/* const portPres = document.querySelector(".portfolio-presentation")
 
 portPres.addEventListener("click", function (ev) {
    if (ev.target.classList.contains("portfolio-arrow")) {
@@ -890,10 +1230,10 @@ portPres.addEventListener("click", function (ev) {
    $(portPres).fadeOut()
    scrolling.startListeners
 })
-
+ */
 /** Portfolio Item Arrow Event */
 
-var currentPortItem = 0
+/* var currentPortItem = 0
 document.querySelector(".prev-portfolio-item").addEventListener('click', function (e) {
    currentPortItem = Number(currentPortItem) < 2 ? 4 : Number(currentPortItem) - 1
    document.querySelectorAll(".portfolio-item").forEach((e, i) => {
@@ -922,9 +1262,9 @@ document.querySelector(".next-portfolio-item").addEventListener('click', functio
 
    })
 })
-
+ */
 /** Portfolio thumb Click event*/
-document.querySelectorAll(".thumb.portfolio-thumb").forEach((el, i) => {
+/* document.querySelectorAll(".thumb.portfolio-thumb").forEach((el, i) => {
    var n = el.getAttribute("portfolio")
    el.addEventListener("click", function (e) {
       $(portPres).css("display", "grid").fadeIn()
@@ -940,7 +1280,7 @@ document.querySelectorAll(".thumb.portfolio-thumb").forEach((el, i) => {
 
       scrolling.killListeners
    })
-})
+}) */
 
 /** Navlink scroll correction */
 document.querySelectorAll(".nav-link:not(.test)").forEach((el) => {
@@ -952,4 +1292,3 @@ document.querySelectorAll(".nav-link:not(.test)").forEach((el) => {
    })
 
 })
-
