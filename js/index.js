@@ -1036,7 +1036,7 @@ class PopupView {
          var textCont = document.createElement("div")
          var imgCont = document.createElement("div")
          var content = document.createElement("div")
-         content.classList.add("popup-content")
+         content.classList.add("popup-content","fadeOut")
          textCont.classList.add("popup-text")
          imgCont.classList.add("popup-img")
          if (el.hasOwnProperty("src") && el.hasOwnProperty("tag")) {
