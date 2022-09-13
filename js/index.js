@@ -1367,7 +1367,7 @@ class PopupView {
 }
 
 const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"));
-const scrolling = new ScrollEffect();
+//const scrolling = new ScrollEffect();
 
 var galleryContainer = new PopupView(
     document.querySelectorAll(".gallery-item.img"),
@@ -1416,9 +1416,9 @@ document.querySelectorAll(".intro-pic").forEach((e, i) => {
 /** Navlink scroll correction */
 document.querySelectorAll(".nav-link:not(.test)").forEach((el) => {
     el.addEventListener("click", async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let href = $(el).attr("href").replace(/#/g, "");
-        scrolling.scrollById(href);
+        //scrolling.scrollById(href);
         svgdrag.close();
     });
 });

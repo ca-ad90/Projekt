@@ -147,7 +147,6 @@ body {
 
     height: 100vh;
     overflow-x: hidden;
-    overflow-y: hidden;
     perspective: 100px;
     perspective-origin: 50% 0%;
     -ms-overflow-style: none;
@@ -212,11 +211,12 @@ footer {
 
 article,
 header {
-    margin-bottom: 20vh;
+    margin-bottom: 18vh;
 }
 
 article,
 footer {
+    padding-top: 11vh;
     position: relative;
     display: grid;
     grid-column-start: 1;
