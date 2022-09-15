@@ -11,7 +11,7 @@ FONT IMPORT GOOGLE FONTS
 }
 
 
-.ingress{
+.ingress {
     margin-top: calc(var(--line-height)*1px);
     --font-size: 24;
     font-family: var(--heading);
@@ -26,40 +26,46 @@ FONT IMPORT GOOGLE FONTS
     --shf: 4.9406564584124654e-324;
     --base-font-size: 20;
     --font-size:
-    var(--base-font-size);
-    --font-size-min: var(--font-size);
+        var(--base-font-size);
+    --font-size-min: var(--font-size)*0.7;
     --line-height:
-    calc(var(--base-font-size) * 1.4);
+        calc(var(--base-font-size) * 1.4);
     --mp:
-    calc((var(--font-size) / var(--line-height)) * var(--shf) / var(--shf));
+        calc((var(--font-size) / var(--line-height)) * var(--shf) / var(--shf));
     --fs:
-    calc(var(--font-size) * 1px);
-    --fsMin:calc(var(--font-size-min) * 1px);
+        calc(var(--font-size) * 1px);
+    --fsMin: calc(var(--font-size-min) * 1px);
     --lh:
-    calc(max(var(--line-height) , calc((var(--line-height) * var(--mp)))) * 1px);
-    --lhMin:calc(clamp(var(--fsMin),16vmin,var(--fs))*1.2px);
+        calc(max(var(--line-height), calc((var(--line-height) * var(--mp)))) * 1px);
+    --lhMin: calc(clamp(var(--fsMin), 16vmin, var(--fs))*1.2px);
     color: white;
     box-sizing: border-box;
     /*default font-setting */
     font-family: var(--text);
-    font-size:  clamp(var(--fsMin),16vmin,var(--fs));
-    line-height: var(--lh);
+    font-size: clamp(var(--fsMin), 16vmin, var(--fs));
+    line-height: max(var(--fsMin), 1.4em, var(--fs));
     font-weight: 350;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-top: calc((var(--line-height)*(2/3))*1px);
-    
+
 }
+
 /* Headings */
 h1,
 h2,
-h3{
-    --font-size-min:calc(var(--font-size)/1.3);
+h3 {
+    --font-size-min: calc(var(--font-size)/1.3);
     font-family: var(--heading);
     color: var(--orange);
     margin-bottom: calc((var(--line-height)*(4/3))*1px);
-    font-weight:800;
+    font-weight: 800;
 }
 
 h4,
@@ -67,29 +73,31 @@ h5,
 h6 {
     font-family: 'Josefin Sans', serif;
     font-weight: normal;
-    margin-bottom: calc((var(--line-height)*(1/3))*1px);  
+    margin-bottom: calc((var(--line-height)*(1/3))*1px);
 }
 
 h1 {
---font-size: 72;
-margin-bottom: var(--line-height)!important;
+    --font-size: 100;
+    margin-bottom: var(--line-height) !important;
 }
 
 h2 {
---font-size: 48;
+    --font-size: 58;
+    margin-bottom: var(--line-height) !important;
 }
 
 h3 {
---font-size:36
+    --font-size: 38;
+    margin-bottom: var(--line-height) !important;
 }
 
 h4 {
---font-size:24;
+    --font-size: 32;
 }
 
 h5,
 h6 {
---font-size: 20;
+    --font-size: 24;
 }
 
 /* Paragraph */
@@ -98,48 +106,3 @@ p {
     padding-bottom: calc(var(--line-height) * 1px);
     /*padding instead of margin so not to interfear with margins of headings*/
 }
-
-/* Lists */
-
-ul {
-    margin-bottom: calc(var(--line-height) * 1px);
-    list-style: square outside;
-}
-
-ul ul {
-    margin: 0 0 0 60px;
-}
-
-
-/* Quotes */
-
-blockquote {
-    margin: 0 60px 0 45px;
-    border-left: 5px solid #ccc;
-    padding-left: 10px;
-}
-
-blockquote b {
-    display: block;
-}
-
-/* Links */
-a {
-    text-decoration: none;
-}
-
-
-/* Image */
-
-#profile-img {
-    float: right;
-    display: block;
-    margin: 0 0 0 20px;
-    width: 148px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-}
-
-
-
