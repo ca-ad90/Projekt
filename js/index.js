@@ -1306,7 +1306,7 @@ class PopupView {
             } else {
                 let tag = el.tagName.toLowerCase();
                 if (tag == "div") {
-                    src = window.getComputedStyle(el).backgroundImage;
+                    src = el.children[0].getAttribute("src");
                 } else if (tag == "img") {
                     src = el.src;
                 }

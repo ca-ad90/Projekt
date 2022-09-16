@@ -249,7 +249,7 @@ footer {
     grid-template-columns: inherit;
     row-gap: 19px;
     column-gap: var(--col-gap);
-    margin-top: 10vh
+    padding-top: 10vh
 }
 
 footer {
@@ -352,12 +352,13 @@ header nav {
     height: 100%;
     justify-content: space-evenly;
     align-items: center;
+    flex-flow: row wrap;
 }
 
 header .nav-link {
     display: block;
     color: white;
-    /* margin-left: 5vw; */
+    margin: 0 2vw
 }
 
 .nav-btn {
@@ -391,6 +392,9 @@ svg.splatter {
 }
 
 .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40vh;
     position: absolute;
     /* transition: 0.5s; */
@@ -404,8 +408,6 @@ svg.splatter {
     display: block;
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background-image: url(../img/Logo-v2.png);
@@ -504,15 +506,16 @@ svg.splatter {
 }
 
 .intro-pic:nth-of-type(1)::after {
-    background-image: url(../img/TextAbout.png);
+    background-image: url("../img/text/AboutText.svg");
 }
 
 .intro-pic:nth-of-type(2)::after {
-    background-image: url(../img/TextDesign.png);
+    background-image: url("../img/text/DesignText.svg");
+
 }
 
 .intro-pic:nth-of-type(3)::after {
-    background-image: url(../img/TextCode.png);
+    background-image: url("../img/text/CodeText.svg");
 }
 
 .intro-pic:hover::after,
@@ -855,6 +858,7 @@ svg.gallery-dotts-container {
 .footer-content {
     grid-column: span 4;
     position: relative;
+    width: 100%;
 }
 
 footer>.section-wrapper {
@@ -949,7 +953,7 @@ img.gallery-img-pres {
     grid-row: 2/2;
     /*! width: 100%; */
     /*! position: absolute; */
-    /*! height: 97%; */
+    height: 97%;
     justify-content: center;
     align-items: flex-start;
     display: flex;
@@ -1396,5 +1400,119 @@ img.gallery-img-pres {
         position: absolute;
         top: 0;
         left: 0;
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    .nav-wrapper {
+        display: none;
+    }
+
+    .logo-container::after {
+        width: 80%;
+        background-image: url("../img/Resurs 1v1.png");
+
+    }
+
+    .gallery-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .gallery-container.gallery-img {
+        grid-column: 1/-1;
+    }
+
+    .gallery-nav-container {
+        grid-column: 1/-1;
+        width: 100%
+    }
+
+    .gallery-container-wrapper {
+        grid-column: 1/-1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr min-content;
+    }
+
+    .gallery-container.gallery-text {
+        grid-column: 1/-1;
+        grid-row: 2;
+    }
+
+    .popUp {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 50px;
+
+    }
+
+    .popUp>.popUpSection {
+        height: 100%;
+    }
+
+    .popUp>.popUpSection.popup-left,
+    .popUp>.popUpSection.popup-right {
+        grid-row: 2;
+        grid-column-start: auto;
+        grid-column-end: span 1;
+        justify-content: center;
+
+    }
+
+    .popUpSection>svg {
+        height: 100%;
+    }
+
+    .popUp>.popUpSection.popup-center {
+        grid-row: 1;
+        grid-column: 1/-1;
+
+
+    }
+
+    .popup-img,
+    .popup-content {
+        height: 100% !important;
+    }
+
+    .popup-img {
+        align-items: center !important;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .thumb-wrapper {
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    .thumb-container .ingress {
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    .thumb-container:nth-of-type(1) {
+        grid-column-start: 4;
+        grid-column-end: -4;
+        grid-row-start: auto
+    }
+
+    .thumb-container:nth-of-type(2) {
+        grid-column-start: 4;
+        grid-column-end: -4;
+        grid-row-start: auto
+    }
+
+    .thumb-container:nth-of-type(3) {
+        grid-column-start: 4;
+        grid-column-end: -4;
+        grid-row-start: auto
+    }
+
+    .thumb-container:nth-of-type(4) {
+        grid-column-start: 4;
+        grid-column-end: -4;
+        grid-row-start: auto
     }
 }
