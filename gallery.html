@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Creativity is a lifestyle - Portfolio</title>
+   <meta name="description"
+      content="Carl Adrian is a crative designer - fluent in HTML, CSS and javaScript - in short a front-end designer for you">
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="css/typografi.css">
+   <link rel="stylesheet" href="css/Style.css">
+   <link rel="stylesheet" href="css/header.css">
+   <link rel="stylesheet" href="css/gallery.css">
+</head>
+
+<body>
+   <div id="navbar-blocker" class="closed"></div>
+   <svg id="defs" style="height:0px; width: 0px; overflow: hidden; position:absolute; top:-10px">
+      <defs>
+         <linearGradient id="lineGradient" x1="-0.1" y1="0" x2="1.5" y2="0.3">
+            <stop offset="0" stop-color="#e6cc28" />
+            <stop offset="0.33" stop-color="#ffa629" />
+            <stop offset="0.66" stop-color="#f03391" />
+            <stop offset="1.5" stop-color="#731242" />
+         </linearGradient>
+         <linearGradient id="lineGradient2" x1="-0.1" y1="0.2" x2="1.1" y2="0">
+            <stop offset="0" stop-color="#e6cc28" stop-opacity="0.5" />
+            <stop offset="0.33" stop-color="#ffa629" stop-opacity="0.5" />
+            <stop offset="0.66" stop-color="#f03391" stop-opacity="0.7" />
+            <stop offset="1" stop-color="#731242" stop-opacity="1" />
+         </linearGradient>
+         <linearGradient id="lineGradient3" x1="-0.1" y1="0" x2="1.5" y2="0.3">
+            <stop offset="0" stop-color="#731242" />
+            <stop offset="0.33" stop-color="#f03391" />
+            <stop offset="0.66" stop-color="#ffa629" />
+            <stop offset="1.5" stop-color="#e6cc28" />
+         </linearGradient>
+         <linearGradient id="lineGradient4" x1="-0.1" y1="0.2" x2="1.1" y2="0">
+            <stop offset="0" stop-color="#731242" stop-opacity="0.5" />
+            <stop offset="0.33" stop-color="#f03391" stop-opacity="0.5" />
+            <stop offset="0.66" stop-color="#ffa629" stop-opacity="0.7" />
+            <stop offset="1" stop-color="#e6cc28" stop-opacity="1" />
+         </linearGradient>
+      </defs>
+   </svg>
+
+
+   <!--Navigation bar diplays on scroll-->
+   <div class="navbar-wrapper closed">
+      <div class="navbar-btn">
+         <svg class="svg-ico" viewBox="0 0 100 100">
+            <path class="ico" fill="none" stroke-width="10" stroke="white" d="" />
+         </svg>
+      </div>
+
+      <nav class="navbar-content closed">
+         <div class="navbar-item"><a class="nav-link" href="index.html">Home</a></div>
+         <div class="navbar-item"><a class="nav-link" href="#section-about">About</a></div>
+         <div class="navbar-item"><a class="nav-link" href="portfolio.html">Portfolio</a></div>
+         <div class="navbar-item"><a class="nav-link" href="gallery.html">Gallery</a></div>
+      </nav>
+      <!--SVG BAR for animation-->
+      <svg class="navbar-svg">
+         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:var(--magenta);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:var(--purple);stop-opacity:1" />
+         </linearGradient>
+         <path class="test" stroke="none" fill="url(#grad1)" d="
+             M 5 5
+             l 0 10
+             l 10 0
+             q 0 0 0 -10 z
+            " />
+      </svg>
+   </div>
+   <!--wrapper for page to make parallax scoll effect on background (covers 100vh/100vw)-->
+   <div class="parallax-wrapper">
+      <script>
+         const doc = document.querySelector(".parallax-wrapper") || document.body
+      </script>
+
+      <!--parallax backgroundItems-->
+      <div class="para parallax2"></div>
+      <div class="para parallax1"></div>
+
+      <!-- START OF MAIN PAGE CONTENT -->
+      <div id="grid-wrapper" class="gallery" style="top:0px">
+
+         <!-- Header as Landing Part -->
+         <header id="header" class="gridder gallery-header">
+            <nav>
+               <div class="nav-wrapper">
+                  <a class="nav-link" href="index.html">
+                     <div class="nav-btn">Home</div>
+                  </a>
+                  <a class="nav-link" href="index.html/#section-about">
+                     <div class="nav-btn">About</div>
+                  </a>
+                  <a class="nav-link" href="portfolio.html">
+                     <div class="nav-btn">Portfolio</div>
+                  </a>
+                  <a class="nav-link" href="gallery.html">
+                     <div class="nav-btn">Gallery</div>
+                  </a>
+               </div>
+            </nav>
+         </header>
+
+         <!-- ABOUT SECTION -->
+         <main class="gallery">
+            <section id="gallery-grid-section">
+               <h2>Kontakta Mig</h2>
+            </section>
+         </main>
+
+         <footer id="foot">
+            <div class="footer-wrapper">
+               <div class="footer-content site-links">
+                  <h5>Site Links</h5>
+                  <p><a class="nav-link" href="index.html/#header">Home</a></p>
+                  <p><a class="nav-link" href="index.html/#section-about">About</a></p>
+                  <p><a class="nav-link" href="portfolio.html">Portfolio</a></p>
+                  <p><a class="nav-link" href="gallery.html">Gallery</a></p>
+
+               </div>
+               <div class="footer-content filler">
+
+
+               </div>
+               <div class="footer-content contact">
+                  <h5>Contact info</h5>
+                  <p>E-mail: carl.xxx@gmail.com</p>
+                  <p>Tel: 0703-975 xxx</p>
+                  <p></p>
+                  <p></p>
+
+               </div>
+            </div>
+
+         </footer>
+      </div>
+
+   </div>
+   <script src="js/header.js"></script>
+   <script>
+   </script>
+</body>
+
+</html>

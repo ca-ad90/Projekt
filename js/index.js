@@ -13,11 +13,7 @@ class ScrollEffect {
         this.n = 1;
         this.dir;
         this.wrapper = document.getElementById("grid-wrapper");
-        this.section = document.querySelectorAll("header, article, footer");
-        this.header = document.querySelector("header");
-        this.footer = document.querySelector("footer");
-        this.main = document.querySelector("main");
-
+        this.section = document.querySelectorAll("header, section, footer");
         this.touchReady = false;
         this.scrollLen;
         this.section.forEach((e) => {
@@ -124,7 +120,7 @@ class ScrollEffect {
                 },
             });
         });
-        this._current = this.section[0];
+        this.current = this.section[0];
         doc.onwheel = this.wheelHandler.bind(this);
         doc.ontouchstart = this.touchHandler.bind(this);
         doc.ontouchmove = this.touchHandler.bind(this);
@@ -144,12 +140,6 @@ class ScrollEffect {
         doc.ontouchmove = this.touchHandler.bind(this);
         doc.ontouchend = this.touchHandler.bind(this);
         window.onkeydown = this.keyHandler.bind(this);
-    }
-    get current() {
-        return this._current;
-    }
-    set current(elem) {
-        this._current = elem;
     }
     get offset() {
         var offsetBottom, offsetTop;
@@ -174,68 +164,36 @@ class ScrollEffect {
     set count(x) {
         this._count = x;
     }
-
     get nextSection() {
-        let next;
+        var next;
         if (this.dir > 0) {
-            if ($(this.current).next().length > 0) {
-                if ($(this.current).next()[0].tagName == "MAIN") {
-                    next = this.main.children[0];
-                } else {
-                    next = $(this.current).next()[0];
-                }
-            } else if (this.current.parentNode.tagName == "MAIN") {
-                next = this.footer;
-            } else {
-                next = this.current;
-            }
+            next =
+                $(this.current).next().length > 0
+                    ? $(this.current).next()[0]
+                    : this.current;
         } else {
-            if ($(this.current).prev().length > 0) {
-                if ($(this.current).prev()[0].tagName == "MAIN") {
-                    next = this.main.children[this.main.children.length - 1];
-                } else {
-                    next = $(this.current).prev()[0];
-                }
-            } else if (this.current.parentNode.tagName == "MAIN") {
-                next = this.header;
-            } else {
-                next = this.current;
-            }
+            next =
+                $(this.current).prev().length > 0
+                    ? $(this.current).prev()[0]
+                    : this.current;
         }
         return next;
     }
-
     get prevSection() {
-        let prev;
-
+        var prev;
         if (this.dir > 0) {
-            if ($(this.current).prev().length > 0) {
-                if ($(this.current).prev()[0].tagName == "MAIN") {
-                    prev = this.main.children[this.main.children.length - 1];
-                } else {
-                    prev = $(this.current).prev()[0];
-                }
-            } else if (this.current.parentNode.tagName == "MAIN") {
-                prev = this.header;
-            } else {
-                prev = this.current;
-            }
+            prev =
+                $(this.current).prev().length > 0
+                    ? $(this.current).prev()[0]
+                    : this.current;
         } else {
-            if ($(this.current).next().length > 0) {
-                if ($(this.current).next()[0].tagName == "MAIN") {
-                    prev = this.main.children[0];
-                } else {
-                    prev = $(this.current).next()[0];
-                }
-            } else if (this.current.parentNode.tagName == "MAIN") {
-                prev = this.footer;
-            } else {
-                prev = this.current;
-            }
+            prev =
+                $(this.current).next().length > 0
+                    ? $(this.current).next()[0]
+                    : this.current;
         }
         return prev;
     }
-
     scrollById(idSelector) {
         this.section.forEach((e, i) => {
             if (e.getAttribute("id") == idSelector) {
@@ -718,231 +676,328 @@ class GalleryCarousel {
             });
     }
     get goToIndex() {
-        if (this._goToIndex < 0) {
-            this._goToIndex = this.index;
-            return this.index;
-        } else return this._goToIndex;
+        try {
+            if (this._goToIndex < 0) {
+                this._goToIndex = this.index;
+                return this.index;
+            } else return this._goToIndex;
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     set goToIndex(x) {
-        this._goToIndex = x;
+        try {
+            this._goToIndex = x;
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     get index() {
-        return this.currentIndex;
+        try {
+            return this.currentIndex;
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     set index(x) {
-        this.currentIndex = x;
+        try {
+            this.currentIndex = x;
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     get nextIndex() {
-        return this.index + 2 > this.galleryItems.len ? 0 : this.index + 1;
+        try {
+            return this.index + 2 > this.galleryItems.len ? 0 : this.index + 1;
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     get prevIndex() {
-        return this.index - 1 < 0 ? this.galleryItems.len - 1 : this.index - 1;
+        try {
+            return this.index - 1 < 0
+                ? this.galleryItems.len - 1
+                : this.index - 1;
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     get cancel2() {
-        this.reject.in();
-        this.reject.out();
+        try {
+            this.reject.in();
+            this.reject.out();
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     get cancel() {
-        this.res.in();
-        this.res.out();
-        this.isPlaying = false;
-        clearTimeout(this.timeout);
+        try {
+            this.res.in();
+            this.res.out();
+            this.isPlaying = false;
+            clearTimeout(this.timeout);
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     moveDot(i, end) {
-        this.galleryItems.dot.forEach((e) => {
-            if (e.classList.contains("active")) {
-                if (end && this.index == i) {
-                    return;
+        try {
+            this.galleryItems.dot.forEach((e) => {
+                if (e.classList.contains("active")) {
+                    if (end && this.index == i) {
+                        return;
+                    }
+                    e.classList.remove("active");
                 }
-                e.classList.remove("active");
-            }
-        });
-        this.galleryItems.dot[i].classList.add("active");
+            });
+            this.galleryItems.dot[i].classList.add("active");
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     async fadeOut(index) {
-        var imgRes;
-        var txtRes;
-        var imgRej;
-        var txtRej;
-        return new Promise(async (res, reject) => {
-            this.reject.out = reject;
-            if (this.isRunning.every((e) => e == true)) {
-            } else {
-                this.isRunning[0] = true;
-            }
-            this.res.out = res;
-            var txtOut = new Promise((res, reject) => {
-                txtRes = res;
-                txtRej = reject;
-                $(this.galleryItems.txt[index]).animate(
-                    {
-                        left: "125%",
-                        opacity: 0.5,
-                    },
-                    this.speed,
-                    () => {
-                        $(this.galleryItems.txt[index])
-                            .css("z-index", "-1")
-                            .css("opacity", "0")
-                            .css("left", "-125%")
-                            .hide();
-                        res("text out resolve");
-                    }
-                );
-            }).finally(() => {
-                $(this.galleryItems.txt[index])
-                    .css("z-index", "-1")
-                    .css("left", "-125%")
-                    .css("opacity", "0")
-                    .hide();
-            });
-            var imgOut = new Promise((res, reject) => {
-                imgRes = res;
-                imgRej = reject;
-                $(this.galleryItems.img[index]).animate(
-                    {
-                        top: "125%",
-                        opacity: 0.0,
-                    },
-                    this.speed,
-                    () => {
-                        $(this.galleryItems.img[index])
-                            .css("z-index", "-1")
-                            .css("opacity", "0")
-                            .css("top", "-125%")
-                            .hide();
-                        res("img out resolve");
-                    }
-                );
-            }).finally(() => {
-                $(this.galleryItems.img[index])
-                    .css("z-index", "-1")
-                    .css("top", "-125%")
-                    .css("opacity", "0")
-                    .hide();
-            });
-            await Promise.all([txtOut, imgOut])
-                .then(() => {
-                    imgRes("then img out resolve");
-                    txtRes("then txt out resolv");
-                    res("fade out resolve");
-                })
-                .catch((e) => {
-                    reject("catch fade out reject");
-                })
-                .finally(() => {
-                    this.isPlaying = false;
-                });
-        });
-    }
-    async fadeIn(index) {
-        var imgRes;
-        var txtRes;
-        var imgRej;
-        var txtRej;
-        return new Promise(async (res, reject) => {
-            this.reject.in = reject;
-            this.res.in = res;
-            var txtIn = new Promise((res, reject) => {
-                txtRes = res;
-                txtRej = reject;
-                $(this.galleryItems.txt[index])
-                    .show()
-                    .css("z-index", "")
-                    .animate(
+        try {
+            var imgRes;
+            var txtRes;
+            var imgRej;
+            var txtRej;
+            return new Promise(async (res, reject) => {
+                this.reject.out = reject;
+                if (this.isRunning.every((e) => e == true)) {
+                } else {
+                    this.isRunning[0] = true;
+                }
+                this.res.out = res;
+                var txtOut = new Promise((res, reject) => {
+                    txtRes = res;
+                    txtRej = reject;
+                    $(this.galleryItems.txt[index]).animate(
                         {
-                            left: "0%",
-                            opacity: 1,
+                            left: "125%",
+                            opacity: 0.5,
                         },
                         this.speed,
                         () => {
-                            res("text in resolve");
+                            $(this.galleryItems.txt[index])
+                                .css("z-index", "-1")
+                                .css("opacity", "0")
+                                .css("left", "-125%")
+                                .hide();
+                            res("text out resolve");
                         }
                     );
-            })
-                .catch((e) => {})
-                .finally(() => {
+                }).finally(() => {
+                    $(this.galleryItems.txt[index])
+                        .css("z-index", "-1")
+                        .css("left", "-125%")
+                        .css("opacity", "0")
+                        .hide();
+                });
+                var imgOut = new Promise((res, reject) => {
+                    imgRes = res;
+                    imgRej = reject;
+                    $(this.galleryItems.img[index]).animate(
+                        {
+                            top: "125%",
+                            opacity: 0.0,
+                        },
+                        this.speed,
+                        () => {
+                            $(this.galleryItems.img[index])
+                                .css("z-index", "-1")
+                                .css("opacity", "0")
+                                .css("top", "-125%")
+                                .hide();
+                            res("img out resolve");
+                        }
+                    );
+                }).finally(() => {
+                    $(this.galleryItems.img[index])
+                        .css("z-index", "-1")
+                        .css("top", "-125%")
+                        .css("opacity", "0")
+                        .hide();
+                });
+                await Promise.all([txtOut, imgOut])
+                    .then(() => {
+                        imgRes("then img out resolve");
+                        txtRes("then txt out resolv");
+                        res("fade out resolve");
+                    })
+                    .catch((e) => {
+                        reject("catch fade out reject");
+                    })
+                    .finally(() => {
+                        this.isPlaying = false;
+                    });
+            });
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
+    }
+    async fadeIn(index) {
+        try {
+            var imgRes;
+            var txtRes;
+            var imgRej;
+            var txtRej;
+            return new Promise(async (res, reject) => {
+                this.reject.in = reject;
+                this.res.in = res;
+                var txtIn = new Promise((res, reject) => {
+                    txtRes = res;
+                    txtRej = reject;
                     $(this.galleryItems.txt[index])
                         .show()
                         .css("z-index", "")
-                        .css("left", "0%")
-                        .css("opacity", "1");
-                });
+                        .animate(
+                            {
+                                left: "0%",
+                                opacity: 1,
+                            },
+                            this.speed,
+                            () => {
+                                res("text in resolve");
+                            }
+                        );
+                })
+                    .catch((e) => {})
+                    .finally(() => {
+                        $(this.galleryItems.txt[index])
+                            .show()
+                            .css("z-index", "")
+                            .css("left", "0%")
+                            .css("opacity", "1");
+                    });
 
-            var imgIn = new Promise((res, reject) => {
-                imgRes = res;
-                imgRej = reject;
-                $(this.galleryItems.img[index])
-                    .show()
-                    .css("z-index", "")
-                    .animate(
-                        {
-                            top: "0%",
-                            opacity: 1,
-                        },
-                        this.speed,
-                        () => {
-                            res("img in resolve");
-                        }
-                    );
-            })
-                .catch((e) => {})
-                .finally(() => {
+                var imgIn = new Promise((res, reject) => {
+                    imgRes = res;
+                    imgRej = reject;
                     $(this.galleryItems.img[index])
                         .show()
                         .css("z-index", "")
-                        .css("top", "0%")
-                        .css("opacity", "1");
-                });
+                        .animate(
+                            {
+                                top: "0%",
+                                opacity: 1,
+                            },
+                            this.speed,
+                            () => {
+                                res("img in resolve");
+                            }
+                        );
+                })
+                    .catch((e) => {})
+                    .finally(() => {
+                        $(this.galleryItems.img[index])
+                            .show()
+                            .css("z-index", "")
+                            .css("top", "0%")
+                            .css("opacity", "1");
+                    });
 
-            await Promise.all([txtIn, imgIn])
-                .then(() => {
-                    imgRes("then img in resolve");
-                    txtRes("then txt in resolv");
-                    res("fade in resolve");
-                })
-                .catch((e) => {
-                    reject("catch fade in reject");
-                })
-                .finally(() => {
-                    this.isRunning[1] = false;
-                });
-        });
+                await Promise.all([txtIn, imgIn])
+                    .then(() => {
+                        imgRes("then img in resolve");
+                        txtRes("then txt in resolv");
+                        res("fade in resolve");
+                    })
+                    .catch((e) => {
+                        reject("catch fade in reject");
+                    })
+                    .finally(() => {
+                        this.isRunning[1] = false;
+                    });
+            });
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     async next() {
-        var prevIndex = this.index;
-        this.index = this.nextIndex;
-        if (!this.isPlaying) {
-            this.isPlaying = true;
-            clearTimeout(this.timeout);
-            return Promise.all([
-                this.fadeOut(prevIndex),
-                this.fadeIn(this.index),
-            ]);
+        try {
+            var prevIndex = this.index;
+            this.index = this.nextIndex;
+            if (!this.isPlaying) {
+                this.isPlaying = true;
+                clearTimeout(this.timeout);
+                return Promise.all([
+                    this.fadeOut(prevIndex),
+                    this.fadeIn(this.index),
+                ]);
+            }
+        } catch (e) {
+            console.error(e);
+            debugger;
         }
     }
     async prev() {
-        var prevIndex = this.index;
-        this.index = this.prevIndex;
-        if (!this.isPlaying) {
-            this.isPlaying = true;
-            clearTimeout(this.timeout);
-            return Promise.all([
-                this.fadeOut(prevIndex),
-                this.fadeIn(this.index),
-            ]);
+        try {
+            var prevIndex = this.index;
+            this.index = this.prevIndex;
+            if (!this.isPlaying) {
+                this.isPlaying = true;
+                clearTimeout(this.timeout);
+                return Promise.all([
+                    this.fadeOut(prevIndex),
+                    this.fadeIn(this.index),
+                ]);
+            }
+        } catch (e) {
+            console.error(e);
+            debugger;
         }
     }
     checkIndex(x) {
-        var out =
-            x > this.galleryItems.len - 1
-                ? 0
-                : x < 0
-                ? this.galleryItems.len - 1
-                : x;
-        return out;
+        try {
+            var out =
+                x > this.galleryItems.len - 1
+                    ? 0
+                    : x < 0
+                    ? this.galleryItems.len - 1
+                    : x;
+            return out;
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
     }
     async goTo(index) {
+        try {
+            if (this.index == index) {
+                return;
+            }
+            if (!this.isPlaying) {
+                this.isPlaying = true;
+                clearTimeout(this.timeout);
+
+                await Promise.all([
+                    this.fadeOut(this.index),
+                    this.fadeIn(this.goToIndex),
+                ]).then(() => {
+                    this.isPlaying = false;
+                    this._goToIndex = -1;
+                    this.index = index;
+                    this.timeout = setTimeout(
+                        this.play.bind(this),
+                        this.speed * 6
+                    );
+                });
+            }
+        } catch (e) {
+            console.error(e);
+            debugger;
+        }
         if (this.index == index) {
             return;
         }
@@ -962,23 +1017,28 @@ class GalleryCarousel {
         }
     }
     async play() {
-        if (!this.isPlaying) {
-            clearTimeout(this.timeout);
-            this.cancel;
-            this.goToIndex = this.checkIndex(this.goToIndex + 1);
-            this.moveDot(this.goToIndex);
-            this.goTo(this.goToIndex)
-                .then(() => {
-                    clearTimeout(this.timeout);
-                    this.timeout = setTimeout(
-                        this.play.bind(this),
-                        this.speed * 6
-                    );
-                })
-                .catch((e) => {})
-                .finally(() => {
-                    this.isPlaying = false;
-                });
+        try {
+            if (!this.isPlaying) {
+                clearTimeout(this.timeout);
+                this.cancel;
+                this.goToIndex = this.checkIndex(this.goToIndex + 1);
+                this.moveDot(this.goToIndex);
+                this.goTo(this.goToIndex)
+                    .then(() => {
+                        clearTimeout(this.timeout);
+                        this.timeout = setTimeout(
+                            this.play.bind(this),
+                            this.speed * 6
+                        );
+                    })
+                    .catch((e) => {})
+                    .finally(() => {
+                        this.isPlaying = false;
+                    });
+            }
+        } catch (e) {
+            console.error(e);
+            debugger;
         }
     }
 }
@@ -988,12 +1048,12 @@ class SwipeHandler {
         this.swipedir;
         this.startX;
         this.startY;
-        this.lenX;
-        this.lenX;
-        this.swipeDist = 150; // mindistance for swipwe
-        this.swipeMax = 100; // maximum distance allowed at the same time in perpendicular direction
-        this.maxTime = 300; // maximum time allowed to travel that distance
-        this.time;
+        this.distX;
+        this.distY;
+        this.threshold = 150; //required min distance traveled to be considered swipe
+        this.restraint = 100; // maximum distance allowed at the same time in perpendicular direction
+        this.allowedTime = 300; // maximum time allowed to travel that distance
+        this.elapsedTime;
         this.startTime;
         this.dist;
         this._swipeUp = () => {};
@@ -1007,11 +1067,13 @@ class SwipeHandler {
             this.swipeStart.bind(this),
             false
         );
+
         this.element.addEventListener(
             "touchmove",
             this.swipeMove.bind(this),
             false
         );
+
         this.element.addEventListener(
             "touchend",
             this.swipeEnd.bind(this),
@@ -1032,6 +1094,7 @@ class SwipeHandler {
     get swipeRight() {
         return this._swipeRight;
     }
+
     get swipeAll() {
         return this._swipeAll;
     }
@@ -1069,15 +1132,16 @@ class SwipeHandler {
                 break;
         }
     }
+
     swipeEvent() {
         this.element.ontouchend = this.swipeEnd.bind(this, callback);
     }
     swipeStart(e) {
-        var swipe = e.changedTouches[0];
+        var touchobj = e.changedTouches[0];
         this.swipedir = "none";
         this.dist = 0;
-        this.startX = swipe.pageX;
-        this.startY = swipe.pageY;
+        this.startX = touchobj.pageX;
+        this.startY = touchobj.pageY;
         this.startTime = new Date().getTime(); // record time when finger first makes contact with surface
     }
     swipeMove(e) {
@@ -1086,25 +1150,24 @@ class SwipeHandler {
     }
     swipeEnd(e) {
         console.log("end");
-        var swipe = e.changedTouches[0];
-        this.time = new Date().getTime() - this.startTime; // get swipe time
-        this.lenX = swipe.pageX - this.startX; // get length of horisontal swipe
-        this.lenY = swipe.pageY - this.startY; // get length of vertival swipe
-
-        if (this.time <= this.maxTime) {
-            // see that swipe is done in time
+        var touchobj = e.changedTouches[0];
+        this.distX = touchobj.pageX - this.startX; // get horizontal dist traveled by finger while in contact with surface
+        this.distY = touchobj.pageY - this.startY; // get vertical dist traveled by finger while in contact with surface
+        this.elapsedTime = new Date().getTime() - this.startTime; // get time elapsed
+        if (this.elapsedTime <= this.allowedTime) {
+            // first condition for awipe met
             if (
-                Math.abs(this.lenX) >= this.swipeDist &&
-                Math.abs(this.lenX) <= this.swipeMax
+                Math.abs(this.distX) >= this.threshold &&
+                Math.abs(this.distY) <= this.restraint
             ) {
-                // is horisontal swipe ?
-                this.swipedir = this.lenX < 0 ? "left" : "right"; // get direction
+                // 2nd condition for horizontal swipe met
+                this.swipedir = this.distX < 0 ? "left" : "right"; // if dist traveled is negative, it indicates left swipe
             } else if (
-                Math.abs(this.lenY) >= this.swipeDist &&
-                Math.abs(this.lenY) <= this.swipeMax
+                Math.abs(this.distY) >= this.threshold &&
+                Math.abs(this.distX) <= this.restraint
             ) {
-                // is vertical swipe ?
-                this.swipedir = this.lenY < 0 ? "up" : "down"; // get direvtion
+                // 2nd condition for vertical swipe met
+                this.swipedir = this.distY < 0 ? "up" : "down"; // if dist traveled is negative, it indicates up swipe
             }
 
             switch (this.swipedir) {
@@ -1238,19 +1301,19 @@ class PopupView {
                 if (el.tag == "iframe") {
                     element.setAttribute("frameborder", "0");
                 }
-                rub = el.element.dataset.name;
-                text = el.element.dataset.descr;
+                rub = el.element.getAttribute("data-name");
+                text = el.element.getAttribute("data-descr");
             } else {
                 let tag = el.tagName.toLowerCase();
                 if (tag == "div") {
-                    src = window.getComputedStyle(el).backgroundImage;
+                    src = el.children[0].getAttribute("src");
                 } else if (tag == "img") {
                     src = el.src;
                 }
                 src = src.replace(/url\(\"|\"\)/g, "");
                 element = document.createElement("img");
-                rub = el.dataset.name;
-                text = el.dataset.descr;
+                rub = el.getAttribute("data-name");
+                text = el.getAttribute("data-descr");
             }
             console.log(element);
             element.setAttribute("src", src);
@@ -1353,13 +1416,13 @@ class PopupView {
         this.current = n;
     }
     openContainer(i, e) {
-        scrolling.killListeners;
+        //scrolling.killListeners;
         this.setCurrent(i, "none");
         console.log(e, i, this);
         this.container.style.display = "grid";
     }
     closeContainer(e) {
-        scrolling.startListeners;
+        //scrolling.startListeners;
         if ($(e.target).parents("svg").length < 1) {
             this.container.style.display = "none";
         }
@@ -1367,7 +1430,6 @@ class PopupView {
 }
 
 const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"));
-//const scrolling = new ScrollEffect();
 
 var galleryContainer = new PopupView(
     document.querySelectorAll(".gallery-item.img"),
@@ -1380,7 +1442,7 @@ var portfolioItems = new Array(portfolioElements.length)
     .map((e, i) => {
         e = {};
         e.element = portfolioElements[i];
-        e.src = portfolioElements[i].dataset.href;
+        e.src = portfolioElements[i].getAttribute("data-href");
         if (e.src.indexOf(".html") != -1) {
             e.tag = "iframe";
         } else {
@@ -1414,11 +1476,11 @@ document.querySelectorAll(".intro-pic").forEach((e, i) => {
 });
 
 /** Navlink scroll correction */
-document.querySelectorAll(".nav-link:not(.test)").forEach((el) => {
+document.querySelectorAll(".nav-link.scroll:not(.test)").forEach((el) => {
     el.addEventListener("click", async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         let href = $(el).attr("href").replace(/#/g, "");
-        //scrolling.scrollById(href);
+        scrolling.scrollById(href);
         svgdrag.close();
     });
 });

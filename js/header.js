@@ -623,8 +623,31 @@ class svgDrag2 {
         this.closeResolve();
     }
 }
-var svgdrag = new svgDrag2(document.querySelector(".navbar-wrapper"), "left");
-doc.addEventListener("scroll", function (e) {
+const dragContainer = document.querySelector(".navbar-wrapper");
+var svgdrag = new svgDrag2(dragContainer, "left");
+dragContainer.querySelectorAll(".nav-link").forEach((e) => {
+    e.addEventListener("click", function (e) {
+        svgdrag.close();
+    });
+});
+doc.addEventListener("scroll", showMenu);
+window.addEventListener("resize", showMenu);
+
+function showMenu(e) {
+    if (window.innerWidth <= 500) {
+        svgdrag.svgHeight = "60px";
+        $(".navbar-wrapper").css("display", "flex").css("height", "65px");
+        if ($(".navbar-wrapper").css("display") == "none") {
+            $(".navbar-wrapper")
+                .css("display", "flex")
+                .css("height", "65px")
+                .hide()
+                .fadeIn("slow");
+        }
+        svgdrag.close();
+        return;
+    }
+
     if (
         doc.scrollTop > window.innerHeight / 3 &&
         $(".navbar-wrapper").css("display") == "none"
@@ -642,5 +665,4 @@ doc.addEventListener("scroll", function (e) {
         $(".navbar-wrapper").fadeOut("slow");
         svgdrag.close();
     }
-});
-
+}
