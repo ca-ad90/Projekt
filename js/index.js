@@ -1096,6 +1096,8 @@ class GalleryCarousel {
         }
     }
 }
+
+/* Denna Klass vet jag inte hur mkt som är inspiration, eget påhitt eller plagiat*/
 class SwipeHandler {
     constructor(el) {
         this.element = el;
