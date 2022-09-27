@@ -9,9 +9,9 @@ class svgDrag2 {
         this.request;
         this.reqOpen;
         this.reqClose;
-        this.revertResolve = () => {};
-        this.openResolve = () => {};
-        this.closeResolve = () => {};
+        this.revertResolve = () => { };
+        this.openResolve = () => { };
+        this.closeResolve = () => { };
 
         this.timeout;
         this.isDragging = false;
@@ -205,14 +205,14 @@ class svgDrag2 {
                 e.clientX < 0
                     ? 0
                     : e.clientX > this.win.width
-                    ? this.win.width
-                    : e.clientX,
+                        ? this.win.width
+                        : e.clientX,
             y:
                 e.clientY < 0
                     ? 0
                     : e.clientY > this.win.height
-                    ? this.win.height
-                    : e.clientY,
+                        ? this.win.height
+                        : e.clientY,
         };
 
         if (this.pos == "left") {
@@ -221,14 +221,14 @@ class svgDrag2 {
                     e.clientX < 0
                         ? 0
                         : e.clientX > this.win.width
-                        ? this.win.width
-                        : e.clientX,
+                            ? this.win.width
+                            : e.clientX,
                 x:
                     e.clientY < 0
                         ? 0
                         : e.clientY > this.win.height
-                        ? this.win.height
-                        : e.clientY,
+                            ? this.win.height
+                            : e.clientY,
             };
         }
         return m;
@@ -473,9 +473,7 @@ class svgDrag2 {
             };
         }
 
-        /*         setTimeout(() => {
-                    this.svgHeight = this.win.height * this.size.open + this.size.offset + "px";
-                }, 300); */
+
     }
     async close() {
         if (!this.isOpen) {
@@ -501,7 +499,7 @@ class svgDrag2 {
                 let pos = Math.max(
                     to,
                     this.win.height * 0.75 -
-                        this.win.height * 0.75 * curve(part)
+                    this.win.height * 0.75 * curve(part)
                 );
                 this.path.l2 = this.lxy(0, pos);
                 this.svgHeight = this.bar.height + "px";
