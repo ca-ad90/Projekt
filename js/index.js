@@ -270,7 +270,9 @@ class ScrollEffect {
     }
 
     wHandler(e) {
+        if (e.ctrlKey) return
         e.preventDefault()
+        console.log(this.freq)
 
         /*
             if scrollDirection changes, restart scrollCounter(freq)
@@ -335,6 +337,8 @@ class ScrollEffect {
         });
     }
     wLock(e) {
+        console.log(this.freq)
+        if (e.ctrlKey) return
         // scroll scounter - when listener is "killed"
         e.preventDefault()
         if (this.dir != -e.wheelDeltaY / Math.abs(e.wheelDeltaY)) {
@@ -1255,6 +1259,8 @@ class PopupView {
         fetch("/popup-settings.json")
             .then(res => res.json())
             .then(data => {
+                console.log(`-----------FETCH DATA---------------`)
+                console.log('data', data);
                 this.el = []
                 data = data[viewId]
                 let items = data.items
@@ -1484,11 +1490,11 @@ class PopupView {
     }
 }
 const scroll = new ScrollEffect()
+
 const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"));
-
 var galleryContainer = new PopupView("gallery");
-let portfolioElements = document.querySelectorAll(".portfolio-thumb");
 
+let portfolioElements = document.querySelectorAll(".portfolio-thumb");
 var portfolioContainer = new PopupView("portfolio");
 
 /** About Parts Event */

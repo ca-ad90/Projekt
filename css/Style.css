@@ -1224,7 +1224,6 @@ img.gallery-img-pres {
     animation-name: fadeIn;
     animation-duration: 0.5s;
     animation-timing-function: EASE-IN-OUT;
-
     animation-fill-mode: forwards;
 }
 

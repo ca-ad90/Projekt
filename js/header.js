@@ -199,6 +199,7 @@ class svgDrag2 {
         return c;
     }
 
+    //Path calculators
     m(e) {
         var m = {
             x:
@@ -321,7 +322,10 @@ class svgDrag2 {
     */
 
     mouseDown(el) {
+        // reset animation
         this.cancelRevert();
+
+        // find ClickEvent (open on click)
         if (
             el.target == this.navBtn ||
             $(this.navBtn).find(el.target).length > 0
@@ -336,6 +340,9 @@ class svgDrag2 {
         }
         if (el.target == this.wrapper || $(this.wrapper).find(el.target)) {
             const event = el.touches ? el.touches[0] : el;
+
+
+            //Start Dragging
             this.isDragging = true;
 
             this.request = null;
@@ -343,20 +350,22 @@ class svgDrag2 {
             this.reqOpen = null;
             this.cancelClose();
             this.reqClose = null;
+
+            //get mouse starting position
             this.mouse.x = event.clientX;
             this.mouse.y = event.clientY;
+
+
             this.cStart.x = this._circle.left;
             this.cStart.y = this._circle.top;
-            if (this.pos == "left") {
-                this.mouse.x = e.clientY;
-                this.mouse.y = e.clientX;
-            }
+
         } else {
         }
     }
     mousemove(el) {
         if (this.isDragging) {
             this.navbar.classList.remove("revert");
+
             const e = el.touches ? el.touches[0] : el;
             var moveX = Number(this.m(e).x.toFixed(2)) - this.win.width;
             var moveY = this.m(e).y - this.mouse.y;
@@ -415,6 +424,7 @@ class svgDrag2 {
     ANIMATIONS
     */
     async open() {
+        console.log("open", this.isd)
         this.cancelRevert();
         this.isDragging = false;
         this.isOpen = true;
@@ -505,10 +515,10 @@ class svgDrag2 {
                 this.svgHeight = this.bar.height + "px";
                 this.wrapper.style.height = this.bar.height + 5 + "px";
                 if (elapsed > closeMs || this.path.l2[1] == to) {
-                    this.cancelClose();
+
 
                     this.path.l2 = this.lxy(0, 0);
-                    res(true);
+                    this.cancelClose(true);
                 } else {
                     this.reqClose = window.requestAnimationFrame(
                         closeLoop.bind(this)

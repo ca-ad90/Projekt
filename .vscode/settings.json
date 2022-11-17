@@ -1,5 +1,6 @@
 {
     "editor.cursorBlinking": "blink",
     "editor.cursorStyle": "block",
-    "editor.cursorWidth": 5
+    "editor.cursorWidth": 5,
+    "liveServer.settings.port": 5501
 }
