@@ -2,22 +2,18 @@ const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 function setAttribute(element, ...attr) {
     if (typeof attr[0] === "string") {
-        element.setAttribute(attr[0], attr[1])
-        return
-    }
-    else {
+        element.setAttribute(attr[0], attr[1]);
+        return;
+    } else {
         for (let a of attr) {
-            element.setAttribute(a[0], a[1])
-
+            element.setAttribute(a[0], a[1]);
         }
-        return
+        return;
     }
-
-
 }
 class ScrollEffect {
     constructor() {
-        window.doc = doc
+        window.doc = doc;
         doc.scrollTo({
             top: 0,
             behavior: "instant",
@@ -31,16 +27,16 @@ class ScrollEffect {
         this.wrapper = document.getElementById("grid-wrapper");
         this.section = document.querySelectorAll("header, section, footer");
 
-        this.footer = document.querySelector("footer")
-        this.header = document.querySelector("header")
-        this.main = document.querySelector("main")
+        this.footer = document.querySelector("footer");
+        this.header = document.querySelector("header");
+        this.main = document.querySelector("main");
 
         this.touchReady = false;
         this.scrollLen;
         this._freq = {
             n: 0,
-            time: null
-        }
+            time: null,
+        };
 
         this.section.forEach((e) => {
             Object.defineProperties(e, {
@@ -141,20 +137,18 @@ class ScrollEffect {
                     get: function () {
                         try {
                             return this.querySelector(".section-wrapper");
-                        } catch { }
+                        } catch {}
                     },
                 },
             });
         });
         this.current = this.section[0];
-        this.drag = new this.dragHandler(this, doc)
-
-
+        this.drag = new this.dragHandler(this, doc);
 
         doc.onwheel = this.wHandler.bind(this);
-        doc.ontouchstart = this.touchStart.bind(this)
-        doc.ontouchmove = this.touchMove.bind(this)
-        doc.ontouchend = this.touchEnd.bind(this)
+        doc.ontouchstart = this.touchStart.bind(this);
+        doc.ontouchmove = this.touchMove.bind(this);
+        doc.ontouchend = this.touchEnd.bind(this);
         window.onkeydown = this.keyHandler.bind(this);
     }
     get killListeners() {
@@ -256,45 +250,43 @@ class ScrollEffect {
     }
 
     get freq() {
-        let time = new Date().getTime()
+        let time = new Date().getTime();
         if (time - this._freq.time > 100 || this._freq == null) {
-            this._freq.time = time
-            this._freq.n = 0
+            this._freq.time = time;
+            this._freq.n = 0;
         }
-        this._freq.n += this.dir
-        this._freq.time = new Date().getTime()
-        return this._freq.n
+        this._freq.n += this.dir;
+        this._freq.time = new Date().getTime();
+        return this._freq.n;
     }
     get sLen() {
-        return this.scrollLength
+        return this.scrollLength;
     }
 
     wHandler(e) {
-        if (e.ctrlKey) return
-        e.preventDefault()
-        console.log(this.freq)
+        if (e.ctrlKey) return;
+        e.preventDefault();
+        console.log(this.freq);
 
         /*
             if scrollDirection changes, restart scrollCounter(freq)
         */
         if (this.dir != -e.wheelDeltaY / Math.abs(e.wheelDeltaY)) {
-            this._freq.n = 0
+            this._freq.n = 0;
         }
 
         // set scrollDirection 1 == down, -1 == up
 
         this.dir = -e.wheelDeltaY / Math.abs(e.wheelDeltaY);
-        if (this.partialScroll()) return
-
+        if (this.partialScroll()) return;
 
         // trigger scrollEvent if scrollCounter > 3
         if (Math.abs(this.freq) > 3) {
-
             this.scrollBy(this.nextSection.top, 1000, false).then(() => {
                 // restart listeners and set current section
-                this.startListeners
-                this.current = this.nextSection
-            })
+                this.startListeners;
+                this.current = this.nextSection;
+            });
         }
     }
     keyHandler(e) {
@@ -308,7 +300,6 @@ class ScrollEffect {
         /*key Up*/
         if (e.keyCode == 38 && !this.running) {
             this.dir = -1;
-
         }
         /*key Down*/
         if (e.keyCode == 40 && !this.running) {
@@ -316,13 +307,13 @@ class ScrollEffect {
         }
 
         // if partial scrolling in section
-        if (this.partialScroll()) return
+        if (this.partialScroll()) return;
 
         this.scrollBy(this.nextSection.top, 1000, false).then(() => {
             //restart listensers
-            this.startListeners
-            this.current = this.nextSection
-        })
+            this.startListeners;
+            this.current = this.nextSection;
+        });
     }
     curve(x) {
         //return animation timing curve
@@ -337,55 +328,59 @@ class ScrollEffect {
         });
     }
     wLock(e) {
-        console.log(this.freq)
-        if (e.ctrlKey) return
+        console.log(this.freq);
+        if (e.ctrlKey) return;
         // scroll scounter - when listener is "killed"
-        e.preventDefault()
+        e.preventDefault();
         if (this.dir != -e.wheelDeltaY / Math.abs(e.wheelDeltaY)) {
-            this._freq.n = 0
-            this._freq.time = null
+            this._freq.n = 0;
+            this._freq.time = null;
         }
-        this._freq.n
-        this.freq
+        this._freq.n;
+        this.freq;
     }
     partialScroll() {
         // partial scrolling of section, if section is lager than vh
 
         //set section scroll end depending on direction
-        let scrollBottom = this.dir > 0 ? Math.ceil(this.current.bottom) : Math.floor(this.current.top)
+        let scrollBottom =
+            this.dir > 0
+                ? Math.ceil(this.current.bottom)
+                : Math.floor(this.current.top);
 
         //if scrolling down, scroll 80 extra before jumping to next section
-        let offset = this.dir < 0 ? 0 : 80
+        let offset = this.dir < 0 ? 0 : 80;
 
         // if section has overflow(larger than 100vh) and section scrollEnd is larger than offset
         if (scrollBottom <= offset - 1 && this.current.overflow) {
-
             // set partial scroll length
             // default 100px, but set minimum scroll length to 100 (to avoid small scrolls that feels unnecescary)
-            let len = scrollBottom + 200 < offset ? 200 : offset - scrollBottom > 100 ? offset - scrollBottom : 100
+            let len =
+                scrollBottom + 200 < offset
+                    ? 200
+                    : offset - scrollBottom > 100
+                    ? offset - scrollBottom
+                    : 100;
 
             //scroll set direction, positive or negative length
-            this.scrollBy(len * this.dir, 500, true)
-            return true
+            this.scrollBy(len * this.dir, 500, true);
+            return true;
         } else {
-
             //if no scroll needed return false
-            return false
+            return false;
         }
     }
     scrollBy(length, duration = 500, step) {
-
         // Promise so that listeners can be activated after scrolling is done
 
-        return new Promise(res => {
+        return new Promise((res) => {
             // Set start as scrollTop on animation start
-            let startPos = doc.scrollTop
+            let startPos = doc.scrollTop;
 
             // Kill listeners so no event triggers during animation.
-            this.killListeners
+            this.killListeners;
 
-            let startTime = new Date().getTime()
-
+            let startTime = new Date().getTime();
 
             /*
             The scroll animation loop,
@@ -393,42 +388,50 @@ class ScrollEffect {
             makes sure that evnet parameters always is in the loop
             */
             let scrollAnimation = (starttime, from, length, duration) => {
-                let st = starttime
-                let f = from
-                let len = length
-                let d = duration
-                let currentTime = new Date().getTime()
-                let elapsed = currentTime - st
+                let st = starttime;
+                let f = from;
+                let len = length;
+                let d = duration;
+                let currentTime = new Date().getTime();
+                let elapsed = currentTime - st;
 
                 // calculate part of elapsed time of duration as x
                 // Math.min so that x always ends att 1.
-                let x = Math.min(1, elapsed / d)
+                let x = Math.min(1, elapsed / d);
 
                 // get multiplier from timeing curve
                 // f(x) = current part of full length
-                let q = this.curve(x)
+                let q = this.curve(x);
                 doc.scrollTo({
-                    top: f + (len * q),
-                    behavior: "auto"
-                })
+                    top: f + len * q,
+                    behavior: "auto",
+                });
 
                 // if part of scoll length == 100%
                 if (x == 1) {
                     // true: end animation and restartListeners
-                    this.startListeners
-                    window.cancelAnimationFrame(frame)
+                    this.startListeners;
+                    window.cancelAnimationFrame(frame);
                     // resolve promise
-                    res()
+                    res();
                 } else {
                     // else: request new animation frame
-                    window.requestAnimationFrame(scrollAnimation.bind(this, st, f, length, d))
+                    window.requestAnimationFrame(
+                        scrollAnimation.bind(this, st, f, length, d)
+                    );
                 }
-            }
+            };
             //Start Loop
-            let frame = window.requestAnimationFrame(scrollAnimation.bind(this, startTime, startPos, length, duration))
-        })
-
-
+            let frame = window.requestAnimationFrame(
+                scrollAnimation.bind(
+                    this,
+                    startTime,
+                    startPos,
+                    length,
+                    duration
+                )
+            );
+        });
     }
     touchHandler(e) {
         if (this.running) {
@@ -478,7 +481,7 @@ class ScrollEffect {
                     if (
                         (this.current.top > window.innerHeight / 2 ||
                             this.nextSection.bottom <
-                            window.innerHeight - 100) &&
+                                window.innerHeight - 100) &&
                         this.scrollLen > 200 &&
                         this.scrollMax - this.scrollLen < 75
                     ) {
@@ -545,92 +548,83 @@ class ScrollEffect {
         }
     }
     touchStart(e) {
-        this.drag.start(e)
-        this.startTop = doc.scrollTop
+        this.drag.start(e);
+        this.startTop = doc.scrollTop;
     }
     touchMove(e) {
-        this.drag.dragging(e)
-        let len = this.drag.len
+        this.drag.dragging(e);
+        let len = this.drag.len;
         doc.scrollTo({
             top: this.startTop + len.y,
-            behavior: "auto"
-        })
-        this.dir = len.y > 0 ? 1 : -1
-
-
+            behavior: "auto",
+        });
+        this.dir = len.y > 0 ? 1 : -1;
     }
     touchEnd(e) {
-        this.drag.end(e)
-
+        this.drag.end(e);
     }
     dragHandler = class {
         constructor(scrollEventHandler, dragElement) {
-            this.top = scrollEventHandler
-            this.isDragging = false
-            this.startX
-            this.startY
-            this.x
-            this.y
-            this.max = 150
-            this.speed = 1
-            this.element = dragElement
-            this.distY = 0
-            this.distX = 0
-
+            this.top = scrollEventHandler;
+            this.isDragging = false;
+            this.startX;
+            this.startY;
+            this.x;
+            this.y;
+            this.max = 150;
+            this.speed = 1;
+            this.element = dragElement;
+            this.distY = 0;
+            this.distX = 0;
         }
         get len() {
             return {
                 x: this.distX,
-                y: this.distY * -1
-            }
-
+                y: this.distY * -1,
+            };
         }
         get killListeners() {
-            dragElement.ontouchstart = null
-            dragElement.ontouchmove = null
-            dragElement.ontouchend = null
-
+            dragElement.ontouchstart = null;
+            dragElement.ontouchmove = null;
+            dragElement.ontouchend = null;
         }
         get startListeners() {
-            dragElement.ontouchstart = this.start.bind(this)
-            dragElement.ontouchmove = this.dragging.bind(this)
-            dragElement.ontouchend = this.end.bind(this)
+            dragElement.ontouchstart = this.start.bind(this);
+            dragElement.ontouchmove = this.dragging.bind(this);
+            dragElement.ontouchend = this.end.bind(this);
         }
 
         start(e) {
-            e.preventDefault()
+            e.preventDefault();
 
-            this.isDragging = true
-            this.startX = e.touches[0].clientX
-            this.startY = e.touches[0].clientY
-            this.distX = 0
-            this.distY = 0
-
+            this.isDragging = true;
+            this.startX = e.touches[0].clientX;
+            this.startY = e.touches[0].clientY;
+            this.distX = 0;
+            this.distY = 0;
         }
         dragging(e) {
-            e.preventDefault()
-            if (!this.isDragging) return
+            e.preventDefault();
+            if (!this.isDragging) return;
             let dist = e.changedTouches[0];
-            this.distX = dist.clientX - this.startX
-            this.distY = dist.clientY - this.startY
+            this.distX = dist.clientX - this.startX;
+            this.distY = dist.clientY - this.startY;
         }
         end(e) {
-            e.preventDefault()
-            if (!this.isDragging) return
-            this.isDragging = false
+            e.preventDefault();
+            if (!this.isDragging) return;
+            this.isDragging = false;
             let dist = e.changedTouches[0];
-            this.distX = dist.clientX - this.startX
-            this.distY = dist.clientY - this.startY
+            this.distX = dist.clientX - this.startX;
+            this.distY = dist.clientY - this.startY;
             setTimeout(() => {
                 if (!this.isDragging) {
-                    this.distX = 0
-                    this.distY = 0
+                    this.distX = 0;
+                    this.distY = 0;
                 }
-            }, 100)
+            }, 100);
         }
-
-    }
-
+    };
 }
 class GalleryCarousel {
     constructor(element) {
@@ -650,16 +644,16 @@ class GalleryCarousel {
         };
         this.currentIndex = 0;
         this.res = {
-            in: () => { },
-            out: () => { },
-            next: () => { },
-            prev: () => { },
-            goto: () => { },
-            play: () => { },
+            in: () => {},
+            out: () => {},
+            next: () => {},
+            prev: () => {},
+            goto: () => {},
+            play: () => {},
         };
         this.reject = {
-            in: () => { },
-            out: () => { },
+            in: () => {},
+            out: () => {},
         };
         this.isRunning = [false, false];
         this.isPlaying = false;
@@ -678,7 +672,7 @@ class GalleryCarousel {
                             this.speed * 6
                         );
                     })
-                    .catch((e) => { })
+                    .catch((e) => {})
                     .finally(() => {
                         this.isPlaying = false;
                     });
@@ -700,7 +694,7 @@ class GalleryCarousel {
                             this.speed * 6
                         );
                     })
-                    .catch((e) => { })
+                    .catch((e) => {})
                     .finally(() => {
                         this.isPlaying = false;
                     });
@@ -721,7 +715,7 @@ class GalleryCarousel {
                             this.speed * 6
                         );
                     })
-                    .catch((e) => { })
+                    .catch((e) => {})
                     .finally(() => {
                         this.isPlaying = false;
                     });
@@ -729,10 +723,7 @@ class GalleryCarousel {
         this.play();
         document
             .querySelector(".gallery-container.gallery-img")
-            .addEventListener("click", () => {
-
-
-            });
+            .addEventListener("click", () => {});
     }
     get goToIndex() {
         try {
@@ -740,10 +731,7 @@ class GalleryCarousel {
                 this._goToIndex = this.index;
                 return this.index;
             } else return this._goToIndex;
-        } catch (e) {
-            ;
-            ;
-        }
+        } catch (e) {}
     }
     set goToIndex(x) {
         try {
@@ -757,7 +745,6 @@ class GalleryCarousel {
             return this.currentIndex;
         } catch (e) {
             console.error(e);
-
         }
     }
     set index(x) {
@@ -765,7 +752,6 @@ class GalleryCarousel {
             this.currentIndex = x;
         } catch (e) {
             console.error(e);
-
         }
     }
     get nextIndex() {
@@ -773,7 +759,6 @@ class GalleryCarousel {
             return this.index + 2 > this.galleryItems.len ? 0 : this.index + 1;
         } catch (e) {
             console.error(e);
-
         }
     }
     get prevIndex() {
@@ -783,7 +768,6 @@ class GalleryCarousel {
                 : this.index - 1;
         } catch (e) {
             console.error(e);
-
         }
     }
     get cancel2() {
@@ -792,7 +776,6 @@ class GalleryCarousel {
             this.reject.out();
         } catch (e) {
             console.error(e);
-
         }
     }
     get cancel() {
@@ -803,7 +786,6 @@ class GalleryCarousel {
             clearTimeout(this.timeout);
         } catch (e) {
             console.error(e);
-            ;
         }
     }
     moveDot(i, end) {
@@ -819,7 +801,6 @@ class GalleryCarousel {
             this.galleryItems.dot[i].classList.add("active");
         } catch (e) {
             console.error(e);
-            ;
         }
     }
     async fadeOut(index) {
@@ -900,7 +881,6 @@ class GalleryCarousel {
             });
         } catch (e) {
             console.error(e);
-            ;
         }
     }
     async fadeIn(index) {
@@ -929,7 +909,7 @@ class GalleryCarousel {
                             }
                         );
                 })
-                    .catch((e) => { })
+                    .catch((e) => {})
                     .finally(() => {
                         $(this.galleryItems.txt[index])
                             .show()
@@ -955,7 +935,7 @@ class GalleryCarousel {
                             }
                         );
                 })
-                    .catch((e) => { })
+                    .catch((e) => {})
                     .finally(() => {
                         $(this.galleryItems.img[index])
                             .show()
@@ -979,7 +959,6 @@ class GalleryCarousel {
             });
         } catch (e) {
             console.error(e);
-            ;
         }
     }
     async next() {
@@ -996,7 +975,6 @@ class GalleryCarousel {
             }
         } catch (e) {
             console.error(e);
-            ;
         }
     }
     async prev() {
@@ -1013,7 +991,6 @@ class GalleryCarousel {
             }
         } catch (e) {
             console.error(e);
-            ;
         }
     }
     checkIndex(x) {
@@ -1022,12 +999,11 @@ class GalleryCarousel {
                 x > this.galleryItems.len - 1
                     ? 0
                     : x < 0
-                        ? this.galleryItems.len - 1
-                        : x;
+                    ? this.galleryItems.len - 1
+                    : x;
             return out;
         } catch (e) {
             console.error(e);
-            ;
         }
     }
     async goTo(index) {
@@ -1054,7 +1030,6 @@ class GalleryCarousel {
             }
         } catch (e) {
             console.error(e);
-            ;
         }
         if (this.index == index) {
             return;
@@ -1089,14 +1064,13 @@ class GalleryCarousel {
                             this.speed * 6
                         );
                     })
-                    .catch((e) => { })
+                    .catch((e) => {})
                     .finally(() => {
                         this.isPlaying = false;
                     });
             }
         } catch (e) {
             console.error(e);
-            ;
         }
     }
 }
@@ -1116,11 +1090,11 @@ class SwipeHandler {
         this.elapsedTime;
         this.startTime;
         this.dist;
-        this._swipeUp = () => { };
-        this._swipeDown = () => { };
-        this._swipeLeft = () => { };
-        this._swipeRight = () => { };
-        this._swipeAll = () => { };
+        this._swipeUp = () => {};
+        this._swipeDown = () => {};
+        this._swipeLeft = () => {};
+        this._swipeRight = () => {};
+        this._swipeAll = () => {};
 
         this.element.addEventListener(
             "touchstart",
@@ -1205,11 +1179,9 @@ class SwipeHandler {
         this.startTime = new Date().getTime(); // record time when finger first makes contact with surface
     }
     swipeMove(e) {
-        ;
         e.preventDefault(); // prevent scrolling when inside DIV
     }
     swipeEnd(e) {
-        ;
         var touchobj = e.changedTouches[0];
         this.distX = touchobj.pageX - this.startX; // get horizontal dist traveled by finger while in contact with surface
         this.distY = touchobj.pageY - this.startY; // get vertical dist traveled by finger while in contact with surface
@@ -1233,19 +1205,15 @@ class SwipeHandler {
             switch (this.swipedir) {
                 case "up":
                     this.swipeUp(e);
-                    ;
                     break;
                 case "down":
                     this.swipeDown(e);
-                    ;
                     break;
                 case "left":
                     this.swipeLeft(e);
-                    ;
                     break;
                 case "right":
                     this.swipeRight(e);
-                    ;
                     break;
             }
             this.swipeAll();
@@ -1256,15 +1224,15 @@ class SwipeHandler {
 class PopupView {
     static currentViews = [];
     constructor(viewId) {
-        fetch("/popup-settings.json")
-            .then(res => res.json())
-            .then(data => {
-                console.log(`-----------FETCH DATA---------------`)
-                console.log('data', data);
-                this.el = []
-                data = data[viewId]
-                let items = data.items
-                let PATH = data.path
+        fetch("../popup-settings.json")
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(`-----------FETCH DATA---------------`);
+                console.log("data", data);
+                this.el = [];
+                data = data[viewId];
+                let items = data.items;
+                let PATH = data.path;
 
                 var id = viewId;
                 try {
@@ -1274,13 +1242,14 @@ class PopupView {
                         id =
                             PopupView.currentViews.length < 9
                                 ? "NewId-" + (PopupView.currentViews.length + 1)
-                                : "NewId-0" + (PopupView.currentViews.length + 1);
+                                : "NewId-0" +
+                                  (PopupView.currentViews.length + 1);
                         throw new Error(
                             "NAME CONFLICT!\n" +
-                            viewId +
-                            'Allready exists, ID set to "' +
-                            newId +
-                            '".'
+                                viewId +
+                                'Allready exists, ID set to "' +
+                                newId +
+                                '".'
                         );
                     }
                 } catch (err) {
@@ -1288,7 +1257,6 @@ class PopupView {
                     console.error(err);
                 }
                 this.id = id;
-
 
                 this.container = document.createElement("div");
                 this.container.setAttribute("id", this.id);
@@ -1299,35 +1267,65 @@ class PopupView {
                     right: document.createElement("div"),
                 };
                 this.btn = {
-                    left: document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+                    left: document.createElementNS(
+                        "http://www.w3.org/2000/svg",
+                        "svg"
+                    ),
                     right: document.createElementNS(
                         "http://www.w3.org/2000/svg",
                         "svg"
                     ),
                 };
-                let closeBtn = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                let closeBtn = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "svg"
+                );
                 closeBtn.setAttribute("viewBox", "0 0 100 100");
-                closeBtn.classList.add("closeBtn")
-                let l1 = document.createElementNS("http://www.w3.org/2000/svg", "line")
-                let l2 = document.createElementNS("http://www.w3.org/2000/svg", "line")
+                closeBtn.classList.add("closeBtn");
+                let l1 = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "line"
+                );
+                let l2 = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "line"
+                );
 
-                setAttribute(l1, ["x1", "19.5"], ["y1", "19.5"], ["x2", "80.5"], ["y2", "80.5"])
-                setAttribute(l2, ["x1", "19.5"], ["y1", "80.5"], ["x2", "80.5"], ["y2", "19.5"])
-                closeBtn.appendChild(l1)
-                closeBtn.appendChild(l2)
-                this.container.appendChild(closeBtn)
-
-
-
+                setAttribute(
+                    l1,
+                    ["x1", "19.5"],
+                    ["y1", "19.5"],
+                    ["x2", "80.5"],
+                    ["y2", "80.5"]
+                );
+                setAttribute(
+                    l2,
+                    ["x1", "19.5"],
+                    ["y1", "80.5"],
+                    ["x2", "80.5"],
+                    ["y2", "19.5"]
+                );
+                closeBtn.appendChild(l1);
+                closeBtn.appendChild(l2);
+                this.container.appendChild(closeBtn);
 
                 for (let dir in this.btn) {
                     this.btn[dir].classList.add("svg-arrow-" + dir, "noClose");
                     this.btn[dir].setAttribute("viewBox", "0 0 70 50");
-                    let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                    let g = document.createElementNS(
+                        "http://www.w3.org/2000/svg",
+                        "g"
+                    );
                     g.classList.add("svgArrow", dir);
                     let arrow = [
-                        document.createElementNS("http://www.w3.org/2000/svg", "path"),
-                        document.createElementNS("http://www.w3.org/2000/svg", "path"),
+                        document.createElementNS(
+                            "http://www.w3.org/2000/svg",
+                            "path"
+                        ),
+                        document.createElementNS(
+                            "http://www.w3.org/2000/svg",
+                            "path"
+                        ),
                     ];
                     arrow.forEach((e) => {
                         e.classList.add("arrow-btn");
@@ -1363,18 +1361,19 @@ class PopupView {
 
                 this.items = [];
                 for (let [index, item] of items.entries()) {
-                    this.el[index] = document.querySelector(`[data-setting="${viewId}"][data-item="${index}"]`)
+                    this.el[index] = document.querySelector(
+                        `[data-setting="${viewId}"][data-item="${index}"]`
+                    );
                     var element, src, rub, text;
                     var textCont = document.createElement("div");
                     var imgCont = document.createElement("div");
                     var content = document.createElement("div");
 
-
                     content.classList.add("popup-content", "fadeOut");
                     textCont.classList.add("popup-text");
                     imgCont.classList.add("popup-img");
 
-                    element = document.createElement(item.type)
+                    element = document.createElement(item.type);
 
                     element.setAttribute("src", PATH + item.path);
                     element.classList.add("noClose");
@@ -1386,13 +1385,10 @@ class PopupView {
                     textCont.appendChild(r);
 
                     let t = document.createElement("p");
-                    t.innerHTML = item.text
-                        ;
+                    t.innerHTML = item.text;
                     textCont.appendChild(t);
                     content.appendChild(textCont);
                     content.appendChild(imgCont);
-
-
 
                     this.items.push(content);
                 }
@@ -1416,7 +1412,10 @@ class PopupView {
                 }
                 this._current = 0;
                 this.el.forEach((e, i) => {
-                    e.addEventListener("click", this.openContainer.bind(this, i));
+                    e.addEventListener(
+                        "click",
+                        this.openContainer.bind(this, i)
+                    );
                 });
                 this.container.addEventListener(
                     "click",
@@ -1424,7 +1423,7 @@ class PopupView {
                 );
                 this.container.style.display = "none";
                 document.body.appendChild(this.container);
-            })
+            });
     }
     get getNext() {
         if (this.items.length - 1 < this.current + 1) {
@@ -1479,17 +1478,22 @@ class PopupView {
     openContainer(i, e) {
         //scrolling.killListeners;
         this.setCurrent(i, "none");
-        ;
         this.container.style.display = "grid";
     }
     closeContainer(e) {
-
-        if (e.target.classList.contains("closeBtn") || $(e.target).parent()[0].classList.contains("closeBtn") || e.target == this.container || e.target.classList.contains("popup-content") || e.target.classList.contains("popup-img") || e.target.classList.contains("popUpSection")) {
+        if (
+            e.target.classList.contains("closeBtn") ||
+            $(e.target).parent()[0].classList.contains("closeBtn") ||
+            e.target == this.container ||
+            e.target.classList.contains("popup-content") ||
+            e.target.classList.contains("popup-img") ||
+            e.target.classList.contains("popUpSection")
+        ) {
             this.container.style.display = "none";
         }
     }
 }
-const scroll = new ScrollEffect()
+const scroll = new ScrollEffect();
 
 const gallery = new GalleryCarousel(document.querySelector(".gallery-wrapper"));
 var galleryContainer = new PopupView("gallery");
