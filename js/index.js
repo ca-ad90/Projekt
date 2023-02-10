@@ -417,7 +417,7 @@ class ScrollEffect {
                 } else {
                     // else: request new animation frame
                     window.requestAnimationFrame(
-                        scrollAnimation.bind(this, st, f, length, d)
+                        scrollAnimation.bind(this, st, f, length, d),
                     );
                 }
             };
@@ -428,8 +428,8 @@ class ScrollEffect {
                     startTime,
                     startPos,
                     length,
-                    duration
-                )
+                    duration,
+                ),
             );
         });
     }
@@ -455,7 +455,7 @@ class ScrollEffect {
                     (this.posYStart - e.touches[0].clientY) /
                     Math.abs(this.posYStart - e.touches[0].clientY);
                 this.scrollLen = Math.abs(
-                    this.posYStart - e.touches[0].clientY
+                    this.posYStart - e.touches[0].clientY,
                 );
                 this.scrollMax = Math.max(this.scrollMax, this.scrollLen);
 
@@ -474,7 +474,7 @@ class ScrollEffect {
                     } else {
                         this.touchReady = false;
                         $(document.querySelector(".touch-block")).fadeOut(
-                            "fast"
+                            "fast",
                         );
                     }
                 } else {
@@ -493,7 +493,7 @@ class ScrollEffect {
                     } else {
                         this.touchReady = false;
                         $(document.querySelector(".touch-block")).fadeOut(
-                            "fast"
+                            "fast",
                         );
                     }
                 }
@@ -631,10 +631,10 @@ class GalleryCarousel {
         this.wrapper = document.querySelector(".gallery-wrapper");
 
         this.galleryImgCont = document.querySelector(
-            ".gallery-container.gallery-img"
+            ".gallery-container.gallery-img",
         );
         this.galleryTxtCont = document.querySelector(
-            ".gallery-container.gallery-text"
+            ".gallery-container.gallery-text",
         );
         this.galleryItems = {
             img: this.galleryImgCont.querySelectorAll(".gallery-item"),
@@ -669,7 +669,7 @@ class GalleryCarousel {
                         clearTimeout(this.timeout);
                         this.timeout = setTimeout(
                             this.play.bind(this),
-                            this.speed * 6
+                            this.speed * 6,
                         );
                     })
                     .catch((e) => {})
@@ -691,7 +691,7 @@ class GalleryCarousel {
                         clearTimeout(this.timeout);
                         this.timeout = setTimeout(
                             this.play.bind(this),
-                            this.speed * 6
+                            this.speed * 6,
                         );
                     })
                     .catch((e) => {})
@@ -712,7 +712,7 @@ class GalleryCarousel {
                         clearTimeout(this.timeout);
                         this.timeout = setTimeout(
                             this.play.bind(this),
-                            this.speed * 6
+                            this.speed * 6,
                         );
                     })
                     .catch((e) => {})
@@ -832,7 +832,7 @@ class GalleryCarousel {
                                 .css("left", "-125%")
                                 .hide();
                             res("text out resolve");
-                        }
+                        },
                     );
                 }).finally(() => {
                     $(this.galleryItems.txt[index])
@@ -857,7 +857,7 @@ class GalleryCarousel {
                                 .css("top", "-125%")
                                 .hide();
                             res("img out resolve");
-                        }
+                        },
                     );
                 }).finally(() => {
                     $(this.galleryItems.img[index])
@@ -906,7 +906,7 @@ class GalleryCarousel {
                             this.speed,
                             () => {
                                 res("text in resolve");
-                            }
+                            },
                         );
                 })
                     .catch((e) => {})
@@ -932,7 +932,7 @@ class GalleryCarousel {
                             this.speed,
                             () => {
                                 res("img in resolve");
-                            }
+                            },
                         );
                 })
                     .catch((e) => {})
@@ -1024,7 +1024,7 @@ class GalleryCarousel {
                     this.index = index;
                     this.timeout = setTimeout(
                         this.play.bind(this),
-                        this.speed * 6
+                        this.speed * 6,
                     );
                 });
             }
@@ -1061,7 +1061,7 @@ class GalleryCarousel {
                         clearTimeout(this.timeout);
                         this.timeout = setTimeout(
                             this.play.bind(this),
-                            this.speed * 6
+                            this.speed * 6,
                         );
                     })
                     .catch((e) => {})
@@ -1099,19 +1099,19 @@ class SwipeHandler {
         this.element.addEventListener(
             "touchstart",
             this.swipeStart.bind(this),
-            false
+            false,
         );
 
         this.element.addEventListener(
             "touchmove",
             this.swipeMove.bind(this),
-            false
+            false,
         );
 
         this.element.addEventListener(
             "touchend",
             this.swipeEnd.bind(this),
-            false
+            false,
         );
         return this.setSwipe.bind(this);
     }
@@ -1224,7 +1224,7 @@ class SwipeHandler {
 class PopupView {
     static currentViews = [];
     constructor(viewId) {
-        fetch("../popup-settings.json")
+        fetch("./popup-settings.json")
             .then((res) => res.json())
             .then((data) => {
                 console.log(`-----------FETCH DATA---------------`);
@@ -1249,7 +1249,7 @@ class PopupView {
                                 viewId +
                                 'Allready exists, ID set to "' +
                                 newId +
-                                '".'
+                                '".',
                         );
                     }
                 } catch (err) {
@@ -1269,26 +1269,26 @@ class PopupView {
                 this.btn = {
                     left: document.createElementNS(
                         "http://www.w3.org/2000/svg",
-                        "svg"
+                        "svg",
                     ),
                     right: document.createElementNS(
                         "http://www.w3.org/2000/svg",
-                        "svg"
+                        "svg",
                     ),
                 };
                 let closeBtn = document.createElementNS(
                     "http://www.w3.org/2000/svg",
-                    "svg"
+                    "svg",
                 );
                 closeBtn.setAttribute("viewBox", "0 0 100 100");
                 closeBtn.classList.add("closeBtn");
                 let l1 = document.createElementNS(
                     "http://www.w3.org/2000/svg",
-                    "line"
+                    "line",
                 );
                 let l2 = document.createElementNS(
                     "http://www.w3.org/2000/svg",
-                    "line"
+                    "line",
                 );
 
                 setAttribute(
@@ -1296,14 +1296,14 @@ class PopupView {
                     ["x1", "19.5"],
                     ["y1", "19.5"],
                     ["x2", "80.5"],
-                    ["y2", "80.5"]
+                    ["y2", "80.5"],
                 );
                 setAttribute(
                     l2,
                     ["x1", "19.5"],
                     ["y1", "80.5"],
                     ["x2", "80.5"],
-                    ["y2", "19.5"]
+                    ["y2", "19.5"],
                 );
                 closeBtn.appendChild(l1);
                 closeBtn.appendChild(l2);
@@ -1314,17 +1314,17 @@ class PopupView {
                     this.btn[dir].setAttribute("viewBox", "0 0 70 50");
                     let g = document.createElementNS(
                         "http://www.w3.org/2000/svg",
-                        "g"
+                        "g",
                     );
                     g.classList.add("svgArrow", dir);
                     let arrow = [
                         document.createElementNS(
                             "http://www.w3.org/2000/svg",
-                            "path"
+                            "path",
                         ),
                         document.createElementNS(
                             "http://www.w3.org/2000/svg",
-                            "path"
+                            "path",
                         ),
                     ];
                     arrow.forEach((e) => {
@@ -1333,7 +1333,7 @@ class PopupView {
                     });
                     let rect = document.createElementNS(
                         "http://www.w3.org/2000/svg",
-                        "rect"
+                        "rect",
                     );
                     rect.setAttribute("width", "70");
                     rect.setAttribute("height", "50");
@@ -1345,7 +1345,7 @@ class PopupView {
                             (e) => {
                                 this.getPrev;
                             },
-                            false
+                            false,
                         );
                     }
                     if (dir == "right") {
@@ -1354,7 +1354,7 @@ class PopupView {
                             (e) => {
                                 this.getNext;
                             },
-                            false
+                            false,
                         );
                     }
                 }
@@ -1362,7 +1362,7 @@ class PopupView {
                 this.items = [];
                 for (let [index, item] of items.entries()) {
                     this.el[index] = document.querySelector(
-                        `[data-setting="${viewId}"][data-item="${index}"]`
+                        `[data-setting="${viewId}"][data-item="${index}"]`,
                     );
                     var element, src, rub, text;
                     var textCont = document.createElement("div");
@@ -1414,12 +1414,12 @@ class PopupView {
                 this.el.forEach((e, i) => {
                     e.addEventListener(
                         "click",
-                        this.openContainer.bind(this, i)
+                        this.openContainer.bind(this, i),
                     );
                 });
                 this.container.addEventListener(
                     "click",
-                    this.closeContainer.bind(this)
+                    this.closeContainer.bind(this),
                 );
                 this.container.style.display = "none";
                 document.body.appendChild(this.container);
@@ -1455,12 +1455,12 @@ class PopupView {
         this.items[this.current].classList.remove(
             "rollInFromRight",
             "rollInFromLeft",
-            "fadeIn"
+            "fadeIn",
         );
         this.items[n].classList.remove(
             "rollOutToLeft",
             "rollOutToRight",
-            "fadeOut"
+            "fadeOut",
         );
         if (dir == "right") {
             this.items[this.current].classList.add("rollOutToLeft");
