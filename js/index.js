@@ -1375,7 +1375,7 @@ class PopupView {
 
                     element = document.createElement(item.type);
 
-                    element.setAttribute("src", "./" + PATH + item.path);
+                    element.setAttribute("src", "." + PATH + item.path);
                     element.classList.add("noClose");
 
                     imgCont.appendChild(element);
